@@ -1,0 +1,12 @@
+/dist
+
+/.idea
+/.vscode
+/.pytest_cache
+/.ruff_cache
+/.mypy_cache
+
+/docs-dist
+
+.coverage
+/.coverage.output

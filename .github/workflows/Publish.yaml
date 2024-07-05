@@ -1,0 +1,25 @@
+name: Publish library to PyPI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  publish:
+    if: "startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install poetry
+          poetry env use python3
+          poetry install
+      - name: Publish to PyPI
+        run: poetry publish -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} --build

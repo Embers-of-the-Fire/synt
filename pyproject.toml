@@ -1,0 +1,102 @@
+[tool.poetry]
+name = "syn-py"
+version = "0.1.0"
+description = "Write python with python."
+authors = ["Embers-of-the-Fire <stellarishs@163.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.2"
+coverage = "^7.5.4"
+pytest-cov = "^5.0.0"
+
+[tool.poetry.group.typing.dependencies]
+mypy = "^1.10.1"
+
+[tool.poetry.group.dev.dependencies]
+mkdocs = "^1.5.2"
+mkdocstrings = { extras = ["python"], version = "^0.25.1" }
+mkdocs-material = "^9.5.28"
+mkdocs-gen-files = "^0.5.0"
+mkdocs-literate-nav = "^0.6.1"
+black = "^24.4.2"
+ruff = "^0.5.0"
+mypy = "^1.10.1"
+
+[[tool.poetry.source]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+priority = "primary"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+extend-exclude = [
+    "docs/*",
+]
+fix = true
+line-length = 88
+src = ["src"]
+target-version = "py38"
+
+[tool.ruff.lint]
+extend-select = [
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "ERA", # flake8-eradicate/eradicate
+    "I",   # isort
+    "N",   # pep8-naming
+    "PIE", # flake8-pie
+    "PGH", # pygrep
+    "RUF", # ruff checks
+    "SIM", # flake8-simplify
+    "T20", # flake8-print
+    "TCH", # flake8-type-checking
+#    "TID", # flake8-tidy-imports
+    "UP",  # pyupgrade
+]
+ignore = [
+    "B904", # use 'raise ... from err'
+    "N818", # Exception name should be named with an Error suffix
+    "E402", # Module level import not at top of file
+]
+extend-safe-fixes = [
+    "TCH", # move import from and to TYPE_CHECKING blocks
+]
+unfixable = [
+    "ERA", # do not autoremove commented out code
+]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.isort]
+force-single-line = true
+lines-between-types = 1
+lines-after-imports = 2
+required-imports = ["from __future__ import annotations"]
+
+[tool.mypy]
+files = "synpy, tests"
+mypy_path = "synpy"
+namespace_packages = true
+explicit_package_bases = true
+show_error_codes = true
+strict = true
+enable_error_code = [
+    "ignore-without-code",
+    "redundant-expr",
+    "truthy-bool",
+]
+
+[tool.coverage.report]
+exclude_also = [
+    "if TYPE_CHECKING:",
+    "if t.TYPE_CHECKING:",
+    "if typing.TYPE_CHECKING:",
+]

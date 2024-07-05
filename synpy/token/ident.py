@@ -1,0 +1,101 @@
+from __future__ import annotations
+
+
+__all__ = [
+    "Identifier",
+    "IdentifierExpr",
+    "id_",
+]
+
+
+import synpy.code as code
+import synpy.expr.expr as expr
+
+from synpy.errors.ident import InvalidIdentifierException
+
+
+class Identifier(expr.IntoExpression, code.IntoCode):
+    """Represents a valid Python identifier.
+
+    For more information, see the [Identifier and Keywords][ident-and-keywords-python-docs]
+    section of the Python's standard documentation.
+
+    [ident-and-keywords-python-docs]: https://docs.python.org/3.12/reference/lexical_analysis.html#identifiers
+    """
+
+    raw: str
+    """Raw identifier text."""
+
+    def __init__(self, raw: str):
+        """Initialize a new identifier.
+
+        The raw content will be checked immediately when initializing the object.
+
+        Args:
+            raw: Raw identifier text.
+
+        Raises:
+            InvalidIdentifierException: If the raw identifier text is not a valid identifier.
+        """
+        if not raw.isidentifier():
+            raise InvalidIdentifierException(raw)
+        self.raw = raw
+
+    def into_expression(self) -> IdentifierExpr:
+        return IdentifierExpr(self)
+
+    def expr(self) -> IdentifierExpr:
+        """Initialize a new expression with `self`.
+
+        Alias for [`into_expression`][synpy.token.ident.Identifier.into_expression].
+        """
+        return IdentifierExpr(self)
+
+    def into_code(self) -> str:
+        return self.raw
+
+
+id_ = Identifier
+"""Alias [`Identifier`][synpy.token.ident.Identifier].
+
+Notes:
+    `id` is a built-in function in Python, so it's renamed to `id_` with a suffix.
+"""
+
+
+class IdentifierExpr(expr.Expression):
+    """An identifier as a Python expression.
+
+    See [`Identifier`][synpy.token.ident.Identifier] for more information.
+    """
+
+    precedence = expr.ExprPrecedence.Atom
+    expr_type = expr.ExprType.Identifier
+
+    ident: Identifier
+    """Inner identifier."""
+
+    def __init__(self, raw: Identifier):
+        """Initialize a new identifier.
+
+        Args:
+            raw: Identifier to be used as an expression.
+        """
+        self.ident = raw
+
+    @staticmethod
+    def from_str(s: str) -> IdentifierExpr:
+        """Parse an identifier from a string.
+
+        The raw content will be checked immediately when initializing the object.
+
+        Args:
+            s: Raw identifier text.
+
+        Raises:
+            InvalidIdentifierException: If the raw identifier text is not a valid identifier.
+        """
+        return IdentifierExpr(Identifier(s))
+
+    def into_code(self) -> str:
+        return self.ident.raw

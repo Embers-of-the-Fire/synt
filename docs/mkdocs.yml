@@ -1,0 +1,119 @@
+site_name: SynPy Document
+site_author: Embers-of-the-Fire
+site_description: Api documentation for synpy
+repo_url: https://github.com/Embers-of-the-Fire/synpy/
+repo_name: Embers-of-the-Fire/synpy
+copyright: Copyright &copy; 2024 Embers-of-the-Fire
+edit_uri: edit/main/docs/
+markdown_extensions:
+  - md_in_html
+  - footnotes
+  - pymdownx.blocks.admonition
+  - pymdownx.blocks.details
+  - pymdownx.blocks.tab:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.inlinehilite:
+      style_plain_text: py3
+  - pymdownx.magiclink
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - attr_list
+  - abbr
+  - toc:
+      permalink: "¤"
+nav:
+  - Introduction:
+    - index.md
+    - terms.md
+  - Api Documentation: api/
+theme:
+  name: material
+  language: 'en'
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - navigation.tabs
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+plugins:
+  search:
+  autorefs:
+  gen-files:
+    scripts:
+      - ../scripts/gen_api_ref.py
+  literate-nav:
+    nav_file: SUMMARY.md
+  mkdocstrings:
+    handlers:
+      python:
+        import:
+        - https://docs.python.org/3/objects.inv
+        paths: [ '..' ]
+        options:
+          docstring_options:
+            ignore_init_summary: false
+          members_order: source
+          filters:
+            - "!^_"
+            - "^__.*?__$"
+            - "!__all__"
+          line_length: 60
+          show_root_heading: true
+          unwrap_annotated: true
+          show_source: true
+          parameter_headings: true
+          show_inheritance_diagram: true
+          show_symbol_type_heading: true
+          show_symbol_type_toc: true
+          heading_level: 1
+          show_submodules: true
+          show_if_no_docstring: true
+          show_signature_annotations: true
+          separate_signature: true
+          annotations_path: brief
+          show_signature: true
+          signature_crossrefs: true
