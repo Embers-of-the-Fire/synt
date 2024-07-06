@@ -44,7 +44,7 @@ class FormatString(expr.Expression):
                 string += item
             else:
                 string += item.into_code()
-        return f'"{string}"'
+        return f'f"{string}"'
 
 
 fstring = FormatString

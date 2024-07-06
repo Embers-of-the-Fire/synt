@@ -48,7 +48,7 @@ class Closure(expr.Expression, code.IntoCode):
         """
         self.args = args
         self.body = body.into_expression()
-        if self.body.precedence >= self.precedence:
+        if self.body.precedence > self.precedence:
             self.body = self.body.wrapped()
 
     def into_code(self) -> str:

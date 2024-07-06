@@ -10,3 +10,5 @@
 
 .coverage
 /.coverage.output
+
+**/*/__pycache__

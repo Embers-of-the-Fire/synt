@@ -42,13 +42,13 @@ class Condition(expr.Expression):
             false_expr: expr.Expression to evaluate and return if the condition is false.
         """
         self.condition = condition.into_expression()
-        if self.condition.precedence >= self.precedence:
+        if self.condition.precedence > self.precedence:
             self.condition = self.condition.wrapped()
         self.true_expr = true_expr.into_expression()
-        if self.true_expr.precedence >= self.precedence:
+        if self.true_expr.precedence > self.precedence:
             self.true_expr = self.true_expr.wrapped()
         self.false_expr = false_expr.into_expression()
-        if self.false_expr.precedence >= self.precedence:
+        if self.false_expr.precedence > self.precedence:
             self.false_expr = self.false_expr.wrapped()
 
     def into_code(self) -> str:

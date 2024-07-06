@@ -210,9 +210,9 @@ class BinaryOp(expr.Expression):
         self.right = right.into_expression()
         self.op_type = op
 
-        if self.left.precedence >= self.precedence:
+        if self.left.precedence > self.precedence:
             self.left = self.left.wrapped()
-        if self.right.precedence >= self.precedence:
+        if self.right.precedence > self.precedence:
             self.right = self.right.wrapped()
 
     def into_code(self) -> str:

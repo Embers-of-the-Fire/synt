@@ -34,7 +34,7 @@ class Attribute(expr.Expression):
         self.target = target.into_expression()
         self.attribute_name = attr
 
-        if self.target.precedence >= self.precedence:
+        if self.target.precedence > self.precedence:
             self.target = self.target.wrapped()
 
     def into_code(self) -> str:

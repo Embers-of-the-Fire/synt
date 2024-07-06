@@ -38,7 +38,7 @@ class Assignment(expr.Expression):
         self.receiver = receiver
         self.value = value.into_expression()
 
-        if self.value.precedence >= self.precedence:
+        if self.value.precedence > self.precedence:
             self.value = self.value.wrapped()
 
     def into_code(self) -> str:

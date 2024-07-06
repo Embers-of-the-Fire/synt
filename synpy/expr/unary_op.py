@@ -137,7 +137,7 @@ class UnaryOp(expr.Expression):
         self.expression = e.into_expression()
         self.op_type = op
 
-        if self.expression.precedence >= self.precedence:
+        if self.expression.precedence > self.precedence:
             self.expression = self.expression.wrapped()
 
     def into_code(self) -> str:

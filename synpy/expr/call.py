@@ -42,7 +42,7 @@ class Call(expr.Expression):
             keywords: Keyword arguments of the call.
         """
         self.target = target.into_expression()
-        if self.target.precedence >= self.precedence:
+        if self.target.precedence > self.precedence:
             self.target = self.target.wrapped()
 
         self.args = [arg.into_expression() for arg in args]
