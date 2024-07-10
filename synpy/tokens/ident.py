@@ -39,7 +39,6 @@ class Identifier(expr.IntoExpression, code.IntoCode):
 
         Examples:
             ```python
-            from synpy.prelude import *
             id_foo = synpy.tokens.ident.Identifier('foo')
             id_foo_alias = id_('foo') # with alias
             try:
@@ -59,6 +58,13 @@ class Identifier(expr.IntoExpression, code.IntoCode):
         """Initialize a new expression with `self`.
 
         Alias for [`into_expression`][synpy.tokens.ident.Identifier.into_expression].
+
+        Examples:
+            ```python
+            id_foo = id_('foo')
+            id_foo_expr = id_foo.expr()
+            assert isinstance(id_foo_expr, synpy.expr.expr.Expression)
+            ```
         """
         return IdentifierExpr(self)
 
@@ -88,6 +94,8 @@ class IdentifierExpr(expr.Expression):
 
     def __init__(self, raw: Identifier):
         """Initialize a new identifier.
+
+        Use [`Identifier`][synpy.tokens.ident.Identifier.expr] instead and converts it into an expression.
 
         Args:
             raw: Identifier to be used as an expression.
