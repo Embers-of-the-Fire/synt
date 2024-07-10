@@ -35,7 +35,14 @@ class DictDisplay(expr.Expression, metaclass=ABCMeta):
 
 
 class DictVerbatim(DictDisplay):
-    """Verbatim dict expression."""
+    """Verbatim dict expression.
+
+    Examples:
+        ```python
+        d = dict_(kv(litstr("a"), id_("b")))
+        assert d.into_code() == "{'a': b}"
+        ```
+    """
 
     items: list[KVPair]
     """Dict items."""
@@ -63,6 +70,15 @@ Notes:
 
 class DictComprehension(DictDisplay):
     """Dict comprehension expression.
+
+    Note that you can also directly insert a comprehension expression into a normal dictionary,
+    but that will become a generator comprehension and returns a pair of extra parenthesis.
+
+    Examples:
+        ```python
+        d = dict_comp(kv(id_("a"), litint(1)).for_(id_("a")).in_(id("range").call(litint(5)))
+        assert d.into_code() == "{a: 1 for a in range(5)}"
+        ```
 
     References:
         [`comprehension`](https://docs.python.org/3/reference/

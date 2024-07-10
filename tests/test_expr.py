@@ -28,3 +28,13 @@ def test_expr_closure():
         )  # set the expression to be returned
     )
     assert closure.into_code() == "lambda x, y, z: x + y + z"
+
+
+def test_expr_dict():
+    d = dict_(kv(litstr("a"), id_("b")))
+    assert d.into_code() == "{'a': b}"
+
+    d = dict_comp(
+        kv(id_("a"), litint(1)).for_(id_("a")).in_(id_("range").expr().call(litint(5)))
+    )
+    assert d.into_code() == "{a: 1 for a in range(5)}"
