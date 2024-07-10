@@ -12,3 +12,5 @@
 /.coverage.output
 
 **/*/__pycache__
+
+/docs/docs/api
