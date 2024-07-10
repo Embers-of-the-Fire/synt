@@ -50,8 +50,11 @@ __all__ = [
     "id_",
     "pair",
     "kv",
+    "synpy",
 ]
 
+
+import synpy
 
 from synpy.errors.expr import ExpressionTypeException
 from synpy.errors.ident import InvalidIdentifierException
@@ -91,6 +94,6 @@ from synpy.expr.unary_op import yield_from
 from synpy.expr.wrapped import par
 from synpy.expr.wrapped import wrap
 from synpy.expr.wrapped import wrapped
-from synpy.token.ident import id_
-from synpy.token.kv_pair import kv
-from synpy.token.kv_pair import pair
+from synpy.tokens.ident import id_
+from synpy.tokens.kv_pair import kv
+from synpy.tokens.kv_pair import pair

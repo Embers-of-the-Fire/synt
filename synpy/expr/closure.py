@@ -16,7 +16,7 @@ import synpy.expr.expr as expr
 
 
 if TYPE_CHECKING:
-    from synpy.token.ident import Identifier
+    from synpy.tokens.ident import Identifier
 
 
 class Closure(expr.Expression, code.IntoCode):

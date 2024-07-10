@@ -20,7 +20,7 @@ from synpy.errors.expr import ExpressionTypeException
 
 
 if TYPE_CHECKING:
-    from synpy.token.kv_pair import KVPair
+    from synpy.tokens.kv_pair import KVPair
 
 
 class DictDisplay(expr.Expression, metaclass=ABCMeta):
@@ -66,7 +66,7 @@ class DictComprehension(DictDisplay):
 
     References:
         [`comprehension`](https://docs.python.org/3/reference/
-        expressions.html#grammar-token-python-grammar-comprehension).
+        expressions.html#grammar-tokens-python-grammar-comprehension).
     """
 
     comprehension: comp_expr.Comprehension
@@ -85,7 +85,7 @@ class DictComprehension(DictDisplay):
 
         Raises:
             ExpressionTypeException: Invalid dict comprehension result type,
-                typically not a [`KVPair`][synpy.token.kv_pair.KVPair].
+                typically not a [`KVPair`][synpy.tokens.kv_pair.KVPair].
         """
         if isinstance(comprehension, comp_expr.Comprehension):
             comp = comprehension

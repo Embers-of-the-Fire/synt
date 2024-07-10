@@ -19,7 +19,7 @@ import synpy.code as code
 # add in-lib imports to the bottom of the file
 
 if TYPE_CHECKING:
-    from synpy.token.ident import Identifier
+    from synpy.tokens.ident import Identifier
 
 
 class ExprPrecedence(IntEnum):
@@ -241,11 +241,11 @@ class ExprType(IntEnum):
     This type is Reserved for internal use."""
 
     Identifier = 0
-    """[`IdentifierExpr`][synpy.token.ident.IdentifierExpr]"""
+    """[`IdentifierExpr`][synpy.tokens.ident.IdentifierExpr]"""
     Wrapped = 1
     """[`Wrapped`][synpy.expr.wrapped.Wrapped]."""
     KeyValuePair = 1
-    """[`KVPair`][synpy.token.kv_pair.KVPair]."""
+    """[`KVPair`][synpy.tokens.kv_pair.KVPair]."""
     UnaryOp = 2
     """[`unary_op.UnaryOp`][synpy.expr.unary_op.UnaryOp]."""
     BinaryOp = 3

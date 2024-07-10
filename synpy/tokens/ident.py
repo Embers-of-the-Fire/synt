@@ -36,6 +36,17 @@ class Identifier(expr.IntoExpression, code.IntoCode):
 
         Raises:
             InvalidIdentifierException: If the raw identifier text is not a valid identifier.
+
+        Examples:
+            ```python
+            from synpy.prelude import *
+            id_foo = synpy.tokens.ident.Identifier('foo')
+            id_foo_alias = id_('foo') # with alias
+            try:
+                id_fail = id_('foo bar') # invalid identifier lit will fail
+            except synpy.errors.ident.InvalidIdentifierException:
+                pass
+            ```
         """
         if not raw.isidentifier():
             raise InvalidIdentifierException(raw)
@@ -47,7 +58,7 @@ class Identifier(expr.IntoExpression, code.IntoCode):
     def expr(self) -> IdentifierExpr:
         """Initialize a new expression with `self`.
 
-        Alias for [`into_expression`][synpy.token.ident.Identifier.into_expression].
+        Alias for [`into_expression`][synpy.tokens.ident.Identifier.into_expression].
         """
         return IdentifierExpr(self)
 
@@ -56,7 +67,7 @@ class Identifier(expr.IntoExpression, code.IntoCode):
 
 
 id_ = Identifier
-"""Alias [`Identifier`][synpy.token.ident.Identifier].
+"""Alias [`Identifier`][synpy.tokens.ident.Identifier].
 
 Notes:
     `id` is a built-in function in Python, so it's renamed to `id_` with a suffix.
@@ -66,7 +77,7 @@ Notes:
 class IdentifierExpr(expr.Expression):
     """An identifier as a Python expression.
 
-    See [`Identifier`][synpy.token.ident.Identifier] for more information.
+    See [`Identifier`][synpy.tokens.ident.Identifier] for more information.
     """
 
     precedence = expr.ExprPrecedence.Atom

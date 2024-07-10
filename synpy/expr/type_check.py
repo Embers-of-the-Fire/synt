@@ -19,7 +19,7 @@ import synpy.expr.unary_op as unary_op
 
 
 if TYPE_CHECKING:
-    from synpy.token.ident import IdentifierExpr
+    from synpy.tokens.ident import IdentifierExpr
 
 
 def is_into_expr(e: Any) -> TypeGuard[expr.IntoExpression]:

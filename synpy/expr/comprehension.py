@@ -15,11 +15,11 @@ from typing import Self
 
 import synpy.code as code
 import synpy.expr.expr as expr
-import synpy.token.ident as ident
+import synpy.tokens.ident as ident
 
 
 if TYPE_CHECKING:
-    from synpy.token.ident import Identifier
+    from synpy.tokens.ident import Identifier
 
 
 class Comprehension(expr.IntoExpression, code.IntoCode):
@@ -46,7 +46,7 @@ class Comprehension(expr.IntoExpression, code.IntoCode):
 
     References:
         [`comprehension`](https://docs.python.org/3/reference/
-        expressions.html#grammar-token-python-grammar-comprehension).
+        expressions.html#grammar-tokens-python-grammar-comprehension).
     """
 
     elt: expr.Expression

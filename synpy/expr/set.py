@@ -61,7 +61,7 @@ class SetComprehension(SetDisplay):
 
     References:
         [`comprehension`](https://docs.python.org/3/reference/
-        expressions.html#grammar-token-python-grammar-comprehension).
+        expressions.html#grammar-tokens-python-grammar-comprehension).
     """
 
     comprehension: comp_expr.Comprehension
@@ -80,7 +80,7 @@ class SetComprehension(SetDisplay):
 
         Raises:
             ExpressionTypeException: Invalid set comprehension result type,
-                typically a [`KVPair`][synpy.token.kv_pair.KVPair].
+                typically a [`KVPair`][synpy.tokens.kv_pair.KVPair].
         """
         if isinstance(comprehension, comp_expr.Comprehension):
             comp = comprehension

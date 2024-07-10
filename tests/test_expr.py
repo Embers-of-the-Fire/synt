@@ -33,8 +33,8 @@ def test_expr_constructor():
     assert text == "a.b[slice] == (- sin(angle=theta) if j >= k else t)"
     text = (
         (
-                id_("a").expr().attr("b")[id_("slice")]
-                == (-id_("sin").expr().call(angle=id_("theta")))
+            id_("a").expr().attr("b")[id_("slice")]
+            == (-id_("sin").expr().call(angle=id_("theta")))
         )
         .if_(id_("j").expr() >= id_("k"))
         .else_(id_("t"))
@@ -42,16 +42,11 @@ def test_expr_constructor():
     text = text.into_code()
     assert text == "a.b[slice] == - sin(angle=theta) if j >= k else t"
 
-    expression = id_("foo") \
-        .expr() \
-        .attr("bar") \
-        .call(buzz=id_("buzz"))
+    expression = id_("foo").expr().attr("bar").call(buzz=id_("buzz"))
 
     assert expression.into_code() == "foo.bar(buzz=buzz)"
 
-    comp = fstring("Item: ", fnode(id_("x"))) \
-        .for_(id_("x")) \
-        .in_(id_("it"))
+    comp = fstring("Item: ", fnode(id_("x"))).for_(id_("x")).in_(id_("it"))
 
     # note: Comprehension expressions are a bit different because it accepts any amount of `for`s and `if`s.
     #       Thus we must add a `.expr()` to force it to be an expression.

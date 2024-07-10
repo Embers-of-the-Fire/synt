@@ -41,4 +41,4 @@ class KVPair(Expression):
 
 
 pair = kv = KVPair
-"""Alias for [`KVPair`][synpy.token.kv_pair.KVPair]."""
+"""Alias for [`KVPair`][synpy.tokens.kv_pair.KVPair]."""
