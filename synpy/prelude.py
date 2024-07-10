@@ -50,6 +50,9 @@ __all__ = [
     "id_",
     "pair",
     "kv",
+    "litfloat",
+    "litint",
+    "litstr",
 ]
 
 from synpy.errors.expr import ExpressionTypeException
@@ -93,3 +96,6 @@ from synpy.expr.wrapped import wrapped
 from synpy.tokens.ident import id_
 from synpy.tokens.kv_pair import kv
 from synpy.tokens.kv_pair import pair
+from synpy.tokens.lit import litfloat
+from synpy.tokens.lit import litint
+from synpy.tokens.lit import litstr

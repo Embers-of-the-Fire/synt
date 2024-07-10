@@ -274,7 +274,9 @@ class ExprType(IntEnum):
     """[`attribute.Attribute`][synpy.expr.attribute.Attribute]"""
     Call = 15
     """[`call.Call`][synpy.expr.call.Call]"""
-    Empty = 16
+    Literal = 16
+    """[`tokens.lit.Literal`][synpy.tokens.lit.Literal]"""
+    Empty = 17
     """[`Empty`][synpy.expr.empty.Empty]"""
 
 

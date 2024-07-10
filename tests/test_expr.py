@@ -23,6 +23,8 @@ def test_expr_closure():
     closure = (
         lambda_(id_("x"), id_("y"))  # initial a closure builder
         .join(id_("z"))  # append new argument
-        .return_(id_("x").expr() + id_("y") + id_("z"))  # set the expression to be returned
+        .return_(
+            id_("x").expr() + id_("y") + id_("z")
+        )  # set the expression to be returned
     )
     assert closure.into_code() == "lambda x, y, z: x + y + z"

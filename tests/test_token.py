@@ -27,3 +27,12 @@ def test_ident():
 def test_kv_pair():
     kv_pair = kv(id_("a"), id_("b"))
     assert kv_pair.into_code() == "a: b"
+
+
+def test_lit():
+    a = litstr("abc")
+    assert a.into_code() == "'abc'"
+    a = litint(1)
+    assert a.into_code() == "1"
+    a = litfloat(0.24)
+    assert a.into_code() == "0.24"
