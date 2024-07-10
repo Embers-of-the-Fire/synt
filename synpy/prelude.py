@@ -50,11 +50,7 @@ __all__ = [
     "id_",
     "pair",
     "kv",
-    "synpy",
 ]
-
-
-import synpy
 
 from synpy.errors.expr import ExpressionTypeException
 from synpy.errors.ident import InvalidIdentifierException
