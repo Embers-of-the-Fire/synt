@@ -9,8 +9,8 @@ __all__ = [
     "prelude",
 ]
 
-import tokens
-import expr
-import errors
-import code
-import prelude
+from . import code
+from . import errors
+from . import expr
+from . import prelude
+from . import tokens

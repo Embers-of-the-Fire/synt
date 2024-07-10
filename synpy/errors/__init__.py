@@ -6,5 +6,5 @@ __all__ = [
     "expr",
 ]
 
-from . import ident
 from . import expr
+from . import ident
