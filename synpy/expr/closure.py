@@ -56,7 +56,18 @@ class Closure(expr.Expression, code.IntoCode):
 
 
 class ClosureBuilder:
-    """Builder for [`Closure`][synpy.expr.closure.Closure]."""
+    """Builder for [`Closure`][synpy.expr.closure.Closure].
+
+    Examples:
+        ```python
+        closure = (
+            lambda_(id_("x"), id_("y")) # initial a closure builder
+            .join(id_("z")) # append new argument, optional
+            .return_(id_("x").expr() + id_("y") + id_("z")) # set the expression to be returned and build the closure
+        )
+        assert closure.into_code() == "lambda x, y, z: x + y + z"
+        ```
+    """
 
     __args: list[Identifier]
 
@@ -77,17 +88,17 @@ class ClosureBuilder:
         self.__args.extend(args)
         return self
 
-    def ret(self, expr: expr.IntoExpression) -> Closure:
+    def ret(self, e: expr.IntoExpression) -> Closure:
         """Set the expression to be returned by the closure.
 
         Args:
-            expr: expr.Expression to be returned.
+            e: expr.Expression to be returned.
         """
-        return Closure(self.__args, expr)
+        return Closure(self.__args, e)
 
-    def return_(self, expr: expr.IntoExpression) -> Closure:
+    def return_(self, e: expr.IntoExpression) -> Closure:
         """Alias [`ret`][synpy.expr.closure.ClosureBuilder.ret]."""
-        return self.ret(expr)
+        return self.ret(e)
 
 
 lambda_ = ClosureBuilder
