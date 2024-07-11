@@ -59,3 +59,10 @@ def test_expr_set():
     assert s.into_code() == "{1, b}"
     s = set_comp(id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5))))
     assert s.into_code() == "{x for x in range(5)}"
+
+
+def test_expr_slice():
+    sl = slice_(litint(5), litint(10))
+    assert sl.into_code() == "5:10"
+    sl = slice_(litint(5), litint(10), id_("a"))
+    assert sl.into_code() == "5:10:a"

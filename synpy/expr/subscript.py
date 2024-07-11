@@ -60,6 +60,14 @@ class Slice(code.IntoCode):
     ]
     ```
 
+    Examples:
+        ```python
+        sl = slice_(litint(5), litint(10))
+        assert sl.into_code() == "5:10"
+        sl = slice_(litint(5), litint(10), id_("a"))
+        assert sl.into_code() == "5:10:a"
+        ```
+
     References:
         [Slice](https://docs.python.org/3/library/ast.html#ast.Slice).
     """
