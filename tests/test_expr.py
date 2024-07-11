@@ -71,3 +71,10 @@ def test_expr_slice():
 def test_expr_tuple():
     t = tup(litstr("abc"))
     assert t.into_code() == "('abc',)"
+
+
+def test_expr_wrapped():
+    wp = wrapped(litint(1) + litint(2)) * litint(3)
+    assert wp.into_code() == "(1 + 2) * 3"
+    non_wp = (litint(1) + litint(2)) * litint(3)
+    assert non_wp.into_code() == "(1 + 2) * 3"

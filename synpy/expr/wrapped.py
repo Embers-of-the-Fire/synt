@@ -13,7 +13,20 @@ import synpy.expr.expr as expr
 
 
 class Wrapped(expr.Expression):
-    """A wrapped expression, aka `( expr )`, which is always an atomic expression."""
+    """A wrapped expression, aka `( expr )`, which is always an atomic expression.
+
+    Examples:
+        ```python
+        wp = wrapped(litint(1) + litint(2)) * litint(3)
+        assert wp.into_code() == "(1 + 2) * 3"
+        ```
+
+    Notes:
+        Most plain expressions have their own expression precedence, and will be wrapped
+        automatically by SynPy.
+        However, for those atomic expressions, some of them does have different parser precedence
+        which is hard to represent beforehand. Thus, you must explicitly wrap them manually.
+    """
 
     inner: expr.Expression
     """Inner expression."""
