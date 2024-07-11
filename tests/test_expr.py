@@ -52,3 +52,10 @@ def test_expr_list():
     assert l.into_code() == "['a', b]"
     l = list_comp(id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5))))
     assert l.into_code() == "[x for x in range(5)]"
+
+
+def test_expr_set():
+    s = set_(litint(1), id_("b"))
+    assert s.into_code() == "{1, b}"
+    s = set_comp(id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5))))
+    assert s.into_code() == "{x for x in range(5)}"

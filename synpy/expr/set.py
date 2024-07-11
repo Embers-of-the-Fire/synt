@@ -30,7 +30,14 @@ class SetDisplay(expr.Expression, metaclass=ABCMeta):
 
 
 class SetVerbatim(SetDisplay):
-    """Verbatim set expression."""
+    """Verbatim set expression.
+
+    Examples:
+        ```python
+        s = set_(litint(1), id_("b"))
+        assert s.into_code() == "{1, b}"
+        ```
+    """
 
     items: list[expr.Expression]
     """Set items."""
@@ -58,6 +65,12 @@ Notes:
 
 class SetComprehension(SetDisplay):
     """Set comprehension expression.
+
+    Examples:
+        ```python
+        s = set_comp(id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5))))
+        assert s.into_code() == "{x for x in range(5)}"
+        ```
 
     References:
         [`comprehension`](https://docs.python.org/3/reference/
