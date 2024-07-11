@@ -38,3 +38,10 @@ def test_expr_dict():
         kv(id_("a"), litint(1)).for_(id_("a")).in_(id_("range").expr().call(litint(5)))
     )
     assert d.into_code() == "{a: 1 for a in range(5)}"
+
+
+def test_fstring():
+    node = fnode(id_("sin").expr().call(litint(1)), ".2")
+    assert node.into_code() == "{sin(1):.2}"
+    string = fstring("sin(1) = ", fnode(id_("sin").expr().call(litint(1))))
+    assert string.into_code() == 'f"sin(1) = {sin(1)}"'

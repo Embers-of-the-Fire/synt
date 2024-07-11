@@ -19,6 +19,12 @@ import synpy.expr.expr as expr
 class FormatString(expr.Expression):
     """Format string, aka f-string.
 
+    Examples:
+        ```python
+        string = fstring("sin(1) = ", fnode(id_("sin").expr().call(litint(1))))
+        assert string.into_code() == 'f"sin(1) = {sin(1)}"'
+        ```
+
     References:
         [expr.ExprType.FormatString][synpy.expr.expr.ExprType.FormatString].
     """
@@ -117,7 +123,14 @@ class FormatConversionType(IntEnum):
 
 
 class FormatNode(code.IntoCode):
-    """Format node used in [`FormatString`][synpy.expr.fstring.FormatString]."""
+    """Format node used in [`FormatString`][synpy.expr.fstring.FormatString].
+
+    Examples:
+        ```python
+        node = fnode(id_("sin").expr().call(litint(1)), ".2")
+        assert node.into_code() == "{sin(1):.2}"
+        ```
+    """
 
     value: expr.Expression
     """expr.Expression to be joint with other nodes."""
