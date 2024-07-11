@@ -32,6 +32,12 @@ class ListDisplay(expr.Expression, metaclass=ABCMeta):
 class ListVerbatim(ListDisplay):
     """Verbatim list expression, aka `starred-list`.
 
+    Examples:
+        ```python
+        l = list_(litstr("a"), id_("b"))
+        assert l.into_code() == "['a', b]"
+        ```
+
     References:
         [`starred-list`](https://docs.python.org/3/reference/expressions.html#grammar-token-python-grammar-starred_list).
     """
@@ -62,6 +68,12 @@ Notes:
 
 class ListComprehension(ListDisplay):
     """list comprehension expression.
+
+    Examples:
+        ```python
+        l = list_comp(id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5))))
+        assert l.into_code() == "[x for x in range(5)]"
+        ```
 
     References:
         [`comprehension`](https://docs.python.org/3/reference/

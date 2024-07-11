@@ -40,8 +40,15 @@ def test_expr_dict():
     assert d.into_code() == "{a: 1 for a in range(5)}"
 
 
-def test_fstring():
+def test_expr_fstring():
     node = fnode(id_("sin").expr().call(litint(1)), ".2")
     assert node.into_code() == "{sin(1):.2}"
     string = fstring("sin(1) = ", fnode(id_("sin").expr().call(litint(1))))
     assert string.into_code() == 'f"sin(1) = {sin(1)}"'
+
+
+def test_expr_list():
+    l = list_(litstr("a"), id_("b"))
+    assert l.into_code() == "['a', b]"
+    l = list_comp(id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5))))
+    assert l.into_code() == "[x for x in range(5)]"
