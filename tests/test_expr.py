@@ -66,3 +66,8 @@ def test_expr_slice():
     assert sl.into_code() == "5:10"
     sl = slice_(litint(5), litint(10), id_("a"))
     assert sl.into_code() == "5:10:a"
+
+
+def test_expr_tuple():
+    t = tup(litstr("abc"))
+    assert t.into_code() == "('abc',)"

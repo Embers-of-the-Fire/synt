@@ -12,7 +12,14 @@ import synpy.expr.expr as expr
 
 
 class Tuple(expr.Expression):
-    """Tuple expression."""
+    """Tuple expression.
+
+    Examples:
+        ```python
+        t = tup(litstr("abc"))
+        assert t.into_code() == "('abc',)"
+        ```
+    """
 
     items: list[expr.Expression]
     """Tuple items."""
