@@ -958,7 +958,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
     # wrap
 
     def wrap(self) -> expr_wrapped.Wrapped:
-        """Wrap `self` in a pair of parentheses."""
+        """Wrap `self` in a pair of parentheses, alias [`Wrapped`][synpy.expr.wrapped.Wrapped]."""
         return expr_wrapped.Wrapped(self)
 
     def wrapped(self) -> expr_wrapped.Wrapped:
