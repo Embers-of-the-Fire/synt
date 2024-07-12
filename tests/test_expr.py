@@ -129,11 +129,11 @@ def test_expr_comp():
     )
     assert comp_expr.into_code() == "[x for x in range(5) if x % 2 == 0]"
     comp_expr = list_comp(
-        id_('x')
+        id_("x")
         .expr()
-        .async_for(id_('x'))
-        .in_(id_('range').expr().call(litint(5)))
-        .if_((id_('x').expr() % litint(2)) == litint(0))
+        .async_for(id_("x"))
+        .in_(id_("range").expr().call(litint(5)))
+        .if_((id_("x").expr() % litint(2)) == litint(0))
     )
     assert comp_expr.into_code() == "[x async for x in range(5) if x % 2 == 0]"
 

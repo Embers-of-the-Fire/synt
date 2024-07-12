@@ -10,7 +10,6 @@ __all__ = [
 ]
 
 from typing import TYPE_CHECKING
-from typing import ClassVar
 from typing import Self
 
 import synpy.code as code
@@ -119,10 +118,7 @@ class ComprehensionNode(code.IntoCode):
             if_text = " " + " ".join(f"if {i.into_code()}" for i in self.ifs)
         else:
             if_text = ""
-        if self.is_async:
-            for_text = "async for"
-        else:
-            for_text = "for"
+        for_text = "async for" if self.is_async else "for"
         return f"{for_text} {target_text} in {self.iterator.into_code()}{if_text}"
 
 
