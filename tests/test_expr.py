@@ -19,6 +19,59 @@ def test_expr_type():
         assert op.into_code() is not None
 
 
+def test_expr_binop():
+    e = litint(1).add(id_("foo"))
+    assert e.into_code() == "1 + foo"
+    e = litint(1).sub(id_("foo"))
+    assert e.into_code() == "1 - foo"
+    e = litint(1).mul(id_("foo"))
+    assert e.into_code() == "1 * foo"
+    e = litint(1).div(id_("foo"))
+    assert e.into_code() == "1 / foo"
+    e = litint(1).floor_div(id_("foo"))
+    assert e.into_code() == "1 // foo"
+    e = litint(1).mod(id_("foo"))
+    assert e.into_code() == "1 % foo"
+    e = litint(1).pow(id_("foo"))
+    assert e.into_code() == "1 ** foo"
+    e = litint(1).at(id_("foo"))
+    assert e.into_code() == "1 @ foo"
+    e = litint(1).lshift(id_("foo"))
+    assert e.into_code() == "1 << foo"
+    e = litint(1).rshift(id_("foo"))
+    assert e.into_code() == "1 >> foo"
+    e = litint(1).lt(id_("foo"))
+    assert e.into_code() == "1 < foo"
+    e = litint(1).le(id_("foo"))
+    assert e.into_code() == "1 <= foo"
+    e = litint(1).gt(id_("foo"))
+    assert e.into_code() == "1 > foo"
+    e = litint(1).ge(id_("foo"))
+    assert e.into_code() == "1 >= foo"
+    e = litint(1).eq(id_("foo"))
+    assert e.into_code() == "1 == foo"
+    e = litint(1).ne(id_("foo"))
+    assert e.into_code() == "1 != foo"
+    e = litint(1).in_(id_("foo"))  # builtin check, no alias
+    assert e.into_code() == "1 in foo"
+    e = litint(1).not_in(id_("foo"))  # builtin check, no alias
+    assert e.into_code() == "1 not in foo"
+    e = litint(1).is_(id_("foo"))  # builtin check, no alias
+    assert e.into_code() == "1 is foo"
+    e = litint(1).is_not(id_("foo"))  # builtin check, no alias
+    assert e.into_code() == "1 is not foo"
+    e = litint(1).bool_and(id_("foo"))  # builtin operation, no alias
+    assert e.into_code() == "1 and foo"
+    e = litint(1).bool_or(id_("foo"))  # builtin operation, no alias
+    assert e.into_code() == "1 or foo"
+    e = litint(1).bit_and(id_("foo"))  # alias ... & ...
+    assert e.into_code() == "1 & foo"
+    e = litint(1).bit_or(id_("foo"))  # alias ... | ...
+    assert e.into_code() == "1 | foo"
+    e = litint(1).bit_xor(id_("foo"))  # alias ... ^ ...
+    assert e.into_code() == "1 ^ foo"
+
+
 def test_expr_closure():
     closure = (
         lambda_(id_("x"), id_("y"))  # initial a closure builder

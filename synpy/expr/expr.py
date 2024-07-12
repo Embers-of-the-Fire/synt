@@ -340,106 +340,289 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
     # bin op > plain method
 
     def add(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Add operation."""
+        """Add operation.
+
+        Examples:
+            ```python
+            e = litint(1).add(id_("foo")) # alias ... + ...
+            assert e.into_code() == "1 + foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.Add, self, other)
 
     def sub(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Subtract operation."""
+        """Subtract operation.
+
+        Examples:
+            ```python
+            e = litint(1).sub(id_("foo")) # alias ... - ...
+            assert e.into_code() == "1 - foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.Sub, self, other)
 
     def mul(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Multiply operation."""
+        """Multiply operation.
+
+        Examples:
+            ```python
+            e = litint(1).mul(id_("foo")) # alias ... * ...
+            assert e.into_code() == "1 * foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.Mul, self, other)
 
     def div(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Divide operation."""
+        """Divide operation.
+
+        Examples:
+            ```python
+            e = litint(1).div(id_("foo")) # alias ... / ...
+            assert e.into_code() == "1 / foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.Div, self, other)
 
+    def truediv(self, other: IntoExpression) -> binary_op.BinaryOp:
+        """Alias [`div`][synpy.expr.expr.Expression.div]."""
+        return self.div(other)
+
     def floor_div(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Floor divide operation."""
+        """Floor divide operation.
+
+        Examples:
+            ```python
+            e = litint(1).floor_div(id_("foo")) # alias ... // ...
+            assert e.into_code() == "1 // foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.FloorDiv, self, other)
 
     def mod(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Modulus operation."""
+        """Modulus operation.
+
+        Examples:
+            ```python
+            e = litint(1).mod(id_("foo")) # alias ... % ...
+            assert e.into_code() == "1 % foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.Mod, self, other)
 
     def pow(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Exponentiation operation."""
+        """Exponentiation operation.
+
+        Examples:
+            ```python
+            e = litint(1).pow(id_("foo")) # alias ... ** ...
+            assert e.into_code() == "1 ** foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.Pow, self, other)
 
     def at(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """At(matrix multiplication) operation."""
+        """At(matrix multiplication) operation.
+
+        Examples:
+            ```python
+            e = litint(1).at(id_("foo")) # alias ... @ ...
+            assert e.into_code() == "1 @ foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.At, self, other)
 
+    def matmul(self, other: IntoExpression) -> binary_op.BinaryOp:
+        """Alias [`at`][synpy.expr.expr.Expression.matmul]."""
+        return self.at(other)
+
     def lshift(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Left shift operation."""
+        """Left shift operation.
+
+        Examples:
+            ```python
+            e = litint(1).lshift(id_("foo")) # alias ... << ...
+            assert e.into_code() == "1 << foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.LShift, self, other)
 
     def rshift(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Right shift operation."""
+        """Right shift operation.
+
+        Examples:
+            ```python
+            e = litint(1).rshift(id_("foo")) # alias ... >> ...
+            assert e.into_code() == "1 >> foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.RShift, self, other)
 
     def lt(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Less than operation."""
+        """Less than operation.
+
+        Examples:
+            ```python
+            e = litint(1).lt(id_("foo")) # alias ... < ...
+            assert e.into_code() == "1 < foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.Less, self, other)
 
     def le(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Less than or equal to operation."""
+        """Less than or equal to operation.
+
+        Examples:
+            ```python
+            e = litint(1).le(id_("foo")) # alias ... <= ...
+            assert e.into_code() == "1 <= foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.LessEqual, self, other)
 
     def gt(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Greater than operation."""
+        """Greater than operation.
+
+        Examples:
+            ```python
+            e = litint(1).gt(id_("foo")) # alias ... > ...
+            assert e.into_code() == "1 > foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.Greater, self, other)
 
     def ge(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Greater than or equal to operation."""
+        """Greater than or equal to operation.
+
+        Examples:
+            ```python
+            e = litint(1).ge(id_("foo")) # alias ... >= ...
+            assert e.into_code() == "1 >= foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.GreaterEqual, self, other)
 
     def eq(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Equal to operation."""
+        """Equal to operation.
+
+        Examples:
+            ```python
+            e = litint(1).eq(id_("foo")) # alias ... == ...
+            assert e.into_code() == "1 == foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.Equal, self, other)
 
     def ne(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Not equal to operation."""
+        """Not equal to operation.
+
+        Examples:
+            ```python
+            e = litint(1).ne(id_("foo")) # alias ... != ...
+            assert e.into_code() == "1 != foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.NotEqual, self, other)
 
     def in_(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Membership test operation."""
+        """Membership test operation.
+
+        Examples:
+            ```python
+            e = litint(1).in_(id_("foo")) # builtin check, no alias
+            assert e.into_code() == "1 in foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.In, self, other)
 
     def not_in(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Negative membership test operation."""
+        """Negative membership test operation.
+
+        Examples:
+            ```python
+            e = litint(1).not_in(id_("foo")) # builtin check, no alias
+            assert e.into_code() == "1 not in foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.NotIn, self, other)
 
     def is_(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Identity test operation."""
+        """Identity test operation.
+
+        Examples:
+            ```python
+            e = litint(1).is_(id_("foo")) # builtin check, no alias
+            assert e.into_code() == "1 is foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.Is, self, other)
 
     def is_not(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Negative identity test operation."""
+        """Negative identity test operation.
+
+        Examples:
+            ```python
+            e = litint(1).is_not(id_("foo")) # builtin check, no alias
+            assert e.into_code() == "1 is not foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.IsNot, self, other)
 
     def bool_and(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Boolean AND operation."""
+        """Boolean AND operation.
+
+        Examples:
+            ```python
+            e = litint(1).bool_and(id_("foo")) # builtin operation, no alias
+            assert e.into_code() == "1 and foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.BoolAnd, self, other)
 
     def bool_or(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Boolean OR operation."""
+        """Boolean OR operation.
+
+        Examples:
+            ```python
+            e = litint(1).bool_or(id_("foo")) # builtin operation, no alias
+            assert e.into_code() == "1 or foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.BoolOr, self, other)
 
     def bit_and(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Bitwise AND operation."""
+        """Bitwise AND operation.
+
+        Examples:
+            ```python
+            e = litint(1).bit_and(id_("foo")) # alias ... & ...
+            assert e.into_code() == "1 & foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.BitAnd, self, other)
 
     def bit_or(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Bitwise OR operation."""
+        """Bitwise OR operation.
+
+        Examples:
+            ```python
+            e = litint(1).bit_or(id_("foo")) # alias ... | ...
+            assert e.into_code() == "1 | foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.BitOr, self, other)
 
     def bit_xor(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Bitwise XOR operation."""
+        """Bitwise XOR operation.
+
+        Examples:
+            ```python
+            e = litint(1).bit_xor(id_("foo")) # alias ... ^ ...
+            assert e.into_code() == "1 ^ foo"
+            ```
+        """
         return binary_op.BinaryOp(binary_op.BinaryOpType.BitXor, self, other)
 
-    # bin op > magit method
+    # bin op > magic method
 
     def __lt__(self, other: IntoExpression) -> binary_op.BinaryOp:
         """Alias [`lt`][synpy.expr.expr.Expression.lt]."""
