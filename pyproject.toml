@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Write python with python."
 authors = ["Embers-of-the-Fire <stellarishs@163.com>"]
 readme = "README.md"
+packages = [{include = "synpy"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
