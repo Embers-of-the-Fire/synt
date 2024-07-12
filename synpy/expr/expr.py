@@ -822,6 +822,12 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
         Args:
             attr: The attribute name.
+
+        Examples:
+            ```python
+            attr_expr = id_('a').expr().attr('b').expr().call(litint(1), litint(2))
+            assert attr_expr.into_code() == "a.b(1, 2)"
+            ```
         """
         return attribute.Attribute(self, attr)
 

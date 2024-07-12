@@ -98,6 +98,11 @@ def test_expr_assign():
     assert assign_to_expr.into_code() == "(a := 1 + 2) is True"
 
 
+def test_expr_attr():
+    attr_expr = id_('a').expr().attr('b').expr().call(litint(1), litint(2))
+    assert attr_expr.into_code() == "a.b(1, 2)"
+
+
 def test_expr_closure():
     closure = (
         lambda_(id_("x"), id_("y"))  # initial a closure builder
