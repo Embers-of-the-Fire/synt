@@ -701,11 +701,11 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
     # unary op > plain method
 
     def positive(self) -> unary_op.UnaryOp:
-        """Positive operation."""
+        """Positive operation, alias [`positive` function][synpy.expr.unary_op.positive]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Positive, self)
 
     def negative(self) -> unary_op.UnaryOp:
-        """Negative operation."""
+        """Negative operation, alias [`negative` function][synpy.expr.unary_op.negative]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Neg, self)
 
     def neg(self) -> unary_op.UnaryOp:
@@ -713,7 +713,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         return unary_op.UnaryOp(unary_op.UnaryOpType.Neg, self)
 
     def not_(self) -> unary_op.UnaryOp:
-        """Boolean NOT operation."""
+        """Boolean NOT operation, alias [`not_` function][synpy.expr.unary_op.not_]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.BoolNot, self)
 
     def bool_not(self) -> unary_op.UnaryOp:
@@ -721,7 +721,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         return self.not_()
 
     def invert(self) -> unary_op.UnaryOp:
-        """Bitwise NOT operation."""
+        """Bitwise NOT operation, alias [`invert` function][synpy.expr.unary_op.invert]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.BitNot, self)
 
     def bit_not(self) -> unary_op.UnaryOp:
@@ -729,7 +729,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         return self.invert()
 
     def await_(self) -> unary_op.UnaryOp:
-        """Await operation."""
+        """Await operation, alias [`await_` function][synpy.expr.unary_op.await_]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Await, self)
 
     def awaited(self) -> unary_op.UnaryOp:
@@ -737,7 +737,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         return self.await_()
 
     def unpack(self) -> unary_op.UnaryOp:
-        """Sequence unpacking operation."""
+        """Sequence unpacking operation, Alias [`unpack` function][synpy.expr.unary_op.unpack]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Starred, self)
 
     def starred(self) -> unary_op.UnaryOp:
@@ -749,7 +749,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         return self.unpack()
 
     def unpack_kv(self) -> unary_op.UnaryOp:
-        """K-V pair unpacking operation."""
+        """K-V pair unpacking operation, Alias [`unpack_kv` function][synpy.expr.unary_op.unpack_kv]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.DoubleStarred, self)
 
     def double_starred(self) -> unary_op.UnaryOp:
@@ -761,11 +761,11 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         return self.unpack_kv()
 
     def yield_(self) -> unary_op.UnaryOp:
-        """Yield operation."""
+        """Yield operation, alias [`yield_` function][synpy.expr.unary_op.yield_]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Yield, self)
 
     def yield_from(self) -> unary_op.UnaryOp:
-        """Yield from operation."""
+        """Yield from operation, alias [`yield_from` function][synpy.expr.unary_op.yield_from]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.YieldFrom, self)
 
     # unary op > magic method

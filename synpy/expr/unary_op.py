@@ -49,8 +49,18 @@ class UnaryOpType(IntEnum):
     """
 
     Yield = 1
+    """Yield expression operator `yield`.
+    
+    Notes:
+        `yield` is a Python hard keyword, but synpy treats it as a unary operator.
+    """
 
     YieldFrom = 2
+    """Yield-from expression operator `yield from`.
+    
+    Notes:
+        `yield from` is a Python hard keyword group, but synpy treats it as a single unary operator.
+    """
 
     Starred = 3
     """Tuple/list extractor operator `*`."""
@@ -154,7 +164,14 @@ class UnaryOp(expr.Expression):
 
 
 def await_(e: expr.IntoExpression) -> UnaryOp:
-    """Create an `await` expression."""
+    """Create an `await` expression.
+
+    Examples:
+        ```python
+        await_expr = await_(litint(10))
+        assert await_expr.into_code() == "await 10"
+        ```
+    """
     return UnaryOp(UnaryOpType.Await, e)
 
 
@@ -163,7 +180,14 @@ awaited = await_
 
 
 def unpack(e: expr.IntoExpression) -> UnaryOp:
-    """Sequence unpacking operation."""
+    """Sequence unpacking operation.
+
+    Examples:
+        ```python
+        unpacked_expr = unpack(list_(litint(1), litint(2), litint(3)))
+        assert unpacked_expr.into_code() == "* [1, 2, 3]"
+        ```
+    """
     return UnaryOp(UnaryOpType.Starred, e)
 
 
@@ -172,8 +196,15 @@ starred = unpack_seq = unpack
 
 
 def unpack_kv(e: expr.IntoExpression) -> UnaryOp:
-    """K-V pair unpacking operation."""
-    return UnaryOp(UnaryOpType.Starred, e)
+    """K-V pair unpacking operation.
+
+    Examples:
+        ```python
+        unpacked_expr = unpack_kv(dict_(kv(litint(1), litstr('a'))))
+        assert unpacked_expr.into_code() == "** {1: 'a'}"
+        ```
+    """
+    return UnaryOp(UnaryOpType.DoubleStarred, e)
 
 
 double_starred = unpack_dict = unpack_kv
@@ -181,12 +212,26 @@ double_starred = unpack_dict = unpack_kv
 
 
 def positive(e: expr.IntoExpression) -> UnaryOp:
-    """Positive operation."""
+    """Positive operation.
+
+    Examples:
+        ```python
+        positive_expr = positive(litint(10))
+        assert positive_expr.into_code() == "+ 10"
+        ```
+    """
     return UnaryOp(UnaryOpType.Positive, e)
 
 
 def negative(e: expr.IntoExpression) -> UnaryOp:
-    """Negative operation."""
+    """Negative operation.
+
+    Examples:
+        ```python
+        positive_expr = negative(litint(10))
+        assert positive_expr.into_code() == "- 10"
+        ```
+    """
     return UnaryOp(UnaryOpType.Positive, e)
 
 
@@ -195,7 +240,14 @@ neg = negative
 
 
 def not_(e: expr.IntoExpression) -> UnaryOp:
-    """Boolean NOT operation."""
+    """Boolean NOT operation.
+
+    Examples:
+        ```python
+        not_expr = not_(id_("foo"))
+        assert not_expr.into_code() == "not foo"
+        ```
+    """
     return UnaryOp(UnaryOpType.BoolNot, e)
 
 
@@ -203,8 +255,15 @@ bool_not = not_
 """Alias [`not_`][synpy.expr.unary_op.not_]."""
 
 
-def invert(e: expr.Expression) -> UnaryOp:
-    """Bitwise NOT operation."""
+def invert(e: expr.IntoExpression) -> UnaryOp:
+    """Bitwise NOT operation.
+
+    Examples:
+        ```python
+        not_expr = invert(id_("foo"))
+        assert not_expr.into_code() == "~ foo"
+        ```
+    """
     return UnaryOp(UnaryOpType.BitNot, e)
 
 
@@ -213,10 +272,24 @@ bit_not = invert
 
 
 def yield_(e: expr.Expression) -> UnaryOp:
-    """Yield operation."""
+    """Yield operation.
+
+    Examples:
+        ```python
+        yield_expr = yield_(litint(10))
+        assert yield_expr.into_code() == "yield 10"
+        ```
+    """
     return UnaryOp(UnaryOpType.Yield, e)
 
 
 def yield_from(e: expr.Expression) -> UnaryOp:
-    """Yield from operation."""
+    """Yield from operation.
+
+    Examples:
+        ```python
+        yield_expr = yield_from(list_(litint(10), litint(42)))
+        assert yield_expr.into_code() == "yield from [10, 42]"
+        ```
+    """
     return UnaryOp(UnaryOpType.YieldFrom, e)

@@ -72,6 +72,25 @@ def test_expr_binop():
     assert e.into_code() == "1 ^ foo"
 
 
+def test_expr_unary_op():
+    await_expr = await_(litint(10))
+    assert await_expr.into_code() == "await 10"
+    positive_expr = positive(litint(10))
+    assert positive_expr.into_code() == "+ 10"
+    not_expr = not_(id_("foo"))
+    assert not_expr.into_code() == "not foo"
+    not_expr = invert(id_("foo"))
+    assert not_expr.into_code() == "~ foo"
+    unpacked_expr = unpack(list_(litint(1), litint(2), litint(3)))
+    assert unpacked_expr.into_code() == "* [1, 2, 3]"
+    unpacked_expr = unpack_kv(dict_(kv(litint(1), litstr('a'))))
+    assert unpacked_expr.into_code() == "** {1: 'a'}"
+    yield_expr = yield_(litint(10))
+    assert yield_expr.into_code() == "yield 10"
+    yield_expr = yield_from(list_(litint(10), litint(42)))
+    assert yield_expr.into_code() == "yield from [10, 42]"
+
+
 def test_expr_closure():
     closure = (
         lambda_(id_("x"), id_("y"))  # initial a closure builder
