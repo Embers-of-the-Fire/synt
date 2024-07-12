@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import pytest
+import synpy
 
 from synpy.prelude import *
-import synpy
 
 
 def test_kwd():

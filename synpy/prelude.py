@@ -100,6 +100,10 @@ from synpy.expr.wrapped import wrapped
 from synpy.tokens.ident import id_
 from synpy.tokens.kv_pair import kv
 from synpy.tokens.kv_pair import pair
+from synpy.tokens.lit import FALSE
+from synpy.tokens.lit import NONE
+from synpy.tokens.lit import TRUE
+from synpy.tokens.lit import litbool
 from synpy.tokens.lit import litfloat
 from synpy.tokens.lit import litint
-from synpy.tokens.lit import litstr, litbool, TRUE, FALSE, NONE
+from synpy.tokens.lit import litstr
