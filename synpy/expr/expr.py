@@ -287,7 +287,7 @@ class IntoExpression(code.IntoCode, metaclass=ABCMeta):
     @abstractmethod
     def into_expression(self) -> Expression:
         """Convert the object into an expression."""
-        ...
+        pass
 
     def expr(self) -> Expression:
         """Convert the object into an expression.
@@ -311,13 +311,13 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
     @abstractmethod
     def precedence(self) -> ExprPrecedence:
         """The expression's precedence."""
-        ...
+        pass
 
     @property
     @abstractmethod
     def expr_type(self) -> ExprType:
         """The expression's type."""
-        ...
+        pass
 
     @abstractmethod
     def into_code(self) -> str:
@@ -325,7 +325,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
         **No Formatting!**
         """
-        ...
+        pass
 
     def into_expression(self) -> Expression:
         """An `Expression` can always be converted into an `Expression`."""

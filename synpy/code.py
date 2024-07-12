@@ -14,4 +14,4 @@ class IntoCode(metaclass=ABCMeta):
     @abstractmethod
     def into_code(self) -> str:
         """Converts the object into a string of Python code."""
-        ...
+        pass

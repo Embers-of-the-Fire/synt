@@ -100,4 +100,5 @@ exclude_also = [
     "if TYPE_CHECKING:",
     "if t.TYPE_CHECKING:",
     "if typing.TYPE_CHECKING:",
+    "pass",
 ]
