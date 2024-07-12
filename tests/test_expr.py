@@ -138,6 +138,11 @@ def test_expr_comp():
     assert comp_expr.into_code() == "[x async for x in range(5) if x % 2 == 0]"
 
 
+def test_expr_cond():
+    cond_expr = id_('a').expr().if_(id_('b').expr() > litint(0)).else_(litstr('foo'))
+    assert cond_expr.into_code() == "a if b > 0 else 'foo'"
+
+
 def test_expr_dict():
     d = dict_(kv(litstr("a"), id_("b")))
     assert d.into_code() == "{'a': b}"

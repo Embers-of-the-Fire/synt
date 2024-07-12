@@ -913,10 +913,16 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
     # alias for condition
 
     def if_(self, cond: IntoExpression) -> condition.ConditionBuilder:
-        """Initialize a new condition.
+        """Initialize a new condition expression.
 
         Args:
             cond: The condition expression.
+
+        Examples:
+            ```python
+            cond_expr = id_('a').expr().if_(id_('b').expr() > litint(0)).else_(litstr('foo'))
+            assert cond_expr.into_code() == "a if b > 0 else 'foo'"
+            ```
         """
         return condition.ConditionBuilder(cond, self)
 
