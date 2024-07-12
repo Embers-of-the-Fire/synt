@@ -36,3 +36,5 @@ def test_lit():
     assert a.into_code() == "1"
     a = litfloat(0.24)
     assert a.into_code() == "0.24"
+    assert litbool(True).into_code() == TRUE.into_code()
+    assert litbool(False).into_code() == FALSE.into_code()

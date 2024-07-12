@@ -6,6 +6,10 @@ __all__ = [
     "litfloat",
     "litint",
     "litstr",
+    "litbool",
+    "TRUE",
+    "FALSE",
+    "NONE",
 ]
 
 
@@ -34,6 +38,27 @@ class Literal(Expression):
             src: Source code of the literal.
         """
         self.lit = src
+
+    @staticmethod
+    def bool_(b: bool) -> Literal:
+        """Initialize a literal boolean.
+
+        Notes:
+            `bool` is a built-in type, so this function is suffixed with a `_`.
+
+        Args:
+            b: Original boolean.
+
+        Examples:
+            ```python
+            a = litbool(True)
+            assert a.into_code() == "True"
+            ```
+        """
+        if b:
+            return Literal("True")
+        else:
+            return Literal("False")
 
     @staticmethod
     def str_(s: str) -> Literal:
@@ -123,3 +148,11 @@ litint = Literal.int_
 """Alias for [`int_`][synpy.tokens.lit.Literal.int_]."""
 litfloat = Literal.float_
 """Alias for [`float_`][synpy.tokens.lit.Literal.float_]."""
+litbool = Literal.bool_
+"""Alias for [`bool_`][synpy.tokens.lit.Literal.bool_]."""
+TRUE = Literal.bool_(True)
+"""Alias for [`bool_(True)`][synpy.tokens.lit.Literal.bool_]."""
+FALSE = Literal.bool_(False)
+"""Alias for [`bool_(False)`][synpy.tokens.lit.Literal.bool_]."""
+NONE = Literal("None")
+"""Alias for a literal `None`."""

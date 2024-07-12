@@ -53,6 +53,10 @@ __all__ = [
     "litfloat",
     "litint",
     "litstr",
+    "litbool",
+    "TRUE",
+    "FALSE",
+    "NONE",
 ]
 
 from synpy.errors.expr import ExpressionTypeException
@@ -98,4 +102,4 @@ from synpy.tokens.kv_pair import kv
 from synpy.tokens.kv_pair import pair
 from synpy.tokens.lit import litfloat
 from synpy.tokens.lit import litint
-from synpy.tokens.lit import litstr
+from synpy.tokens.lit import litstr, litbool, TRUE, FALSE, NONE
