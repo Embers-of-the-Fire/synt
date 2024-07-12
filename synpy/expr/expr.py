@@ -937,6 +937,13 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
         Args:
             slices: The slice expressions.
+
+        Examples:
+            ```python
+            subscript_expr = id_('a').expr().subscribe(id_('b').expr(), slice_(litint(2), litint(3)))
+            # also alias: ...[...]
+            assert subscript_expr.into_code() == "a[b, 2:3]"
+            ```
         """
         return subscript.Subscript(self, list(slices))
 

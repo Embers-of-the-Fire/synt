@@ -143,6 +143,11 @@ def test_expr_cond():
     assert cond_expr.into_code() == "a if b > 0 else 'foo'"
 
 
+def test_expr_subscript():
+    subscript_expr = id_('a').expr().subscribe(id_('b').expr(), slice_(litint(2), litint(3)))
+    assert subscript_expr.into_code() == "a[b, 2:3]"
+
+
 def test_expr_dict():
     d = dict_(kv(litstr("a"), id_("b")))
     assert d.into_code() == "{'a': b}"
