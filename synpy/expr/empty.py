@@ -5,6 +5,9 @@ __all__ = [
     "Empty",
     "null",
     "expr",
+    "empty",
+    "EMPTY",
+    "NULL",
 ]
 
 
@@ -30,3 +33,6 @@ class Empty(syn_expr.Expression):
 
 empty = expr = null = Empty
 """Alias [`Empty`][synpy.expr.empty.Empty]."""
+
+EMPTY = NULL = Empty()
+"""An instance of [`Empty`][synpy.expr.empty.Empty]."""

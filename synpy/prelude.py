@@ -18,6 +18,9 @@ __all__ = [
     "dict_comp",
     "null",
     "expr",
+    "empty",
+    "EMPTY",
+    "NULL",
     "fstring",
     "fnode",
     "list_",
@@ -64,6 +67,9 @@ from synpy.errors.ident import InvalidIdentifierException
 from synpy.expr.closure import lambda_
 from synpy.expr.dict import dict_
 from synpy.expr.dict import dict_comp
+from synpy.expr.empty import EMPTY
+from synpy.expr.empty import NULL
+from synpy.expr.empty import empty
 from synpy.expr.empty import expr
 from synpy.expr.empty import null
 from synpy.expr.expr import Expression

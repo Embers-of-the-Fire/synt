@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import pytest
+
+import synpy
 from synpy.expr.binary_op import BinaryOpType
 from synpy.expr.expr import ExprPrecedence
 from synpy.expr.unary_op import UnaryOpType
@@ -17,6 +20,26 @@ def test_expr_type():
         op = UnaryOpType(i)
         assert op.to_precedence() is not None
         assert op.into_code() is not None
+
+    with pytest.raises(ValueError) as err:
+        op = BinaryOpType(100)
+        op.to_precedence()
+    assert "100" in str(err.value)
+
+    with pytest.raises(ValueError) as err:
+        op = BinaryOpType(100)
+        op.into_code()
+    assert "100" in str(err.value)
+
+    with pytest.raises(ValueError) as err:
+        op = UnaryOpType(100)
+        op.to_precedence()
+    assert "100" in str(err.value)
+
+    with pytest.raises(ValueError) as err:
+        op = UnaryOpType(100)
+        op.into_code()
+    assert "100" in str(err.value)
 
 
 def test_expr_binop():
@@ -165,6 +188,20 @@ def test_expr_fstring():
     assert node.into_code() == "{sin(1):.2}"
     string = fstring("sin(1) = ", fnode(id_("sin").expr().call(litint(1))))
     assert string.into_code() == 'f"sin(1) = {sin(1)}"'
+    for i in ["", "!a", "!r", "!s"]:
+        w = synpy.expr.fstring.FormatConversionType.from_str(i)
+        assert w is not None
+        assert w.into_str() == i
+    with pytest.raises(ValueError) as err_info:
+        w = synpy.expr.fstring.FormatConversionType.from_str("foo")
+    assert "foo" in str(err_info.value)
+    with pytest.raises(ValueError) as err_info:
+        w = synpy.expr.fstring.FormatConversionType(0).into_str()
+    assert "0" in str(err_info.value)
+
+
+def test_empty():
+    assert NULL.into_code() == ""
 
 
 def test_expr_list():
