@@ -235,7 +235,7 @@ class ComprehensionNodeBuilder(expr.IntoExpression):
 
     __target: list[Identifier] | None
     __iterator: expr.Expression | None
-    __ifs: ClassVar[list[expr.IntoExpression]] = []
+    __ifs: list[expr.IntoExpression]
     __is_async: bool = False
 
     def __init__(self, root: ComprehensionBuilder, is_async: bool = False):
@@ -249,6 +249,7 @@ class ComprehensionNodeBuilder(expr.IntoExpression):
         self.__is_async = is_async
         self.__target = None
         self.__iterator = None
+        self.__ifs = []
 
     def target(self, *target: Identifier) -> Self:
         """Set the target of the comprehension generator.

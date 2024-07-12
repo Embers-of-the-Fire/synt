@@ -890,7 +890,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
             assert comp_expr.into_code() == "[x for x in range(5) if x % 2 == 0]"
             ```
         """
-        return comprehension.ComprehensionBuilder.init(self, list(target))
+        return comprehension.ComprehensionBuilder.init(self, list(target), False)
 
     def async_for(self, *target: Identifier) -> comprehension.ComprehensionNodeBuilder:
         """Initialize a new async comprehension.
