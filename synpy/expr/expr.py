@@ -792,6 +792,12 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
         Raises:
             ValueError: If `self` is not an identifier.
+
+        Examples:
+            ```python
+            assign_expr = id_('a').expr().assign(litint(1))
+            assert assign_expr.into_code() == "a := 1"
+            ```
         """
         return assignment.Assignment(self.ensure_identifier(), expr)
 
@@ -799,7 +805,13 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         """Assign self to the target.
 
         Args:
-            target: The target expression.
+            target: The target identifier.
+
+        Examples:
+            ```python
+            assign_to_expr = (litint(1) + litint(2)).assign_to(id_('a')).is_(TRUE)
+            assert assign_to_expr.into_code() == "(a := 1 + 2) is True"
+            ```
         """
         return assignment.Assignment(target, self)
 
