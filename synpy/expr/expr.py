@@ -838,10 +838,16 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
         Args:
             *args: Positional arguments.
-            **kwargs: call.Keyword arguments.
+            **kwargs: Keyword arguments.
 
         Raises:
             ValueError: If any argument is not [`IntoExpression`][synpy.expr.expr.IntoExpression].
+
+        Examples:
+            ```python
+            call_expr = id_('a').expr().call(litint(1), litint(2)).call(kw=litint(3))
+            assert call_expr.into_code() == "a(1, 2)(kw=3)"
+            ```
         """
         arg: list[IntoExpression] = []
         for a in args:

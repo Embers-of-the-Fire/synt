@@ -103,6 +103,11 @@ def test_expr_attr():
     assert attr_expr.into_code() == "a.b(1, 2)"
 
 
+def test_expr_call():
+    call_expr = id_('a').expr().call(litint(1), litint(2)).call(kw=litint(3))
+    assert call_expr.into_code() == "a(1, 2)(kw=3)"
+
+
 def test_expr_closure():
     closure = (
         lambda_(id_("x"), id_("y"))  # initial a closure builder
