@@ -48,35 +48,35 @@ class BinaryOpType(IntEnum):
     """Left shift operator `<<`."""
     RShift = 9
     """Right shift operator `>>`."""
-    In = 9
+    In = 10
     """Membership test operator `in`."""
-    NotIn = 10
+    NotIn = 11
     """Negative membership test operator group `not in`."""
-    Is = 11
+    Is = 12
     """Identity test operator `is`."""
-    IsNot = 12
+    IsNot = 13
     """Negative identity test operator group `is not`."""
-    Less = 13
+    Less = 14
     """'Less than' operator `<`."""
-    LessEqual = 14
+    LessEqual = 15
     """'Less than or Equal' operator `<=`."""
-    Greater = 15
+    Greater = 16
     """'Greater than' operator `>`."""
-    GreaterEqual = 16
+    GreaterEqual = 17
     """'Greater than or Equal' operator `>=`."""
-    Equal = 17
+    Equal = 18
     """'Equal' operator `==`."""
-    NotEqual = 18
+    NotEqual = 19
     """Negative 'Equal' operator `!=`."""
-    BitAnd = 19
+    BitAnd = 20
     """Bitwise AND operator `&`."""
-    BitOr = 20
+    BitOr = 21
     """Bitwise OR operator `|`."""
-    BitXor = 21
+    BitXor = 22
     """Bitwise XOR operator `^`."""
-    BoolAnd = 22
+    BoolAnd = 23
     """Boolean AND operator `and`."""
-    BoolOr = 23
+    BoolOr = 24
     """Boolean OR operator `or`."""
 
     def to_precedence(self) -> expr.ExprPrecedence:
