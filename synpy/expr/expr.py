@@ -280,7 +280,7 @@ class ExprType(IntEnum):
     """[`Empty`][synpy.expr.empty.Empty]"""
 
 
-class IntoExpression(metaclass=ABCMeta):
+class IntoExpression(code.IntoCode, metaclass=ABCMeta):
     """Abstract class for those that can be converted into an
     [`Expression`][synpy.expr.expr.Expression]."""
 
@@ -295,6 +295,13 @@ class IntoExpression(metaclass=ABCMeta):
         This is a convenience method that calls `into_expression()` and returns the result.
         """
         return self.into_expression()
+
+    def into_code(self) -> str:
+        """Convert the object into a code string.
+
+        This is a convenience method that calls `into_expression()` and calls `into_code` on the result.
+        """
+        return self.into_expression().into_code()
 
 
 class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
@@ -872,6 +879,16 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
         Args:
             target: The target of the iteration.
+
+        Examples:
+            ```python
+            # `comp_expr` here only implements `IntoExpression` and `IntoCode`
+            # because it's still a non-finished builder
+            comp_expr = list_comp(id_('x').expr()
+                .for_(id_('x')).in_(id_('range').expr().call(litint(5)))
+                .if_((id_('x').expr() % litint(2)) == litint(0)))
+            assert comp_expr.into_code() == "[x for x in range(5) if x % 2 == 0]"
+            ```
         """
         return comprehension.ComprehensionBuilder.init(self, list(target))
 
@@ -880,6 +897,16 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
         Args:
             target: The iterator expression of the comprehension.
+
+        Examples:
+            ```python
+            # `comp_expr` here only implements `IntoExpression` and `IntoCode`
+            # because it's still a non-finished builder
+            comp_expr = list_comp(id_('x').expr()
+                .async_for(id_('x')).in_(id_('range').expr().call(litint(5)))
+                .if_((id_('x').expr() % litint(2)) == litint(0)))
+            assert comp_expr.into_code() == "[x async for x in range(5) if x % 2 == 0]"
+            ```
         """
         return comprehension.ComprehensionBuilder.init(self, list(target), True)
 

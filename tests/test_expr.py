@@ -83,7 +83,7 @@ def test_expr_unary_op():
     assert not_expr.into_code() == "~ foo"
     unpacked_expr = unpack(list_(litint(1), litint(2), litint(3)))
     assert unpacked_expr.into_code() == "* [1, 2, 3]"
-    unpacked_expr = unpack_kv(dict_(kv(litint(1), litstr('a'))))
+    unpacked_expr = unpack_kv(dict_(kv(litint(1), litstr("a"))))
     assert unpacked_expr.into_code() == "** {1: 'a'}"
     yield_expr = yield_(litint(10))
     assert yield_expr.into_code() == "yield 10"
@@ -92,19 +92,19 @@ def test_expr_unary_op():
 
 
 def test_expr_assign():
-    assign_expr = id_('a').expr().assign(litint(1))
+    assign_expr = id_("a").expr().assign(litint(1))
     assert assign_expr.into_code() == "a := 1"
-    assign_to_expr = (litint(1) + litint(2)).assign_to(id_('a')).is_(TRUE)
+    assign_to_expr = (litint(1) + litint(2)).assign_to(id_("a")).is_(TRUE)
     assert assign_to_expr.into_code() == "(a := 1 + 2) is True"
 
 
 def test_expr_attr():
-    attr_expr = id_('a').expr().attr('b').expr().call(litint(1), litint(2))
+    attr_expr = id_("a").expr().attr("b").expr().call(litint(1), litint(2))
     assert attr_expr.into_code() == "a.b(1, 2)"
 
 
 def test_expr_call():
-    call_expr = id_('a').expr().call(litint(1), litint(2)).call(kw=litint(3))
+    call_expr = id_("a").expr().call(litint(1), litint(2)).call(kw=litint(3))
     assert call_expr.into_code() == "a(1, 2)(kw=3)"
 
 
@@ -117,6 +117,22 @@ def test_expr_closure():
         )  # set the expression to be returned
     )
     assert closure.into_code() == "lambda x, y, z: x + y + z"
+
+
+def test_expr_comp():
+    comp_expr = list_comp(
+        id_("x")
+        .expr()
+        .for_(id_("x"))
+        .in_(id_("range").expr().call(litint(5)))
+        .if_((id_("x").expr() % litint(2)) == litint(0))
+    )
+    assert comp_expr.into_code() == "[x for x in range(5) if x % 2 == 0]"
+    comp_expr = list_comp(id_('x').expr()
+                          .async_for(id_('x'))
+                          .in_(id_('range').expr().call(litint(5)))
+                          .if_((id_('x').expr() % litint(2)) == litint(0)))
+    assert comp_expr.into_code() == "[x async for x in range(5) if x % 2 == 0]"
 
 
 def test_expr_dict():
@@ -139,14 +155,18 @@ def test_expr_fstring():
 def test_expr_list():
     l = list_(litstr("a"), id_("b"))
     assert l.into_code() == "['a', b]"
-    l = list_comp(id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5))))
+    l = list_comp(
+        id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5)))
+    )
     assert l.into_code() == "[x for x in range(5)]"
 
 
 def test_expr_set():
     s = set_(litint(1), id_("b"))
     assert s.into_code() == "{1, b}"
-    s = set_comp(id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5))))
+    s = set_comp(
+        id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5)))
+    )
     assert s.into_code() == "{x for x in range(5)}"
 
 

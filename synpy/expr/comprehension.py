@@ -119,7 +119,11 @@ class ComprehensionNode(code.IntoCode):
             if_text = " " + " ".join(f"if {i.into_code()}" for i in self.ifs)
         else:
             if_text = ""
-        return f"for {target_text} in {self.iterator.into_code()}{if_text}"
+        if self.is_async:
+            for_text = "async for"
+        else:
+            for_text = "for"
+        return f"{for_text} {target_text} in {self.iterator.into_code()}{if_text}"
 
 
 class GeneratorComprehension(expr.Expression):
