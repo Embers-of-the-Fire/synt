@@ -60,6 +60,13 @@ __all__ = [
     "TRUE",
     "FALSE",
     "NONE",
+    "Statement",
+    "IntoStatement",
+    "Block",
+    "FnDef",
+    "tvar",
+    "ttup",
+    "tspec",
 ]
 
 from synt.errors.expr import ExpressionTypeException
@@ -103,6 +110,10 @@ from synt.expr.unary_op import yield_from
 from synt.expr.wrapped import par
 from synt.expr.wrapped import wrap
 from synt.expr.wrapped import wrapped
+from synt.stmt.block import Block
+from synt.stmt.fn import FnDef
+from synt.stmt.stmt import IntoStatement
+from synt.stmt.stmt import Statement
 from synt.tokens.ident import id_
 from synt.tokens.kv_pair import kv
 from synt.tokens.kv_pair import pair
@@ -113,3 +124,6 @@ from synt.tokens.lit import litbool
 from synt.tokens.lit import litfloat
 from synt.tokens.lit import litint
 from synt.tokens.lit import litstr
+from synt.ty.type_param import tspec
+from synt.ty.type_param import ttup
+from synt.ty.type_param import tvar
