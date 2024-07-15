@@ -7,10 +7,12 @@ __all__ = [
     "errors",
     "code",
     "prelude",
+    "stmt",
 ]
 
 from . import code
 from . import errors
 from . import expr
 from . import prelude
+from . import stmt
 from . import tokens
