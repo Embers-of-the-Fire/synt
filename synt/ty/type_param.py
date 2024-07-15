@@ -8,6 +8,7 @@ __all__ = [
     "tvar",
     "ttup",
     "tspec",
+    "TypeParam",
 ]
 
 from typing import TYPE_CHECKING
@@ -123,3 +124,7 @@ class TypeParamSpec:
 
 tspec = TypeParamSpec
 """Alias [`TypeParamSpec`][synt.ty.type_param.TypeParamSpec]."""
+
+
+type TypeParam = TypeVar | TypeVarTuple | TypeParamSpec
+"""Any type parameter."""
