@@ -1,5 +1,10 @@
 from __future__ import annotations
 
+
+__all__ = [
+    "Block",
+]
+
 from synt.stmt.stmt import Statement
 
 
