@@ -40,7 +40,7 @@ class TypeVar(IntoCode):
     bound: Expression | None
     """The bound of the type variable."""
 
-    def __init__(self, name: Identifier, bound: IntoExpression | None):
+    def __init__(self, name: Identifier, bound: IntoExpression | None = None):
         """Initialize a type variable.
 
         Args:
