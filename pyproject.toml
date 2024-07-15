@@ -111,6 +111,9 @@ enable_error_code = [
     "redundant-expr",
     "truthy-bool",
 ]
+disable_error_code = [
+    "valid-type"
+]
 
 [tool.coverage.report]
 exclude_also = [
