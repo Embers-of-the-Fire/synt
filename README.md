@@ -2,6 +2,14 @@
 
 <i>Write Python with Python.&emsp;<small>Inspired by [jennifer](https://github.com/dave/jennifer).</small></i>
 
+![Python-3.12](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/Embers-of-the-Fire/syn-py?style=for-the-badge&color=yellow)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Embers-of-the-Fire/syn-py/CI.yaml?style=for-the-badge)
+![Codecov](https://img.shields.io/codecov/c/github/Embers-of-the-Fire/syn-py?style=for-the-badge)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/syn-py?style=for-the-badge)
+![PyPI - License](https://img.shields.io/pypi/l/syn-py?style=for-the-badge)
+![PyPI - Version](https://img.shields.io/pypi/v/syn-py?style=for-the-badge)
+
 SynPy is a library for developers to write elegant machine-generated Python code.
 
 [Documentation][github-page-doc]
