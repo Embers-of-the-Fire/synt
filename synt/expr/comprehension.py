@@ -12,13 +12,13 @@ __all__ = [
 from typing import TYPE_CHECKING
 from typing import Self
 
-import synpy.code as code
-import synpy.expr.expr as expr
-import synpy.tokens.ident as ident
+import synt.code as code
+import synt.expr.expr as expr
+import synt.tokens.ident as ident
 
 
 if TYPE_CHECKING:
-    from synpy.tokens.ident import Identifier
+    from synt.tokens.ident import Identifier
 
 
 class Comprehension(expr.IntoExpression, code.IntoCode):
@@ -39,9 +39,9 @@ class Comprehension(expr.IntoExpression, code.IntoCode):
     ```
 
     **Note:**
-    `Comprehension` is not a subclass of [`expr.Expression`][synpy.expr.expr.Expression].
-    However, it implements [`expr.IntoExpression`][synpy.expr.expr.IntoExpression],
-    and will be internally converted into [`GeneratorComprehension`][synpy.expr.comprehension.GeneratorComprehension].
+    `Comprehension` is not a subclass of [`expr.Expression`][synt.expr.expr.Expression].
+    However, it implements [`expr.IntoExpression`][synt.expr.expr.IntoExpression],
+    and will be internally converted into [`GeneratorComprehension`][synt.expr.comprehension.GeneratorComprehension].
 
     References:
         [`comprehension`](https://docs.python.org/3/reference/
@@ -50,7 +50,7 @@ class Comprehension(expr.IntoExpression, code.IntoCode):
 
     elt: expr.Expression
     """The expression to evaluate when iterating over the
-    [`iterator`][synpy.expr.comprehension.ComprehensionNode.iterator].
+    [`iterator`][synt.expr.comprehension.ComprehensionNode.iterator].
     
     **Note:** aka "extract, load, transform"."""
     comprehensions: list[ComprehensionNode]
@@ -126,8 +126,8 @@ class GeneratorComprehension(expr.Expression):
     """A generator comprehension expression.
 
     **Note:**
-    `GeneratorComprehension` is a subclass of [`expr.Expression`][synpy.expr.expr.Expression],
-    working as a wrapper for [`Comprehension`][synpy.expr.comprehension.Comprehension].
+    `GeneratorComprehension` is a subclass of [`expr.Expression`][synt.expr.expr.Expression],
+    working as a wrapper for [`Comprehension`][synt.expr.comprehension.Comprehension].
     """
 
     comprehension: Comprehension
@@ -149,7 +149,7 @@ class GeneratorComprehension(expr.Expression):
 
 
 class ComprehensionBuilder(expr.IntoExpression):
-    """Builder for [`Comprehension`][synpy.expr.comprehension.Comprehension]."""
+    """Builder for [`Comprehension`][synt.expr.comprehension.Comprehension]."""
 
     __elt: expr.Expression
     __comprehensions: list[ComprehensionNode]
@@ -198,7 +198,7 @@ class ComprehensionBuilder(expr.IntoExpression):
     def for_(self, iterator: expr.IntoExpression) -> ComprehensionNodeBuilder:
         """Create a new comprehension node.
 
-        This will finish the previous [`ComprehensionNodeBuilder`][synpy.expr.comprehension.ComprehensionNodeBuilder]
+        This will finish the previous [`ComprehensionNodeBuilder`][synt.expr.comprehension.ComprehensionNodeBuilder]
         and start a new one.
         """
         self.__finish_node_builder()
@@ -207,7 +207,7 @@ class ComprehensionBuilder(expr.IntoExpression):
     def async_for(self, iterator: expr.IntoExpression) -> ComprehensionNodeBuilder:
         """Create a new async comprehension node.
 
-        This will finish the previous [`ComprehensionNodeBuilder`][synpy.expr.comprehension.ComprehensionNodeBuilder]
+        This will finish the previous [`ComprehensionNodeBuilder`][synt.expr.comprehension.ComprehensionNodeBuilder]
         and start a new one.
         """
         self.__finish_node_builder()
@@ -227,7 +227,7 @@ class ComprehensionBuilder(expr.IntoExpression):
 
 
 class ComprehensionNodeBuilder(expr.IntoExpression):
-    """Builder for [`ComprehensionNode`][synpy.expr.comprehension.ComprehensionNode]."""
+    """Builder for [`ComprehensionNode`][synt.expr.comprehension.ComprehensionNode]."""
 
     __target: list[Identifier] | None
     __iterator: expr.Expression | None
@@ -257,7 +257,7 @@ class ComprehensionNodeBuilder(expr.IntoExpression):
         return self
 
     def in_(self, iterator: expr.IntoExpression) -> Self:
-        """Alias [`iterator`][synpy.expr.comprehension.ComprehensionNodeBuilder.iterator]."""
+        """Alias [`iterator`][synt.expr.comprehension.ComprehensionNodeBuilder.iterator]."""
         return self.iterator(iterator)
 
     def iterator(self, iterator: expr.IntoExpression) -> Self:
@@ -312,14 +312,14 @@ class ComprehensionNodeBuilder(expr.IntoExpression):
     def for_(self, iterator: expr.IntoExpression) -> ComprehensionNodeBuilder:
         """Create a new comprehension node.
 
-        This will call root's [`for_`][synpy.expr.comprehension.ComprehensionBuilder.for_].
+        This will call root's [`for_`][synt.expr.comprehension.ComprehensionBuilder.for_].
         """
         return self.root.for_(iterator)
 
     def async_for(self, iterator: expr.IntoExpression) -> ComprehensionNodeBuilder:
         """Create a new async comprehension node.
 
-        This will call root's [`async_for`][synpy.expr.comprehension.ComprehensionBuilder.async_for].
+        This will call root's [`async_for`][synt.expr.comprehension.ComprehensionBuilder.async_for].
         """
         return self.root.async_for(iterator)
 

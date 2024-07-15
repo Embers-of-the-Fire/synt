@@ -1,18 +1,18 @@
 from __future__ import annotations
 
 import pytest
-import synpy
+import synt
 
-from synpy.prelude import *
+from synt.prelude import *
 
 
 def test_kwd():
-    assert synpy.tokens.keywords.is_hard_keyword("False")
-    assert synpy.tokens.keywords.is_soft_keyword("type")
+    assert synt.tokens.keywords.is_hard_keyword("False")
+    assert synt.tokens.keywords.is_soft_keyword("type")
 
 
 def test_ident():
-    id_foo = synpy.tokens.ident.Identifier("foo")
+    id_foo = synt.tokens.ident.Identifier("foo")
     id_foo_alias = id_("foo")  # with alias
 
     with pytest.raises(InvalidIdentifierException) as err_info:
@@ -21,7 +21,7 @@ def test_ident():
 
     id_foo = id_("foo")
     id_foo_expr = id_foo.expr()
-    assert isinstance(id_foo_expr, synpy.expr.expr.Expression)
+    assert isinstance(id_foo_expr, synt.expr.expr.Expression)
 
 
 def test_kv_pair():
@@ -38,4 +38,4 @@ def test_lit():
     assert a.into_code() == "0.24"
     assert litbool(True).into_code() == TRUE.into_code()
     assert litbool(False).into_code() == FALSE.into_code()
-    assert synpy.tokens.lit.Literal._str("foo").into_code() == "foo"
+    assert synt.tokens.lit.Literal._str("foo").into_code() == "foo"

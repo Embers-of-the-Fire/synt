@@ -11,11 +11,11 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import TypeGuard
 
-import synpy.expr.expr as expr
+import synt.expr.expr as expr
 
 
 if TYPE_CHECKING:
-    from synpy.tokens.ident import IdentifierExpr
+    from synt.tokens.ident import IdentifierExpr
 
 
 def is_into_expr(e: Any) -> TypeGuard[expr.IntoExpression]:

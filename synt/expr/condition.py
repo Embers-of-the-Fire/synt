@@ -9,14 +9,14 @@ __all__ = [
 
 from typing import Self
 
-import synpy.expr.expr as expr
+import synt.expr.expr as expr
 
 
 class Condition(expr.Expression):
     """Conditional expression, aka `if - else`.
 
     References:
-        [expr.ExprPrecedence.Conditional][synpy.expr.expr.ExprPrecedence.Conditional].
+        [expr.ExprPrecedence.Conditional][synt.expr.expr.ExprPrecedence.Conditional].
     """
 
     condition: expr.Expression
@@ -56,7 +56,7 @@ class Condition(expr.Expression):
 
 
 class ConditionBuilder:
-    """Builder for [`Condition`][synpy.expr.condition.Condition]."""
+    """Builder for [`Condition`][synt.expr.condition.Condition]."""
 
     __condition: expr.Expression
     __true_expr: expr.Expression

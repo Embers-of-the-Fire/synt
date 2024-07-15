@@ -8,10 +8,10 @@ __all__ = [
 ]
 
 
-from synpy.expr.expr import Expression
-from synpy.expr.expr import ExprPrecedence
-from synpy.expr.expr import ExprType
-from synpy.expr.expr import IntoExpression
+from synt.expr.expr import Expression
+from synt.expr.expr import ExprPrecedence
+from synt.expr.expr import ExprType
+from synt.expr.expr import IntoExpression
 
 
 class KVPair(Expression):
@@ -47,4 +47,4 @@ class KVPair(Expression):
 
 
 pair = kv = KVPair
-"""Alias for [`KVPair`][synpy.tokens.kv_pair.KVPair]."""
+"""Alias for [`KVPair`][synt.tokens.kv_pair.KVPair]."""

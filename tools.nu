@@ -1,6 +1,6 @@
 def check [] {
-    ruff check ./synpy
-    mypy -p synpy
+    ruff check ./synt
+    mypy -p synt
 }
 
 def fmt [] {
@@ -13,7 +13,7 @@ def test [] {
 
 def "test cov" [] {
     rm -rf ./.coverage.output
-    pytest --cov=synpy
+    pytest --cov=synt
 }
 
 def "cov report" [] {
@@ -44,5 +44,5 @@ def "doc build" [
 
 def "doc serve" [] {
     cd docs\
-    mkdocs serve -w ../synpy -o
+    mkdocs serve -w ../synt -o
 }

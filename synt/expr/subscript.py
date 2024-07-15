@@ -7,8 +7,8 @@ __all__ = [
     "slice_",
 ]
 
-import synpy.code as code
-import synpy.expr.expr as expr
+import synt.code as code
+import synt.expr.expr as expr
 
 
 class Subscript(expr.Expression):
@@ -104,7 +104,7 @@ class Slice(code.IntoCode):
 
 
 slice_ = Slice
-"""Alias [`Slice`][synpy.expr.subscript.Slice].
+"""Alias [`Slice`][synt.expr.subscript.Slice].
 
 Notes:
     `slice` is a built-in type in Python, so it's renamed to `slice_` with a suffix.

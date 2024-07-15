@@ -1,11 +1,27 @@
 [tool.poetry]
-name = "syn-py"
+name = "synt"
 version = "0.1.0"
 description = "Write python with python."
 authors = ["Embers-of-the-Fire <stellarishs@163.com>"]
+repository = "https://github.com/Embers-of-the-Fire/synt.git"
 readme = "README.md"
-packages = [{include = "synpy"}]
+packages = [{include = "synt"}]
 license = "MIT OR Apache-2.0"
+documentation = "https://embers-of-the-fire.github.io/synt/"
+homepage = "https://github.com/Embers-of-the-Fire/synt/"
+keywords = ["syntax", "code", "generator", "template"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation",
+    "Topic :: Printing",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -84,8 +100,8 @@ lines-after-imports = 2
 required-imports = ["from __future__ import annotations"]
 
 [tool.mypy]
-files = "synpy, tests"
-mypy_path = "synpy"
+files = "synt, tests"
+mypy_path = "synt"
 namespace_packages = true
 explicit_package_bases = true
 show_error_codes = true

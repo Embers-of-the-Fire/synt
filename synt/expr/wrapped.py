@@ -9,7 +9,7 @@ __all__ = [
 ]
 
 
-import synpy.expr.expr as expr
+import synt.expr.expr as expr
 
 
 class Wrapped(expr.Expression):
@@ -23,7 +23,7 @@ class Wrapped(expr.Expression):
 
     Notes:
         Most plain expressions have their own expression precedence, and will be wrapped
-        automatically by SynPy.
+        automatically by Synt.
         However, for those atomic expressions, some of them does have different parser precedence
         which is hard to represent beforehand. Thus, you must explicitly wrap them manually.
     """
@@ -47,4 +47,4 @@ class Wrapped(expr.Expression):
 
 
 wrapped = wrap = par = Wrapped
-"""Alias [`Wrapped`][synpy.expr.wrapped.Wrapped]."""
+"""Alias [`Wrapped`][synt.expr.wrapped.Wrapped]."""

@@ -13,13 +13,13 @@ from abc import abstractmethod
 from enum import IntEnum
 from typing import TYPE_CHECKING
 
-import synpy.code as code
+import synt.code as code
 
 
 # add in-lib imports to the bottom of the file
 
 if TYPE_CHECKING:
-    from synpy.tokens.ident import Identifier
+    from synt.tokens.ident import Identifier
 
 
 class ExprPrecedence(IntEnum):
@@ -229,7 +229,7 @@ class ExprPrecedence(IntEnum):
 
 
 class ExprType(IntEnum):
-    """Expression type in SynPy."""
+    """Expression type in Synt."""
 
     Atom = -1
     """Any expression type.
@@ -241,48 +241,48 @@ class ExprType(IntEnum):
     This type is Reserved for internal use."""
 
     Identifier = 0
-    """[`IdentifierExpr`][synpy.tokens.ident.IdentifierExpr]"""
+    """[`IdentifierExpr`][synt.tokens.ident.IdentifierExpr]"""
     Wrapped = 1
-    """[`Wrapped`][synpy.expr.wrapped.Wrapped]."""
+    """[`Wrapped`][synt.expr.wrapped.Wrapped]."""
     KeyValuePair = 1
-    """[`KVPair`][synpy.tokens.kv_pair.KVPair]."""
+    """[`KVPair`][synt.tokens.kv_pair.KVPair]."""
     UnaryOp = 2
-    """[`unary_op.UnaryOp`][synpy.expr.unary_op.UnaryOp]."""
+    """[`unary_op.UnaryOp`][synt.expr.unary_op.UnaryOp]."""
     BinaryOp = 3
-    """[`binary_op.BinaryOp`][synpy.expr.binary_op.BinaryOp]."""
+    """[`binary_op.BinaryOp`][synt.expr.binary_op.BinaryOp]."""
     List = 4
-    """[`ListDisplay`][synpy.expr.list.ListDisplay]."""
+    """[`ListDisplay`][synt.expr.list.ListDisplay]."""
     Dict = 5
-    """[`DictDisplay`][synpy.expr.dict.DictDisplay]."""
+    """[`DictDisplay`][synt.expr.dict.DictDisplay]."""
     Set = 6
-    """[`SetDisplay`][synpy.expr.set.SetDisplay]."""
+    """[`SetDisplay`][synt.expr.set.SetDisplay]."""
     Tuple = 7
-    """[`Tuple`][synpy.expr.tuple.Tuple]."""
+    """[`Tuple`][synt.expr.tuple.Tuple]."""
     Closure = 8
-    """[`Closure`][synpy.expr.closure.Closure]."""
+    """[`Closure`][synt.expr.closure.Closure]."""
     Condition = 9
-    """[`Condition`][synpy.expr.condition.Condition]."""
+    """[`Condition`][synt.expr.condition.Condition]."""
     Assignment = 10
-    """[`assignment.Assignment`][synpy.expr.assignment.Assignment]."""
+    """[`assignment.Assignment`][synt.expr.assignment.Assignment]."""
     Comprehension = 11
-    """[`Comprehension`][synpy.expr.comprehension.Comprehension]."""
+    """[`Comprehension`][synt.expr.comprehension.Comprehension]."""
     FormatString = 12
-    """[`FormatString`][synpy.expr.fstring.FormatString]"""
+    """[`FormatString`][synt.expr.fstring.FormatString]"""
     Subscript = 13
-    """[`subscript.Subscript`][synpy.expr.subscript.Subscript]"""
+    """[`subscript.Subscript`][synt.expr.subscript.Subscript]"""
     Attribute = 14
-    """[`attribute.Attribute`][synpy.expr.attribute.Attribute]"""
+    """[`attribute.Attribute`][synt.expr.attribute.Attribute]"""
     Call = 15
-    """[`call.Call`][synpy.expr.call.Call]"""
+    """[`call.Call`][synt.expr.call.Call]"""
     Literal = 16
-    """[`tokens.lit.Literal`][synpy.tokens.lit.Literal]"""
+    """[`tokens.lit.Literal`][synt.tokens.lit.Literal]"""
     Empty = 17
-    """[`Empty`][synpy.expr.empty.Empty]"""
+    """[`Empty`][synt.expr.empty.Empty]"""
 
 
 class IntoExpression(code.IntoCode, metaclass=ABCMeta):
     """Abstract class for those that can be converted into an
-    [`Expression`][synpy.expr.expr.Expression]."""
+    [`Expression`][synt.expr.expr.Expression]."""
 
     @abstractmethod
     def into_expression(self) -> Expression:
@@ -391,7 +391,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         return binary_op.BinaryOp(binary_op.BinaryOpType.Div, self, other)
 
     def truediv(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`div`][synpy.expr.expr.Expression.div]."""
+        """Alias [`div`][synt.expr.expr.Expression.div]."""
         return self.div(other)
 
     def floor_div(self, other: IntoExpression) -> binary_op.BinaryOp:
@@ -439,7 +439,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         return binary_op.BinaryOp(binary_op.BinaryOpType.At, self, other)
 
     def matmul(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`at`][synpy.expr.expr.Expression.matmul]."""
+        """Alias [`at`][synt.expr.expr.Expression.matmul]."""
         return self.at(other)
 
     def lshift(self, other: IntoExpression) -> binary_op.BinaryOp:
@@ -632,75 +632,75 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
     # bin op > magic method
 
     def __lt__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`lt`][synpy.expr.expr.Expression.lt]."""
+        """Alias [`lt`][synt.expr.expr.Expression.lt]."""
         return self.lt(other)
 
     def __le__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`le`][synpy.expr.expr.Expression.le]."""
+        """Alias [`le`][synt.expr.expr.Expression.le]."""
         return self.le(other)
 
     def __gt__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`gt`][synpy.expr.expr.Expression.gt]."""
+        """Alias [`gt`][synt.expr.expr.Expression.gt]."""
         return self.gt(other)
 
     def __ge__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`ge`][synpy.expr.expr.Expression.ge]."""
+        """Alias [`ge`][synt.expr.expr.Expression.ge]."""
         return self.ge(other)
 
     def __eq__(self, other: IntoExpression) -> binary_op.BinaryOp:  # type:ignore[override]
-        """Alias [`eq`][synpy.expr.expr.Expression.eq]."""
+        """Alias [`eq`][synt.expr.expr.Expression.eq]."""
         return self.eq(other)
 
     def __ne__(self, other: IntoExpression) -> binary_op.BinaryOp:  # type:ignore[override]
-        """Alias [`ne`][synpy.expr.expr.Expression.ne]."""
+        """Alias [`ne`][synt.expr.expr.Expression.ne]."""
         return self.ne(other)
 
     def __lshift__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`lshift`][synpy.expr.expr.Expression.lshift]."""
+        """Alias [`lshift`][synt.expr.expr.Expression.lshift]."""
         return self.lshift(other)
 
     def __rshift__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`rshift`][synpy.expr.expr.Expression.rshift]."""
+        """Alias [`rshift`][synt.expr.expr.Expression.rshift]."""
         return self.rshift(other)
 
     def __and__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`bit_and`][synpy.expr.expr.Expression.bit_and]."""
+        """Alias [`bit_and`][synt.expr.expr.Expression.bit_and]."""
         return self.bit_and(other)
 
     def __or__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`bit_or`][synpy.expr.expr.Expression.bit_or]."""
+        """Alias [`bit_or`][synt.expr.expr.Expression.bit_or]."""
         return self.bit_or(other)
 
     def __xor__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`bit_xor`][synpy.expr.expr.Expression.bit_xor]."""
+        """Alias [`bit_xor`][synt.expr.expr.Expression.bit_xor]."""
         return self.bit_xor(other)
 
     def __add__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`add`][synpy.expr.expr.Expression.add]."""
+        """Alias [`add`][synt.expr.expr.Expression.add]."""
         return self.add(other)
 
     def __sub__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`sub`][synpy.expr.expr.Expression.sub]."""
+        """Alias [`sub`][synt.expr.expr.Expression.sub]."""
         return self.sub(other)
 
     def __mul__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`mul`][synpy.expr.expr.Expression.mul]."""
+        """Alias [`mul`][synt.expr.expr.Expression.mul]."""
         return self.mul(other)
 
     def __truediv__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`div`][synpy.expr.expr.Expression.div]."""
+        """Alias [`div`][synt.expr.expr.Expression.div]."""
         return self.div(other)
 
     def __floordiv__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`floor_div`][synpy.expr.expr.Expression.floor_div]."""
+        """Alias [`floor_div`][synt.expr.expr.Expression.floor_div]."""
         return self.floor_div(other)
 
     def __mod__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`mod`][synpy.expr.expr.Expression.mod]."""
+        """Alias [`mod`][synt.expr.expr.Expression.mod]."""
         return self.mod(other)
 
     def __matmul__(self, other: IntoExpression) -> binary_op.BinaryOp:
-        """Alias [`at`][synpy.expr.expr.Expression.at]."""
+        """Alias [`at`][synt.expr.expr.Expression.at]."""
         return self.at(other)
 
     # alias for unary operation
@@ -708,85 +708,85 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
     # unary op > plain method
 
     def positive(self) -> unary_op.UnaryOp:
-        """Positive operation, alias [`positive` function][synpy.expr.unary_op.positive]."""
+        """Positive operation, alias [`positive` function][synt.expr.unary_op.positive]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Positive, self)
 
     def negative(self) -> unary_op.UnaryOp:
-        """Negative operation, alias [`negative` function][synpy.expr.unary_op.negative]."""
+        """Negative operation, alias [`negative` function][synt.expr.unary_op.negative]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Neg, self)
 
     def neg(self) -> unary_op.UnaryOp:
-        """Alias [`negative`][synpy.expr.expr.Expression.negative]."""
+        """Alias [`negative`][synt.expr.expr.Expression.negative]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Neg, self)
 
     def not_(self) -> unary_op.UnaryOp:
-        """Boolean NOT operation, alias [`not_` function][synpy.expr.unary_op.not_]."""
+        """Boolean NOT operation, alias [`not_` function][synt.expr.unary_op.not_]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.BoolNot, self)
 
     def bool_not(self) -> unary_op.UnaryOp:
-        """Alias [`not_`][synpy.expr.expr.Expression.not_]."""
+        """Alias [`not_`][synt.expr.expr.Expression.not_]."""
         return self.not_()
 
     def invert(self) -> unary_op.UnaryOp:
-        """Bitwise NOT operation, alias [`invert` function][synpy.expr.unary_op.invert]."""
+        """Bitwise NOT operation, alias [`invert` function][synt.expr.unary_op.invert]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.BitNot, self)
 
     def bit_not(self) -> unary_op.UnaryOp:
-        """Alias [`invert`][synpy.expr.expr.Expression.invert]."""
+        """Alias [`invert`][synt.expr.expr.Expression.invert]."""
         return self.invert()
 
     def await_(self) -> unary_op.UnaryOp:
-        """Await operation, alias [`await_` function][synpy.expr.unary_op.await_]."""
+        """Await operation, alias [`await_` function][synt.expr.unary_op.await_]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Await, self)
 
     def awaited(self) -> unary_op.UnaryOp:
-        """Alias [`await_`][synpy.expr.expr.Expression.await_]"""
+        """Alias [`await_`][synt.expr.expr.Expression.await_]"""
         return self.await_()
 
     def unpack(self) -> unary_op.UnaryOp:
-        """Sequence unpacking operation, Alias [`unpack` function][synpy.expr.unary_op.unpack]."""
+        """Sequence unpacking operation, Alias [`unpack` function][synt.expr.unary_op.unpack]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Starred, self)
 
     def starred(self) -> unary_op.UnaryOp:
-        """Alias [`unpack`][synpy.expr.expr.Expression.unpack]."""
+        """Alias [`unpack`][synt.expr.expr.Expression.unpack]."""
         return self.unpack()
 
     def unpack_seq(self) -> unary_op.UnaryOp:
-        """Alias [`unpack`][synpy.expr.expr.Expression.unpack]."""
+        """Alias [`unpack`][synt.expr.expr.Expression.unpack]."""
         return self.unpack()
 
     def unpack_kv(self) -> unary_op.UnaryOp:
-        """K-V pair unpacking operation, Alias [`unpack_kv` function][synpy.expr.unary_op.unpack_kv]."""
+        """K-V pair unpacking operation, Alias [`unpack_kv` function][synt.expr.unary_op.unpack_kv]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.DoubleStarred, self)
 
     def double_starred(self) -> unary_op.UnaryOp:
-        """Alias [`unpack_kv`][synpy.expr.expr.Expression.unpack_kv]."""
+        """Alias [`unpack_kv`][synt.expr.expr.Expression.unpack_kv]."""
         return self.unpack_kv()
 
     def unpack_dict(self) -> unary_op.UnaryOp:
-        """Alias [`unpack_kv`][synpy.expr.expr.Expression.unpack_kv]."""
+        """Alias [`unpack_kv`][synt.expr.expr.Expression.unpack_kv]."""
         return self.unpack_kv()
 
     def yield_(self) -> unary_op.UnaryOp:
-        """Yield operation, alias [`yield_` function][synpy.expr.unary_op.yield_]."""
+        """Yield operation, alias [`yield_` function][synt.expr.unary_op.yield_]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.Yield, self)
 
     def yield_from(self) -> unary_op.UnaryOp:
-        """Yield from operation, alias [`yield_from` function][synpy.expr.unary_op.yield_from]."""
+        """Yield from operation, alias [`yield_from` function][synt.expr.unary_op.yield_from]."""
         return unary_op.UnaryOp(unary_op.UnaryOpType.YieldFrom, self)
 
     # unary op > magic method
 
     def __neg__(self) -> unary_op.UnaryOp:
-        """Alias [`neg`][synpy.expr.expr.Expression.neg]."""
+        """Alias [`neg`][synt.expr.expr.Expression.neg]."""
         return self.neg()
 
     def __not__(self) -> unary_op.UnaryOp:
-        """Alias [`not_`][synpy.expr.expr.Expression.not_]."""
+        """Alias [`not_`][synt.expr.expr.Expression.not_]."""
         return self.not_()
 
     def __invert__(self) -> unary_op.UnaryOp:
-        """Alias [`invert`][synpy.expr.expr.Expression.invert]."""
+        """Alias [`invert`][synt.expr.expr.Expression.invert]."""
         return self.invert()
 
     # alias for assignment
@@ -848,7 +848,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
             **kwargs: Keyword arguments.
 
         Raises:
-            ValueError: If any argument is not [`IntoExpression`][synpy.expr.expr.IntoExpression].
+            ValueError: If any argument is not [`IntoExpression`][synt.expr.expr.IntoExpression].
 
         Examples:
             ```python
@@ -952,37 +952,37 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
     def __getitem__(
         self, *items: subscript.Slice | IntoExpression
     ) -> subscript.Subscript:
-        """Alias [`subscribe`][synpy.expr.expr.Expression.subscribe]."""
+        """Alias [`subscribe`][synt.expr.expr.Expression.subscribe]."""
         return self.subscribe(*items)
 
     # wrap
 
     def wrap(self) -> expr_wrapped.Wrapped:
-        """Wrap `self` in a pair of parentheses, alias [`Wrapped`][synpy.expr.wrapped.Wrapped]."""
+        """Wrap `self` in a pair of parentheses, alias [`Wrapped`][synt.expr.wrapped.Wrapped]."""
         return expr_wrapped.Wrapped(self)
 
     def wrapped(self) -> expr_wrapped.Wrapped:
-        """Alias [`wrap`][synpy.expr.expr.Expression.wrap]."""
+        """Alias [`wrap`][synt.expr.expr.Expression.wrap]."""
         return self.wrap()
 
     def par(self) -> expr_wrapped.Wrapped:
-        """Alias [`wrap`][synpy.expr.expr.Expression.wrap]."""
+        """Alias [`wrap`][synt.expr.expr.Expression.wrap]."""
         return self.wrap()
 
     def atom(self) -> expr_wrapped.Wrapped:
-        """Alias [`wrap`][synpy.expr.expr.Expression.wrap]."""
+        """Alias [`wrap`][synt.expr.expr.Expression.wrap]."""
         return self.wrap()
 
 
 # add import here to avoid circular imports
 
-import synpy.expr.assignment as assignment
-import synpy.expr.attribute as attribute
-import synpy.expr.binary_op as binary_op
-import synpy.expr.call as call
-import synpy.expr.comprehension as comprehension
-import synpy.expr.condition as condition
-import synpy.expr.subscript as subscript
-import synpy.expr.type_check as type_check
-import synpy.expr.unary_op as unary_op
-import synpy.expr.wrapped as expr_wrapped
+import synt.expr.assignment as assignment
+import synt.expr.attribute as attribute
+import synt.expr.binary_op as binary_op
+import synt.expr.call as call
+import synt.expr.comprehension as comprehension
+import synt.expr.condition as condition
+import synt.expr.subscript as subscript
+import synt.expr.type_check as type_check
+import synt.expr.unary_op as unary_op
+import synt.expr.wrapped as expr_wrapped

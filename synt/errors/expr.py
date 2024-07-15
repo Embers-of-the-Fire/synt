@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 
 
 if TYPE_CHECKING:
-    from synpy.expr.expr import ExprType
+    from synt.expr.expr import ExprType
 
 
 class ExpressionTypeException(Exception):

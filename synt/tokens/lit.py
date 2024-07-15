@@ -15,9 +15,9 @@ __all__ = [
 
 from typing import Any
 
-from synpy.expr.expr import Expression
-from synpy.expr.expr import ExprPrecedence
-from synpy.expr.expr import ExprType
+from synt.expr.expr import Expression
+from synt.expr.expr import ExprPrecedence
+from synt.expr.expr import ExprType
 
 
 class Literal(Expression):
@@ -143,16 +143,16 @@ class Literal(Expression):
 
 
 litstr = Literal.str_
-"""Alias for [`str_`][synpy.tokens.lit.Literal.str_]."""
+"""Alias for [`str_`][synt.tokens.lit.Literal.str_]."""
 litint = Literal.int_
-"""Alias for [`int_`][synpy.tokens.lit.Literal.int_]."""
+"""Alias for [`int_`][synt.tokens.lit.Literal.int_]."""
 litfloat = Literal.float_
-"""Alias for [`float_`][synpy.tokens.lit.Literal.float_]."""
+"""Alias for [`float_`][synt.tokens.lit.Literal.float_]."""
 litbool = Literal.bool_
-"""Alias for [`bool_`][synpy.tokens.lit.Literal.bool_]."""
+"""Alias for [`bool_`][synt.tokens.lit.Literal.bool_]."""
 TRUE = Literal.bool_(True)
-"""Alias for [`bool_(True)`][synpy.tokens.lit.Literal.bool_]."""
+"""Alias for [`bool_(True)`][synt.tokens.lit.Literal.bool_]."""
 FALSE = Literal.bool_(False)
-"""Alias for [`bool_(False)`][synpy.tokens.lit.Literal.bool_]."""
+"""Alias for [`bool_(False)`][synt.tokens.lit.Literal.bool_]."""
 NONE = Literal("None")
 """Alias for a literal `None`."""

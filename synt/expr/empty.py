@@ -11,14 +11,14 @@ __all__ = [
 ]
 
 
-import synpy.expr.expr as syn_expr
+import synt.expr.expr as syn_expr
 
 
 class Empty(syn_expr.Expression):
     """Empty expression.
 
     References:
-        [expr.ExprType.Empty][synpy.expr.expr.ExprType.Empty].
+        [expr.ExprType.Empty][synt.expr.expr.ExprType.Empty].
     """
 
     precedence = syn_expr.ExprPrecedence.Atom
@@ -32,7 +32,7 @@ class Empty(syn_expr.Expression):
 
 
 empty = expr = null = Empty
-"""Alias [`Empty`][synpy.expr.empty.Empty]."""
+"""Alias [`Empty`][synt.expr.empty.Empty]."""
 
 EMPTY = NULL = Empty()
-"""An instance of [`Empty`][synpy.expr.empty.Empty]."""
+"""An instance of [`Empty`][synt.expr.empty.Empty]."""

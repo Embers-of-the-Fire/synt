@@ -1,6 +1,6 @@
-from synpy.expr.expr import ExprType
+from synt.expr.expr import ExprType
 
-from synpy.prelude import *
+from synt.prelude import *
 
 
 def test_err():

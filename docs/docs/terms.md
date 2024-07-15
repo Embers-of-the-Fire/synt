@@ -1,4 +1,4 @@
-# Terms in SynPy
+# Terms in Synt
 
 ## Abbreviation
 

@@ -6,7 +6,7 @@ __all__ = [
 ]
 
 
-import synpy.expr.expr as expr
+import synt.expr.expr as expr
 
 
 class Attribute(expr.Expression):

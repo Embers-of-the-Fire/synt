@@ -11,10 +11,10 @@ nav = mkdocs_gen_files.Nav()
 mod_symbol = '<code class="doc-symbol doc-symbol-nav doc-symbol-module"></code>'
 
 root = Path(__file__).parent.parent
-src = root / "synpy"
+src = root / "synt"
 
 for path in sorted(src.rglob("*.py")):
-    module_path = "synpy" / path.relative_to(src).with_suffix("")
+    module_path = "synt" / path.relative_to(src).with_suffix("")
     doc_path = path.relative_to(src).with_suffix(".md")
     full_doc_path = Path("api", doc_path)
 

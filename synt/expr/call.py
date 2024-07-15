@@ -7,8 +7,8 @@ __all__ = [
 ]
 
 
-import synpy.code as code
-import synpy.expr.expr as expr
+import synt.code as code
+import synt.expr.expr as expr
 
 
 class Call(expr.Expression):
@@ -67,7 +67,7 @@ class Keyword(code.IntoCode):
     """Keyword arguments of a object call.
 
     References:
-        [`Call`][synpy.expr.call.Call]
+        [`Call`][synt.expr.call.Call]
         [`Keyword`(PythonAst)](https://docs.python.org/3/library/ast.html#ast.keyword)
     """
 

@@ -12,8 +12,8 @@ __all__ = [
 
 from enum import IntEnum
 
-import synpy.code as code
-import synpy.expr.expr as expr
+import synt.code as code
+import synt.expr.expr as expr
 
 
 class FormatString(expr.Expression):
@@ -26,7 +26,7 @@ class FormatString(expr.Expression):
         ```
 
     References:
-        [expr.ExprType.FormatString][synpy.expr.expr.ExprType.FormatString].
+        [expr.ExprType.FormatString][synt.expr.expr.ExprType.FormatString].
     """
 
     nodes: list[FormatNode | str]
@@ -54,7 +54,7 @@ class FormatString(expr.Expression):
 
 
 fstring = FormatString
-"""Alias [`FormatString`][synpy.expr.fstring.FormatString]."""
+"""Alias [`FormatString`][synt.expr.fstring.FormatString]."""
 
 
 class FormatConversionType(IntEnum):
@@ -123,7 +123,7 @@ class FormatConversionType(IntEnum):
 
 
 class FormatNode(code.IntoCode):
-    """Format node used in [`FormatString`][synpy.expr.fstring.FormatString].
+    """Format node used in [`FormatString`][synt.expr.fstring.FormatString].
 
     Examples:
         ```python
@@ -138,7 +138,7 @@ class FormatNode(code.IntoCode):
     """The formatting of the value.
     
     Notes:
-        Different from Python's behavior, SynPy directly use `str` as the type of `format_spec`,
+        Different from Python's behavior, Synt directly use `str` as the type of `format_spec`,
         instead of wrapping it in a `JointStr(Constant(string))`.
     """
     conversion: FormatConversionType
@@ -171,4 +171,4 @@ class FormatNode(code.IntoCode):
 
 
 fnode = FormatNode
-"""Alias [`FormatNode`][synpy.expr.fstring.FormatNode]."""
+"""Alias [`FormatNode`][synt.expr.fstring.FormatNode]."""

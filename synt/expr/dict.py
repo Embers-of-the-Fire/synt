@@ -13,14 +13,14 @@ __all__ = [
 from abc import ABCMeta
 from typing import TYPE_CHECKING
 
-import synpy.expr.comprehension as comp_expr
-import synpy.expr.expr as expr
+import synt.expr.comprehension as comp_expr
+import synt.expr.expr as expr
 
-from synpy.errors.expr import ExpressionTypeException
+from synt.errors.expr import ExpressionTypeException
 
 
 if TYPE_CHECKING:
-    from synpy.tokens.kv_pair import KVPair
+    from synt.tokens.kv_pair import KVPair
 
 
 class DictDisplay(expr.Expression, metaclass=ABCMeta):
@@ -61,7 +61,7 @@ class DictVerbatim(DictDisplay):
 
 
 dict_ = DictVerbatim
-"""Alias [`DictVerbatim`][synpy.expr.dict.DictVerbatim].
+"""Alias [`DictVerbatim`][synt.expr.dict.DictVerbatim].
 
 Notes:
     `dict` is a built-in type in Python, so it's renamed to `dict_` with a suffix.
@@ -101,7 +101,7 @@ class DictComprehension(DictDisplay):
 
         Raises:
             ExpressionTypeException: Invalid dict comprehension result type,
-                typically not a [`KVPair`][synpy.tokens.kv_pair.KVPair].
+                typically not a [`KVPair`][synt.tokens.kv_pair.KVPair].
         """
         if isinstance(comprehension, comp_expr.Comprehension):
             comp = comprehension
@@ -125,4 +125,4 @@ class DictComprehension(DictDisplay):
 
 
 dict_comp = DictComprehension
-"""Alias [`DictComprehension`][synpy.expr.dict.DictComprehension]."""
+"""Alias [`DictComprehension`][synt.expr.dict.DictComprehension]."""

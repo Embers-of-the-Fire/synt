@@ -2,77 +2,74 @@ from __future__ import annotations
 
 
 __all__ = [
-    "ListDisplay",
-    "ListVerbatim",
-    "ListComprehension",
-    "list_",
-    "list_comp",
+    "SetDisplay",
+    "SetVerbatim",
+    "SetComprehension",
+    "set_",
+    "set_comp",
 ]
 
 
 from abc import ABCMeta
 
-import synpy.expr.comprehension as comp_expr
-import synpy.expr.expr as expr
+import synt.expr.comprehension as comp_expr
+import synt.expr.expr as expr
 
-from synpy.errors.expr import ExpressionTypeException
+from synt.errors.expr import ExpressionTypeException
 
 
-class ListDisplay(expr.Expression, metaclass=ABCMeta):
-    """Literal list expression.
+class SetDisplay(expr.Expression, metaclass=ABCMeta):
+    """Literal set expression.
 
     References:
-        [list display](https://docs.python.org/3/reference/expressions.html#list-displays).
+        [Set display](https://docs.python.org/3/reference/expressions.html#set-displays).
     """
 
     precedence = expr.ExprPrecedence.Atom
-    expr_type = expr.ExprType.List
+    expr_type = expr.ExprType.Set
 
 
-class ListVerbatim(ListDisplay):
-    """Verbatim list expression, aka `starred-list`.
+class SetVerbatim(SetDisplay):
+    """Verbatim set expression.
 
     Examples:
         ```python
-        l = list_(litstr("a"), id_("b"))
-        assert l.into_code() == "['a', b]"
+        s = set_(litint(1), id_("b"))
+        assert s.into_code() == "{1, b}"
         ```
-
-    References:
-        [`starred-list`](https://docs.python.org/3/reference/expressions.html#grammar-token-python-grammar-starred_list).
     """
 
     items: list[expr.Expression]
-    """list items."""
+    """Set items."""
 
     def __init__(self, *items: expr.IntoExpression):
-        """Initialize a new verbatim list expression.
+        """Initialize a new verbatim set expression.
 
         Args:
-            items: list items.
+            items: Set items.
         """
         self.items = [x.into_expression() for x in items]
 
     def into_code(self) -> str:
         item_text = ", ".join(x.into_code() for x in self.items)
-        return f"[{item_text}]"
+        return f"{{{item_text}}}"
 
 
-list_ = ListVerbatim
-"""Alias [`ListVerbatim`][synpy.expr.list.ListVerbatim].
+set_ = SetVerbatim
+"""Alias [`SetVerbatim`][synt.expr.set.SetVerbatim].
 
 Notes:
-    `list` is a built-in type in Python, so it's renamed to `list_` with a suffix.
+    `set` is a built-in type in Python, so it's renamed to `set_` with a suffix.
 """
 
 
-class ListComprehension(ListDisplay):
-    """list comprehension expression.
+class SetComprehension(SetDisplay):
+    """Set comprehension expression.
 
     Examples:
         ```python
-        l = list_comp(id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5))))
-        assert l.into_code() == "[x for x in range(5)]"
+        s = set_comp(id_("x").expr().for_(id_("x")).in_(id_("range").expr().call(litint(5))))
+        assert s.into_code() == "{x for x in range(5)}"
         ```
 
     References:
@@ -89,14 +86,14 @@ class ListComprehension(ListDisplay):
         | comp_expr.ComprehensionBuilder
         | comp_expr.ComprehensionNodeBuilder,
     ):
-        """Initialize a new list comprehension expression.
+        """Initialize a new set comprehension expression.
 
         Args:
             comprehension: Internal comprehension expression.
 
         Raises:
-            ExpressionTypeException: Invalid list comprehension result type,
-                typically a [`KVPair`][synpy.tokens.kv_pair.KVPair].
+            ExpressionTypeException: Invalid set comprehension result type,
+                typically a [`KVPair`][synt.tokens.kv_pair.KVPair].
         """
         if isinstance(comprehension, comp_expr.Comprehension):
             comp = comprehension
@@ -116,8 +113,8 @@ class ListComprehension(ListDisplay):
         self.comprehension = comp
 
     def into_code(self) -> str:
-        return f"[{self.comprehension.into_code()}]"
+        return f"{{{self.comprehension.into_code()}}}"
 
 
-list_comp = ListComprehension
-"""Alias [`ListComprehension`][synpy.expr.list.ListComprehension]."""
+set_comp = SetComprehension
+"""Alias [`SetComprehension`][synt.expr.set.SetComprehension]."""

@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import pytest
 
-import synpy
-from synpy.expr.binary_op import BinaryOpType
-from synpy.expr.expr import ExprPrecedence
-from synpy.expr.unary_op import UnaryOpType
-from synpy.prelude import *
+import synt
+from synt.expr.binary_op import BinaryOpType
+from synt.expr.expr import ExprPrecedence
+from synt.expr.unary_op import UnaryOpType
+from synt.prelude import *
 
 
 def test_expr_type():
@@ -189,14 +189,14 @@ def test_expr_fstring():
     string = fstring("sin(1) = ", fnode(id_("sin").expr().call(litint(1))))
     assert string.into_code() == 'f"sin(1) = {sin(1)}"'
     for i in ["", "!a", "!r", "!s"]:
-        w = synpy.expr.fstring.FormatConversionType.from_str(i)
+        w = synt.expr.fstring.FormatConversionType.from_str(i)
         assert w is not None
         assert w.into_str() == i
     with pytest.raises(ValueError) as err_info:
-        w = synpy.expr.fstring.FormatConversionType.from_str("foo")
+        w = synt.expr.fstring.FormatConversionType.from_str("foo")
     assert "foo" in str(err_info.value)
     with pytest.raises(ValueError) as err_info:
-        w = synpy.expr.fstring.FormatConversionType(0).into_str()
+        w = synt.expr.fstring.FormatConversionType(0).into_str()
     assert "0" in str(err_info.value)
 
 

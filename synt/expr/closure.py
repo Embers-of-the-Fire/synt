@@ -11,12 +11,12 @@ __all__ = [
 from typing import TYPE_CHECKING
 from typing import Self
 
-import synpy.code as code
-import synpy.expr.expr as expr
+import synt.code as code
+import synt.expr.expr as expr
 
 
 if TYPE_CHECKING:
-    from synpy.tokens.ident import Identifier
+    from synt.tokens.ident import Identifier
 
 
 class Closure(expr.Expression, code.IntoCode):
@@ -24,11 +24,11 @@ class Closure(expr.Expression, code.IntoCode):
 
     Notes:
         In Python, a lambda expression can have a single expression as its body.
-        SynPy won't try to create a separate function containing multiple statements,
+        Synt won't try to create a separate function containing multiple statements,
         you must do it yourself.
 
     References:
-        [expr.ExprPrecedence.Lambda][synpy.expr.expr.ExprPrecedence.Lambda].
+        [expr.ExprPrecedence.Lambda][synt.expr.expr.ExprPrecedence.Lambda].
     """
 
     args: list[Identifier]
@@ -56,7 +56,7 @@ class Closure(expr.Expression, code.IntoCode):
 
 
 class ClosureBuilder:
-    """Builder for [`Closure`][synpy.expr.closure.Closure].
+    """Builder for [`Closure`][synt.expr.closure.Closure].
 
     Examples:
         ```python
@@ -97,9 +97,9 @@ class ClosureBuilder:
         return Closure(self.__args, e)
 
     def return_(self, e: expr.IntoExpression) -> Closure:
-        """Alias [`ret`][synpy.expr.closure.ClosureBuilder.ret]."""
+        """Alias [`ret`][synt.expr.closure.ClosureBuilder.ret]."""
         return self.ret(e)
 
 
 lambda_ = ClosureBuilder
-"""Alias [`ClosureBuilder`][synpy.expr.closure.ClosureBuilder]."""
+"""Alias [`ClosureBuilder`][synt.expr.closure.ClosureBuilder]."""

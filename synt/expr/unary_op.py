@@ -27,39 +27,39 @@ __all__ = [
 from enum import IntEnum
 from typing import TYPE_CHECKING
 
-import synpy.expr.expr as expr
+import synt.expr.expr as expr
 
 
 if TYPE_CHECKING:
-    from synpy.expr.expr import ExprPrecedence
+    from synt.expr.expr import ExprPrecedence
 
 
 class UnaryOpType(IntEnum):
     """Unary operator type.
 
     References:
-        [`expr.ExprPrecedence`][synpy.expr.expr.ExprPrecedence]
+        [`expr.ExprPrecedence`][synt.expr.expr.ExprPrecedence]
     """
 
     Await = 0
     """Await expression operator `await`.
     
     Notes:
-        `await` is a Python hard keyword, but synpy treats it as a unary operator.
+        `await` is a Python hard keyword, but synt treats it as a unary operator.
     """
 
     Yield = 1
     """Yield expression operator `yield`.
     
     Notes:
-        `yield` is a Python hard keyword, but synpy treats it as a unary operator.
+        `yield` is a Python hard keyword, but synt treats it as a unary operator.
     """
 
     YieldFrom = 2
     """Yield-from expression operator `yield from`.
     
     Notes:
-        `yield from` is a Python hard keyword group, but synpy treats it as a single unary operator.
+        `yield from` is a Python hard keyword group, but synt treats it as a single unary operator.
     """
 
     Starred = 3
@@ -158,7 +158,7 @@ class UnaryOp(expr.Expression):
         """expr.Expression precedence.
 
         References:
-            [Unary.to_precedence][synpy.expr.unary_op.UnaryOpType.to_precedence].
+            [Unary.to_precedence][synt.expr.unary_op.UnaryOpType.to_precedence].
         """
         return self.op_type.to_precedence()
 
@@ -176,7 +176,7 @@ def await_(e: expr.IntoExpression) -> UnaryOp:
 
 
 awaited = await_
-"""Alias [`await_`][synpy.expr.unary_op.await_]."""
+"""Alias [`await_`][synt.expr.unary_op.await_]."""
 
 
 def unpack(e: expr.IntoExpression) -> UnaryOp:
@@ -192,7 +192,7 @@ def unpack(e: expr.IntoExpression) -> UnaryOp:
 
 
 starred = unpack_seq = unpack
-"""Alias [`unpack`][synpy.expr.unary_op.unpack]."""
+"""Alias [`unpack`][synt.expr.unary_op.unpack]."""
 
 
 def unpack_kv(e: expr.IntoExpression) -> UnaryOp:
@@ -208,7 +208,7 @@ def unpack_kv(e: expr.IntoExpression) -> UnaryOp:
 
 
 double_starred = unpack_dict = unpack_kv
-"""Alias [`unpack_kv`][synpy.expr.unary_op.unpack_kv]."""
+"""Alias [`unpack_kv`][synt.expr.unary_op.unpack_kv]."""
 
 
 def positive(e: expr.IntoExpression) -> UnaryOp:
@@ -236,7 +236,7 @@ def negative(e: expr.IntoExpression) -> UnaryOp:
 
 
 neg = negative
-"""Alias [`negative`][synpy.expr.unary_op.negative]."""
+"""Alias [`negative`][synt.expr.unary_op.negative]."""
 
 
 def not_(e: expr.IntoExpression) -> UnaryOp:
@@ -252,7 +252,7 @@ def not_(e: expr.IntoExpression) -> UnaryOp:
 
 
 bool_not = not_
-"""Alias [`not_`][synpy.expr.unary_op.not_]."""
+"""Alias [`not_`][synt.expr.unary_op.not_]."""
 
 
 def invert(e: expr.IntoExpression) -> UnaryOp:
@@ -268,7 +268,7 @@ def invert(e: expr.IntoExpression) -> UnaryOp:
 
 
 bit_not = invert
-"""Alias [`invert`][synpy.expr.unary_op.invert]."""
+"""Alias [`invert`][synt.expr.unary_op.invert]."""
 
 
 def yield_(e: expr.Expression) -> UnaryOp:

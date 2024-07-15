@@ -8,7 +8,7 @@ __all__ = [
 ]
 
 
-import synpy.expr.expr as expr
+import synt.expr.expr as expr
 
 
 class Tuple(expr.Expression):
@@ -43,4 +43,4 @@ class Tuple(expr.Expression):
 
 
 tuple_ = tup = Tuple
-"""Alias [`Tuple`][synpy.expr.tuple.Tuple]."""
+"""Alias [`Tuple`][synt.expr.tuple.Tuple]."""

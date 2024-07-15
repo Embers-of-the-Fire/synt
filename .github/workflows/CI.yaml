@@ -24,8 +24,8 @@ jobs:
           poetry install --no-interaction
       - name: Run checks
         run: |
-          poetry run ruff check ./synpy
-          poetry run mypy -p synpy
+          poetry run ruff check ./synt
+          poetry run mypy -p synt
       - name: Run test script
         run: poetry run pytest
   
@@ -45,7 +45,7 @@ jobs:
           poetry install --no-interaction
       - name: Run coverage
         run: |
-          poetry run pytest --cov=synpy --cov-report=xml tests/
+          poetry run pytest --cov=synt --cov-report=xml tests/
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.5.0
         with:

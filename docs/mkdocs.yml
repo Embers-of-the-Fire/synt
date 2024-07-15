@@ -1,8 +1,8 @@
-site_name: SynPy Document
+site_name: Synt Document
 site_author: Embers-of-the-Fire
-site_description: Api documentation for synpy
-repo_url: https://github.com/Embers-of-the-Fire/synpy/
-repo_name: Embers-of-the-Fire/synpy
+site_description: Api documentation for synt
+repo_url: https://github.com/Embers-of-the-Fire/synt/
+repo_name: Embers-of-the-Fire/synt
 copyright: Copyright &copy; 2024 Embers-of-the-Fire
 edit_uri: edit/main/docs/
 markdown_extensions:

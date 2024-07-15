@@ -7,18 +7,18 @@ __all__ = [
 
 from typing import TYPE_CHECKING
 
-import synpy.expr.expr as expr
+import synt.expr.expr as expr
 
 
 if TYPE_CHECKING:
-    from synpy.tokens.ident import Identifier
+    from synt.tokens.ident import Identifier
 
 
 class Assignment(expr.Expression):
     """Inline assignment expression, aka `:=`.
 
     References:
-        [expr.ExprPrecedence.Assignment][synpy.expr.expr.ExprPrecedence.Assignment].
+        [expr.ExprPrecedence.Assignment][synt.expr.expr.ExprPrecedence.Assignment].
     """
 
     receiver: Identifier

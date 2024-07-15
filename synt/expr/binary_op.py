@@ -10,22 +10,22 @@ __all__ = [
 from enum import IntEnum
 from typing import TYPE_CHECKING
 
-import synpy.expr.expr as expr
+import synt.expr.expr as expr
 
 
 if TYPE_CHECKING:
-    from synpy.expr.expr import ExprPrecedence
+    from synt.expr.expr import ExprPrecedence
 
 
 class BinaryOpType(IntEnum):
     """Binary operator type.
 
     **Exception:**
-    Although [`Assignment`][synpy.expr.expr.ExprPrecedence.Assignment]
-    takes the form of a binary operator, it is not a binary operator (at least not in `synpy`).
+    Although [`Assignment`][synt.expr.expr.ExprPrecedence.Assignment]
+    takes the form of a binary operator, it is not a binary operator (at least not in `synt`).
 
     References:
-        [`expr.ExprPrecedence`][synpy.expr.expr.ExprPrecedence]
+        [`expr.ExprPrecedence`][synt.expr.expr.ExprPrecedence]
     """
 
     Add = 0
@@ -223,6 +223,6 @@ class BinaryOp(expr.Expression):
         """expr.Expression precedence.
 
         References:
-            [BinaryOpType.to_precedence][synpy.expr.binary_op.BinaryOpType.to_precedence].
+            [BinaryOpType.to_precedence][synt.expr.binary_op.BinaryOpType.to_precedence].
         """
         return self.op_type.to_precedence()
