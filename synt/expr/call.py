@@ -6,9 +6,14 @@ __all__ = [
     "Keyword",
 ]
 
+from typing import TYPE_CHECKING
 
 import synt.code as code
 import synt.expr.expr as expr
+
+
+if TYPE_CHECKING:
+    from synt.tokens.ident import Identifier
 
 
 class Call(expr.Expression):
@@ -71,12 +76,12 @@ class Keyword(code.IntoCode):
         [`Keyword`(PythonAst)](https://docs.python.org/3/library/ast.html#ast.keyword)
     """
 
-    key: str
+    key: Identifier
     """Keyword."""
     value: expr.Expression
     """Value for the argument."""
 
-    def __init__(self, key: str, value: expr.IntoExpression):
+    def __init__(self, key: Identifier, value: expr.IntoExpression):
         """Initialize a new keyword argument.
 
         Args:
@@ -87,4 +92,4 @@ class Keyword(code.IntoCode):
         self.value = value.into_expression()
 
     def into_code(self) -> str:
-        return f"{self.key}={self.value.into_code()}"
+        return f"{self.key.into_code()}={self.value.into_code()}"

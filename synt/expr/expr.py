@@ -11,15 +11,11 @@ __all__ = [
 from abc import ABCMeta
 from abc import abstractmethod
 from enum import IntEnum
-from typing import TYPE_CHECKING
 
 import synt.code as code
 
 
 # add in-lib imports to the bottom of the file
-
-if TYPE_CHECKING:
-    from synt.tokens.ident import Identifier
 
 
 class ExprPrecedence(IntEnum):
@@ -836,7 +832,11 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
     # alias for call
 
-    def call(self, *args: IntoExpression, **kwargs: IntoExpression) -> call.Call:
+    def call(
+        self,
+        *args: IntoExpression | tuple[Identifier, IntoExpression],
+        **kwargs: IntoExpression,
+    ) -> call.Call:
         """Calling a function or object.
 
         Args:
@@ -851,20 +851,25 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
             call_expr = id_('a').expr().call(litint(1), litint(2)).call(kw=litint(3))
             assert call_expr.into_code() == "a(1, 2)(kw=3)"
             ```
+            With dynamic keyword arguments:
+            ```python
+            call_expr = id_('a').expr().call(kwarg(id_('b'), litint(42)))
+            assert call_expr.into_code() == "a(b=42)"
+            ```
         """
+        kwarg: list[call.Keyword] = []
         arg: list[IntoExpression] = []
         for a in args:
+            if isinstance(a, tuple):
+                kwarg.append(call.Keyword(a[0], a[1]))
+                continue
             if type_check.is_into_expr(a):
                 arg.append(a)
-            else:
-                raise ValueError(f"Invalid argument: {a}")
+                continue
+            raise ValueError(f"Invalid argument: {a}")
 
-        kwarg: list[call.Keyword] = []
         for k, v in kwargs.items():
-            if type_check.is_into_expr(v):
-                kwarg.append(call.Keyword(k, v))
-            else:
-                raise ValueError(f"Invalid keyword argument: {k} = {v}")
+            kwarg.append(call.Keyword(Identifier(k), v))
 
         return call.Call(self, arg, kwarg)
 
@@ -982,3 +987,5 @@ import synt.expr.subscript as subscript
 import synt.expr.type_check as type_check
 import synt.expr.unary_op as unary_op
 import synt.expr.wrapped as expr_wrapped
+
+from synt.tokens.ident import Identifier

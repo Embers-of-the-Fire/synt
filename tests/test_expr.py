@@ -129,6 +129,8 @@ def test_expr_attr():
 def test_expr_call():
     call_expr = id_("a").expr().call(litint(1), litint(2)).call(kw=litint(3))
     assert call_expr.into_code() == "a(1, 2)(kw=3)"
+    call_expr = id_("a").expr().call((id_("b"), litint(42)))
+    assert call_expr.into_code() == "a(b=42)"
 
 
 def test_expr_closure():
