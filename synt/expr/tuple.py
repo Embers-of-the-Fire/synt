@@ -36,10 +36,14 @@ class Tuple(expr.Expression):
         self.items = [i.into_expression() for i in items]
 
     def into_code(self) -> str:
+        return f"({self.into_code_implicit()})"
+
+    def into_code_implicit(self) -> str:
+        """Convert the tuple into a string representation implicitly, omitting the parentheses."""
         item_text = ", ".join(x.into_code() for x in self.items)
         if len(self.items) == 1:
             item_text += ","
-        return f"({item_text})"
+        return item_text
 
 
 tuple_ = tup = Tuple
