@@ -8,7 +8,6 @@ __all__ = [
     "vararg",
     "kwarg",
     "FunctionDefBuilder",
-    "dec",
     "def_",
     "async_def",
 ]
@@ -245,8 +244,9 @@ class FunctionDef(Statement):
         self.body = body
 
     def indented(self, indent_width: int, indent_atom: str) -> str:
+        indent = indent_width * indent_atom
         decorators = "".join(
-            f"{indent_width * indent_atom}@{t.into_code()}\n" for t in self.decorators
+            f"{indent}@{t.into_code()}\n" for t in self.decorators
         )
         type_param = (
             ""
@@ -257,7 +257,7 @@ class FunctionDef(Statement):
         returns = f" -> {self.returns.into_code()}" if self.returns else ""
         body = self.body.indented(indent_width + 1, indent_atom)
         async_ = "async " if self.is_async else ""
-        return f"{decorators}{async_}def {self.name.into_code()}{type_param}({args}){returns}:\n{body}"
+        return f"{decorators}{indent}{async_}def {self.name.into_code()}{type_param}({args}){returns}:\n{body}"
 
 
 class FunctionDefBuilder:
@@ -407,15 +407,6 @@ class FunctionDefBuilder:
             name=self.name,  # type:ignore[arg-type]
             body=Block(*statements),
         )
-
-
-def dec(d: IntoExpression) -> FunctionDefBuilder:
-    """Initialize a function definition with a decorator.
-
-    Args:
-        d: Decorator.
-    """
-    return FunctionDefBuilder().dec(d)
 
 
 def def_(name: Identifier) -> FunctionDefBuilder:
