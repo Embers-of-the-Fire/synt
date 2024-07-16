@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 __all__ = [
-    "Assignment",
+    "NamedExpr",
 ]
 
 from typing import TYPE_CHECKING
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from synt.tokens.ident import Identifier
 
 
-class Assignment(expr.Expression):
+class NamedExpr(expr.Expression):
     """Inline assignment expression, aka `:=`.
 
     References:
@@ -25,11 +25,11 @@ class Assignment(expr.Expression):
     """The identifier to be assigned."""
     value: expr.Expression
     """The value to be assigned to the receiver."""
-    precedence = expr.ExprPrecedence.Assignment
-    expr_type = expr.ExprType.Assignment
+    precedence = expr.ExprPrecedence.NamedExpr
+    expr_type = expr.ExprType.NamedExpr
 
     def __init__(self, receiver: Identifier, value: expr.IntoExpression):
-        """Initialize an assignment expression.
+        """Initialize a named expr expression.
 
         Args:
             receiver: The identifier to be assigned.

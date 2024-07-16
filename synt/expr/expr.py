@@ -214,7 +214,7 @@ class ExprPrecedence(IntEnum):
         ```
     """
 
-    Assignment = 17
+    NamedExpr = 17
     """Inline assignment expression.
 
     Examples:
@@ -258,8 +258,8 @@ class ExprType(IntEnum):
     """[`Closure`][synt.expr.closure.Closure]."""
     Condition = 9
     """[`Condition`][synt.expr.condition.Condition]."""
-    Assignment = 10
-    """[`assignment.Assignment`][synt.expr.assignment.Assignment]."""
+    NamedExpr = 10
+    """[`NamedExpr`][synt.expr.named_expr.NamedExpr]."""
     Comprehension = 11
     """[`Comprehension`][synt.expr.comprehension.Comprehension]."""
     FormatString = 12
@@ -783,7 +783,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
     # alias for assignment
 
-    def assign(self, expr: IntoExpression) -> assignment.Assignment:
+    def named(self, expr: IntoExpression) -> named_expr.NamedExpr:
         """Assign the expression to `self`.
 
         Args:
@@ -794,13 +794,13 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
         Examples:
             ```python
-            assign_expr = id_('a').expr().assign(litint(1))
-            assert assign_expr.into_code() == "a := 1"
+            named_expr = id_('a').expr().named(litint(1))
+            assert named_expr.into_code() == "a := 1"
             ```
         """
-        return assignment.Assignment(self.ensure_identifier(), expr)
+        return named_expr.NamedExpr(self.ensure_identifier(), expr)
 
-    def assign_to(self, target: Identifier) -> assignment.Assignment:
+    def named_as(self, target: Identifier) -> named_expr.NamedExpr:
         """Assign self to the target.
 
         Args:
@@ -808,11 +808,11 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
         Examples:
             ```python
-            assign_to_expr = (litint(1) + litint(2)).assign_to(id_('a')).is_(TRUE)
-            assert assign_to_expr.into_code() == "(a := 1 + 2) is True"
+            named_as_expr = (litint(1) + litint(2)).named_as(id_('a')).is_(TRUE)
+            assert named_as_expr.into_code() == "(a := 1 + 2) is True"
             ```
         """
-        return assignment.Assignment(target, self)
+        return named_expr.NamedExpr(target, self)
 
     # alias for attribute
 
@@ -983,12 +983,12 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
 
 # add import here to avoid circular imports
 
-import synt.expr.assignment as assignment
 import synt.expr.attribute as attribute
 import synt.expr.binary_op as binary_op
 import synt.expr.call as call
 import synt.expr.comprehension as comprehension
 import synt.expr.condition as condition
+import synt.expr.named_expr as named_expr
 import synt.expr.subscript as subscript
 import synt.expr.type_check as type_check
 import synt.expr.unary_op as unary_op

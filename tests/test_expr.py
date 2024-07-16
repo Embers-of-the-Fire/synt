@@ -114,11 +114,11 @@ def test_expr_unary_op():
     assert yield_expr.into_code() == "yield from [10, 42]"
 
 
-def test_expr_assign():
-    assign_expr = id_("a").expr().assign(litint(1))
-    assert assign_expr.into_code() == "a := 1"
-    assign_to_expr = (litint(1) + litint(2)).assign_to(id_("a")).is_(TRUE)
-    assert assign_to_expr.into_code() == "(a := 1 + 2) is True"
+def test_expr_named():
+    named_expr = id_("a").expr().named(litint(1))
+    assert named_expr.into_code() == "a := 1"
+    named_as_expr = (litint(1) + litint(2)).named_as(id_("a")).is_(TRUE)
+    assert named_as_expr.into_code() == "(a := 1 + 2) is True"
 
 
 def test_expr_attr():

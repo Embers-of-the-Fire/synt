@@ -2,7 +2,6 @@ from __future__ import annotations
 
 
 __all__ = [
-    "assignment",
     "attribute",
     "binary_op",
     "call",
@@ -13,6 +12,7 @@ __all__ = [
     "expr",
     "fstring",
     "list",
+    "named_expr",
     "set",
     "subscript",
     "tuple",
@@ -22,7 +22,6 @@ __all__ = [
     "empty",
 ]
 
-from . import assignment
 from . import attribute
 from . import binary_op
 from . import call
@@ -34,6 +33,7 @@ from . import empty
 from . import expr
 from . import fstring
 from . import list
+from . import named_expr
 from . import set
 from . import subscript
 from . import tuple
