@@ -80,3 +80,8 @@ def test_keywords():
     assert PASS.into_code() == "pass"
     assert BREAK.into_code() == "break"
     assert CONTINUE.into_code() == "continue"
+
+
+def test_del():
+    d = del_(id_("foo").expr().attr("bar"))
+    assert d.into_code() == "del foo.bar"

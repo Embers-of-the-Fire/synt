@@ -9,11 +9,13 @@ __all__ = [
     "cls",
     "decorator",
     "keyword",
+    "delete",
 ]
 
 from . import block
 from . import cls
 from . import decorator
+from . import delete
 from . import fn
 from . import keyword
 from . import returns
