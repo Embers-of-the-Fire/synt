@@ -9,8 +9,6 @@ from __future__ import annotations
 
 
 __all__ = [
-    "ExpressionTypeException",
-    "InvalidIdentifierException",
     "lambda_",
     "dict_",
     "dict_comp",
@@ -62,6 +60,7 @@ __all__ = [
     "BREAK",
     "CONTINUE",
     "PASS",
+    "raise_",
     "ret",
     "return_",
     "IntoStatement",
@@ -83,8 +82,6 @@ __all__ = [
     "del_",
 ]
 
-from synt.errors.expr import ExpressionTypeException
-from synt.errors.ident import InvalidIdentifierException
 from synt.expr.closure import lambda_
 from synt.expr.dict import dict_
 from synt.expr.dict import dict_comp
@@ -137,6 +134,7 @@ from synt.stmt.fn import vararg
 from synt.stmt.keyword import BREAK
 from synt.stmt.keyword import CONTINUE
 from synt.stmt.keyword import PASS
+from synt.stmt.raising import raise_
 from synt.stmt.returns import ret
 from synt.stmt.returns import return_
 from synt.stmt.stmt import IntoStatement

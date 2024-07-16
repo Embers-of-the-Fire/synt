@@ -4,7 +4,6 @@ from __future__ import annotations
 __all__ = [
     "tokens",
     "expr",
-    "errors",
     "code",
     "prelude",
     "stmt",
@@ -13,7 +12,6 @@ __all__ = [
 ]
 
 from . import code
-from . import errors
 from . import expr
 from . import prelude
 from . import stmt

@@ -99,3 +99,12 @@ def test_assign():
 def test_assert():
     assert_stmt = assert_(TRUE, litstr("Condition is true"))
     assert assert_stmt.into_code() == "assert True, 'Condition is true'"
+
+
+def test_raise():
+    r = raise_()
+    assert r.into_code() == "raise"
+    r = raise_(litint(42))
+    assert r.into_code() == "raise 42"
+    r = raise_(litint(42)).from_(litstr("Custom exception"))
+    assert r.into_code() == "raise 42 from 'Custom exception'"

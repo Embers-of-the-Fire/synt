@@ -41,7 +41,7 @@ class Identifier(expr.IntoExpression, code.IntoCode):
             id_foo_alias = id_('foo') # with alias
             try:
                 id_fail = id_('foo bar') # invalid identifier lit will fail
-            except synt.errors.ident.InvalidIdentifierException:
+            except ValueError:
                 pass
             ```
         """

@@ -12,6 +12,7 @@ __all__ = [
     "delete",
     "assign",
     "assertion",
+    "raising",
 ]
 
 from . import assertion
@@ -22,5 +23,6 @@ from . import decorator
 from . import delete
 from . import fn
 from . import keyword
+from . import raising
 from . import returns
 from . import stmt
