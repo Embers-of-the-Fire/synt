@@ -9,6 +9,7 @@ __all__ = [
     "prelude",
     "stmt",
     "ty",
+    "type_check",
 ]
 
 from . import code
@@ -18,3 +19,4 @@ from . import prelude
 from . import stmt
 from . import tokens
 from . import ty
+from . import type_check
