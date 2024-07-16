@@ -62,7 +62,7 @@ tvar = TypeVar
 """Alias [`TypeVar`][synt.ty.type_param.TypeVar]."""
 
 
-class TypeVarTuple:
+class TypeVarTuple(IntoCode):
     """Type variable tuple.
 
     Examples:
@@ -94,7 +94,7 @@ ttup = TypeVarTuple
 """Alias [`TypeVarTuple`][synt.ty.type_param.TypeVarTuple]."""
 
 
-class TypeParamSpec:
+class TypeParamSpec(IntoCode):
     """Type parameter spec.
 
     Examples:
