@@ -11,8 +11,11 @@ __all__ = [
     "keyword",
     "delete",
     "assign",
+    "assertion",
 ]
 
+from . import assertion
+from . import assign
 from . import block
 from . import cls
 from . import decorator
@@ -21,4 +24,3 @@ from . import fn
 from . import keyword
 from . import returns
 from . import stmt
-from . import assign

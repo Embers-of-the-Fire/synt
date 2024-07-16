@@ -94,3 +94,8 @@ def test_assign():
     assert ass.into_code() == "a: str = 'foo'"  # explicitly typing
     ass = id_("a").expr().ty(id_("str"))
     assert ass.into_code() == "a: str"  # only typing
+
+
+def test_assert():
+    assert_stmt = assert_(TRUE, litstr("Condition is true"))
+    assert assert_stmt.into_code() == "assert True, 'Condition is true'"

@@ -50,6 +50,7 @@ __all__ = [
     "par",
     "wrap",
     "wrapped",
+    "assert_",
     "Block",
     "class_",
     "dec",
@@ -123,6 +124,7 @@ from synt.expr.unary_op import yield_from
 from synt.expr.wrapped import par
 from synt.expr.wrapped import wrap
 from synt.expr.wrapped import wrapped
+from synt.stmt.assertion import assert_
 from synt.stmt.block import Block
 from synt.stmt.cls import class_
 from synt.stmt.decorator import dec
