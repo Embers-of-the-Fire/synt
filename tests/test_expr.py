@@ -250,3 +250,18 @@ def test_expr_wrapped():
 def test_expr_alias():
     al = id_("a").as_(id_("b"))
     assert al.into_code() == "a as b"
+
+
+def test_expr_modpath():
+    p = path(id_('foo'))
+    assert p.into_code() == "foo"
+    p = path(id_('foo'), id_('bar'))
+    assert p.into_code() == "foo.bar"
+    p = path(id_('foo'), id_('bar'), depth=3)
+    assert p.into_code() == "...foo.bar"
+
+    r = relpath(id_("abc"))
+    assert r.into_code() == ".abc"
+
+    r = parentpath(id_("abc"))
+    assert r.into_code() == "..abc"

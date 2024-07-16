@@ -23,6 +23,9 @@ __all__ = [
     "fstring",
     "list_",
     "list_comp",
+    "path",
+    "relpath",
+    "parentpath",
     "set_",
     "set_comp",
     "slice_",
@@ -153,3 +156,4 @@ from synt.tokens.lit import litstr
 from synt.ty.type_param import tspec
 from synt.ty.type_param import ttup
 from synt.ty.type_param import tvar
+from synt.expr.modpath import path, relpath, parentpath

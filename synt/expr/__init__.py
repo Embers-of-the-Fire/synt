@@ -21,6 +21,7 @@ __all__ = [
     "wrapped",
     "type_check",
     "empty",
+    "modpath",
 ]
 
 from . import alias
@@ -42,3 +43,4 @@ from . import tuple
 from . import type_check
 from . import unary_op
 from . import wrapped
+from . import modpath
