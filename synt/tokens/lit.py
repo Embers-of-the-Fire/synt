@@ -10,6 +10,7 @@ __all__ = [
     "TRUE",
     "FALSE",
     "NONE",
+    "ELLIPSIS",
 ]
 
 
@@ -156,3 +157,5 @@ FALSE = Literal.bool_(False)
 """Alias for [`bool_(False)`][synt.tokens.lit.Literal.bool_]."""
 NONE = Literal("None")
 """Alias for a literal `None`."""
+ELLIPSIS = Literal("...")
+"""Alias for a literal ellipsis `...`."""
