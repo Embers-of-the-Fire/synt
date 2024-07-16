@@ -71,6 +71,9 @@ class Identifier(expr.IntoExpression, code.IntoCode):
     def into_code(self) -> str:
         return self.raw
 
+    def __hash__(self) -> int:
+        return hash(("Identifier", self.raw))
+
 
 id_ = Identifier
 """Alias [`Identifier`][synt.tokens.ident.Identifier].
