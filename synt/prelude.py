@@ -65,8 +65,9 @@ __all__ = [
     "IntoStatement",
     "Block",
     "def_",
-    "dec",
     "async_def",
+    "class_",
+    "dec",
     "tvar",
     "ttup",
     "tspec",
@@ -119,9 +120,10 @@ from synt.expr.wrapped import par
 from synt.expr.wrapped import wrap
 from synt.expr.wrapped import wrapped
 from synt.stmt.block import Block
+from synt.stmt.cls import class_
+from synt.stmt.decorator import dec
 from synt.stmt.fn import arg
 from synt.stmt.fn import async_def
-from synt.stmt.fn import dec
 from synt.stmt.fn import def_
 from synt.stmt.fn import kwarg
 from synt.stmt.fn import vararg

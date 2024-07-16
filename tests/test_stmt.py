@@ -49,6 +49,25 @@ def test_fn():
     #     return ...
 
 
+def test_cls():
+    cls = (
+        dec(id_("foo"))
+        .class_(id_("Bar"))[id_("T")](metaclass=id_("ABCMeta"))
+        .block(
+            dec(id_("abstractmethod"))
+            .def_(id_("baz"))(id_("self"), arg(id_("a"), id_("T"))).returns(id_("str"))
+            .block(
+                return_(fstring("Bar(", fnode(id_("a")), ").baz"))
+            )
+        )
+    )
+    assert cls.into_code() == '''@foo
+class Bar[T](metaclass=ABCMeta):
+    @abstractmethod
+    def baz(self, a: T) -> str:
+        return f"Bar({a}).baz"'''
+
+
 def test_return():
     return_stmt = return_(litint(42))
     assert return_stmt.into_code() == "return 42"

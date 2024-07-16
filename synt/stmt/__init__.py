@@ -6,9 +6,13 @@ __all__ = [
     "stmt",
     "fn",
     "returns",
+    "cls",
+    "decorator",
 ]
 
 from . import block
+from . import cls
+from . import decorator
 from . import fn
-from . import stmt
 from . import returns
+from . import stmt
