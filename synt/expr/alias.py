@@ -8,6 +8,7 @@ __all__ = [
 
 from typing import TYPE_CHECKING
 
+from synt.expr.modpath import ModPath
 from synt.code import IntoCode
 
 
@@ -28,20 +29,23 @@ class Alias(IntoCode):
         [`alias`](https://docs.python.org/3/library/ast.html#ast.alias).
     """
 
-    name: Identifier
-    """The name of the alias item."""
+    names: ModPath
+    """The names of the alias item."""
     asname: Identifier
     """The alias name."""
 
-    def __init__(self, name: Identifier, asname: Identifier):
+    def __init__(self, names: Identifier | ModPath, asname: Identifier):
         """Initialize a new alias.
 
         Args:
-            name: The name of the alias item.
+            names: The names of the alias item.
             asname: The alias name.
         """
-        self.name = name
+        if isinstance(names, Identifier):
+            self.names = ModPath(names)
+        else:
+            self.names = names
         self.asname = asname
 
     def into_code(self) -> str:
-        return f"{self.name.into_code()} as {self.asname.into_code()}"
+        return f"{self.names.into_code()} as {self.asname.into_code()}"
