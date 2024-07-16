@@ -244,9 +244,7 @@ class FunctionDef(Statement):
 
     def indented(self, indent_width: int, indent_atom: str) -> str:
         indent = indent_width * indent_atom
-        decorators = "".join(
-            f"{indent}@{t.into_code()}\n" for t in self.decorators
-        )
+        decorators = "".join(f"{indent}@{t.into_code()}\n" for t in self.decorators)
         type_param = (
             ""
             if not self.type_params

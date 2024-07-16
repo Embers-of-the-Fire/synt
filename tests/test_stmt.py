@@ -54,17 +54,19 @@ def test_cls():
         .class_(id_("Bar"))[id_("T")](metaclass=id_("ABCMeta"))
         .block(
             dec(id_("abstractmethod"))
-            .def_(id_("baz"))(id_("self"), arg(id_("a"), id_("T"))).returns(id_("str"))
-            .block(
-                return_(fstring("Bar(", fnode(id_("a")), ").baz"))
-            )
+            .def_(id_("baz"))(id_("self"), arg(id_("a"), id_("T")))
+            .returns(id_("str"))
+            .block(return_(fstring("Bar(", fnode(id_("a")), ").baz")))
         )
     )
-    assert cls.into_code() == '''@foo
+    assert (
+        cls.into_code()
+        == '''@foo
 class Bar[T](metaclass=ABCMeta):
     @abstractmethod
     def baz(self, a: T) -> str:
         return f"Bar({a}).baz"'''
+    )
 
 
 def test_return():
@@ -72,3 +74,9 @@ def test_return():
     assert return_stmt.into_code() == "return 42"
     return_stmt = ret()
     assert return_stmt.into_code() == "return"
+
+
+def test_keywords():
+    assert PASS.into_code() == "pass"
+    assert BREAK.into_code() == "break"
+    assert CONTINUE.into_code() == "continue"

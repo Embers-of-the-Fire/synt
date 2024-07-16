@@ -26,34 +26,34 @@ if TYPE_CHECKING:
 class ClassDef(Statement):
     """Class definition.
 
-    Examples:
-        ```python
-        cls = (
-            dec(id_("foo"))
-            .class_(id_("Bar"))[id_("T")](metaclass=id_("ABCMeta"))
-            .block(
-                dec(id_("abstractmethod"))
-                .def_(id_("baz"))(id_("self"), arg(id_("a"), id_("T"))).returns(id_("str"))
+        Examples:
+            ```python
+            cls = (
+                dec(id_("foo"))
+                .class_(id_("Bar"))[id_("T")](metaclass=id_("ABCMeta"))
                 .block(
-                    return_(fstring("Bar(", fnode(id_("a")), ").baz"))
+                    dec(id_("abstractmethod"))
+                    .def_(id_("baz"))(id_("self"), arg(id_("a"), id_("T"))).returns(id_("str"))
+                    .block(
+                        return_(fstring("Bar(", fnode(id_("a")), ").baz"))
+                    )
                 )
             )
-        )
-        assert cls.into_code() == '''@foo
-class Bar[T](metaclass=ABCMeta):
-    @abstractmethod
-    def baz(self, a: T) -> str:
-        return f"Bar({a}).baz"'''
+            assert cls.into_code() == '''@foo
+    class Bar[T](metaclass=ABCMeta):
+        @abstractmethod
+        def baz(self, a: T) -> str:
+            return f"Bar({a}).baz"'''
 
-        # @foo
-        # class Bar[T](metaclass=ABCMeta):
-        #     @abstractmethod
-        #     def baz(self, a: T) -> str:
-        #         return f"Bar({a}).baz"
-        ```
+            # @foo
+            # class Bar[T](metaclass=ABCMeta):
+            #     @abstractmethod
+            #     def baz(self, a: T) -> str:
+            #         return f"Bar({a}).baz"
+            ```
 
-    References:
-        [`ClassDef`](https://docs.python.org/3/library/ast.html#ast.ClassDef).
+        References:
+            [`ClassDef`](https://docs.python.org/3/library/ast.html#ast.ClassDef).
     """
 
     decorators: list[Expression]
@@ -97,9 +97,7 @@ class Bar[T](metaclass=ABCMeta):
 
     def indented(self, indent_width: int, indent_atom: str) -> str:
         indent = indent_width * indent_atom
-        decorators = "".join(
-            f"{indent}@{t.into_code()}\n" for t in self.decorators
-        )
+        decorators = "".join(f"{indent}@{t.into_code()}\n" for t in self.decorators)
         type_param = (
             ""
             if not self.type_params

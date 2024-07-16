@@ -76,6 +76,9 @@ __all__ = [
     "kwarg",
     "ret",
     "return_",
+    "CONTINUE",
+    "BREAK",
+    "PASS",
 ]
 
 from synt.errors.expr import ExpressionTypeException
@@ -127,6 +130,9 @@ from synt.stmt.fn import async_def
 from synt.stmt.fn import def_
 from synt.stmt.fn import kwarg
 from synt.stmt.fn import vararg
+from synt.stmt.keyword import BREAK
+from synt.stmt.keyword import CONTINUE
+from synt.stmt.keyword import PASS
 from synt.stmt.returns import ret
 from synt.stmt.returns import return_
 from synt.stmt.stmt import IntoStatement
