@@ -980,6 +980,38 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         """Alias [`wrap`][synt.expr.expr.Expression.wrap]."""
         return self.wrap()
 
+    # statement constructors
+
+    # assignment
+
+    def assign(self, value: IntoExpression) -> stmt_assign.Assignment:
+        """Create a new assignment statement, take `self` as the target.
+
+        Args:
+            value: The value to assign.
+        """
+        return stmt_assign.Assignment(self).assign(value)
+
+    def assign_to(self, target: IntoExpression) -> stmt_assign.Assignment:
+        """Create a new assignment statement, take `self` as the value.
+
+        Args:
+            target: The value to be assigned.
+        """
+        return stmt_assign.Assignment(target.into_expression()).assign(self)
+
+    def type(self, ty: IntoExpression) -> stmt_assign.Assignment:
+        """Create a new typed assignment statement, take `self` as the target.
+
+        Args:
+            ty: The type of the target.
+        """
+        return stmt_assign.Assignment(self).type(ty)
+
+    def ty(self, ty: IntoExpression) -> stmt_assign.Assignment:
+        """Alias [`type`][synt.expr.expr.Expression.type]."""
+        return self.type(ty)
+
 
 # add import here to avoid circular imports
 
@@ -993,5 +1025,6 @@ import synt.expr.subscript as subscript
 import synt.expr.type_check as type_check
 import synt.expr.unary_op as unary_op
 import synt.expr.wrapped as expr_wrapped
+import synt.stmt.assign as stmt_assign
 
 from synt.tokens.ident import Identifier

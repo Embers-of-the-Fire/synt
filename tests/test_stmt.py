@@ -85,3 +85,12 @@ def test_keywords():
 def test_del():
     d = del_(id_("foo").expr().attr("bar"))
     assert d.into_code() == "del foo.bar"
+
+
+def test_assign():
+    ass = tup(id_("a"), id_("b")).assign(tup(litint(1), litstr("foo")))
+    assert ass.into_code() == "a, b = (1, 'foo')"  # automatically unpack
+    ass = id_("a").expr().ty(id_("str")).assign(litstr("foo"))
+    assert ass.into_code() == "a: str = 'foo'"  # explicitly typing
+    ass = id_("a").expr().ty(id_("str"))
+    assert ass.into_code() == "a: str"  # only typing
