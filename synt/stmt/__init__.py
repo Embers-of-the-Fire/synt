@@ -10,6 +10,7 @@ __all__ = [
     "decorator",
     "keyword",
     "delete",
+    "assign",
 ]
 
 from . import block
@@ -20,3 +21,4 @@ from . import fn
 from . import keyword
 from . import returns
 from . import stmt
+from . import assign
