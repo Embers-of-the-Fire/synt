@@ -105,7 +105,7 @@ class Bar[T](metaclass=ABCMeta):
             if not self.type_params
             else f"[{', '.join(x.into_code() for x in self.type_params)}]"
         )
-        args_l = []
+        args_l: list[str] = []
         args_l.extend(x.into_code() for x in self.cargs)
         args_l.extend(f"{x[0].into_code()}={x[1].into_code()}" for x in self.ckwargs)
         args = f"({', '.join(args_l)})" if args_l else ""
