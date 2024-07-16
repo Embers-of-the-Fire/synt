@@ -24,6 +24,6 @@ class Block(Statement):
 
     def indented(self, indent_width: int, indent_atom: str) -> str:
         return "\n".join(
-            f"{indent_atom * indent_width}{line.indented(indent_width, indent_atom)}"
+            f"{line.indented(indent_width, indent_atom)}"
             for line in self.body
         )
