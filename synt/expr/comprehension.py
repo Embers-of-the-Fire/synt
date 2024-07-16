@@ -294,14 +294,16 @@ class ComprehensionNodeBuilder(expr.IntoExpression):
         Raises:
             ValueError: If any required fields are missing.
         """
-        err_field = []
+        err_fields = []
         if self.__iterator is None:
-            err_field.append("iterator")
+            err_fields.append("iterator")
         if not self.__target:
-            err_field.append("target")
+            err_fields.append("target")
 
-        if err_field:
-            raise ValueError(f"Missing required fields: {', '.join(err_field)}")
+        if err_fields:
+            raise ValueError(
+                f"Missing required fields: {', '.join(f'`{t}`' for t in err_fields)}"
+            )
         return ComprehensionNode(
             self.__target,  # type:ignore[arg-type]
             self.__iterator,  # type:ignore[arg-type]

@@ -93,7 +93,9 @@ class ConditionBuilder:
             err_fields.append("false_expr")
 
         if err_fields:
-            raise ValueError(f"Missing required field(s): {', '.join(err_fields)}")
+            raise ValueError(
+                f"Missing required field(s): {', '.join(f'`{t}`' for t in err_fields)}"
+            )
         return Condition(self.__condition, self.__true_expr, self.__false_expr)  # type:ignore[arg-type]
 
     def else_(self, other: expr.IntoExpression) -> Condition:
