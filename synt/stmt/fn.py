@@ -182,8 +182,7 @@ class FunctionDef(Statement):
         ```python
         func = (
             dec(id_("foo"))
-            .async_()
-            .def_(id_("bar"))
+            .async_def(id_("bar"))
             .type_param(id_("T"))
             .arg(
                 id_("a"),

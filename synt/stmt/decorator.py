@@ -10,14 +10,14 @@ __all__ = [
 from typing import TYPE_CHECKING
 from typing import Self
 
+from synt.stmt.cls import ClassDefBuilder
 from synt.stmt.fn import FunctionDefBuilder
 
-from stmt.cls import ClassDefBuilder
-from synt.tokens.ident import Identifier
 
 if TYPE_CHECKING:
     from synt.expr.expr import Expression
     from synt.expr.expr import IntoExpression
+    from synt.tokens.ident import Identifier
 
 
 class DecoratorGroup:

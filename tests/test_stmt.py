@@ -33,8 +33,7 @@ def test_fn():
 
     func = (
         dec(id_("foo"))
-        .async_()
-        .def_(id_("bar"))
+        .async_def(id_("bar"))
         .type_param(id_("T"))
         .arg(id_("a"), arg(id_("b")).ty(id_("int")), kw=NONE)
         .returns(id_("float"))
