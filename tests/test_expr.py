@@ -245,3 +245,8 @@ def test_expr_wrapped():
     assert wp.into_code() == "(1 + 2) * 3"
     non_wp = (litint(1) + litint(2)) * litint(3)
     assert non_wp.into_code() == "(1 + 2) * 3"
+
+
+def test_expr_alias():
+    al = id_("a").as_(id_("b"))
+    assert al.into_code() == "a as b"

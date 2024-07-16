@@ -69,6 +69,14 @@ class Identifier(expr.IntoExpression, code.IntoCode):
     def into_code(self) -> str:
         return self.raw
 
+    def as_(self, alias: Identifier) -> synt.expr.alias.Alias:
+        """Construct a new alias.
+
+        Args:
+            alias: The alias name.
+        """
+        return synt.expr.alias.Alias(self, alias)
+
     def __hash__(self) -> int:
         return hash(("Identifier", self.raw))
 
@@ -119,3 +127,6 @@ class IdentifierExpr(expr.Expression):
 
     def into_code(self) -> str:
         return self.ident.raw
+
+
+import synt.expr

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 
 __all__ = [
+    "alias",
     "attribute",
     "binary_op",
     "call",
@@ -22,6 +23,7 @@ __all__ = [
     "empty",
 ]
 
+from . import alias
 from . import attribute
 from . import binary_op
 from . import call
