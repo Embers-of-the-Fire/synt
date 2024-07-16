@@ -99,6 +99,9 @@ from synt.expr.fstring import fnode
 from synt.expr.fstring import fstring
 from synt.expr.list import list_
 from synt.expr.list import list_comp
+from synt.expr.modpath import parentpath
+from synt.expr.modpath import path
+from synt.expr.modpath import relpath
 from synt.expr.set import set_
 from synt.expr.set import set_comp
 from synt.expr.subscript import slice_
@@ -156,4 +159,3 @@ from synt.tokens.lit import litstr
 from synt.ty.type_param import tspec
 from synt.ty.type_param import ttup
 from synt.ty.type_param import tvar
-from synt.expr.modpath import path, relpath, parentpath

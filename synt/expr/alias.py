@@ -5,15 +5,8 @@ __all__ = [
     "Alias",
 ]
 
-
-from typing import TYPE_CHECKING
-
-from synt.expr.modpath import ModPath
 from synt.code import IntoCode
-
-
-if TYPE_CHECKING:
-    from synt.tokens.ident import Identifier
+from synt.expr.modpath import ModPath
 
 
 class Alias(IntoCode):
@@ -49,3 +42,6 @@ class Alias(IntoCode):
 
     def into_code(self) -> str:
         return f"{self.names.into_code()} as {self.asname.into_code()}"
+
+
+from synt.tokens.ident import Identifier

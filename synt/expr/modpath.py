@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 __all__ = [
     "ModPath",
     "path",
@@ -6,10 +9,14 @@ __all__ = [
 ]
 
 
+from typing import TYPE_CHECKING
 from typing import Self
 
-from synt.tokens.ident import Identifier
 from synt.code import IntoCode
+
+
+if TYPE_CHECKING:
+    from synt.tokens.ident import Identifier
 
 
 class ModPath(IntoCode):
@@ -23,6 +30,8 @@ class ModPath(IntoCode):
         assert p.into_code() == "foo.bar"
         p = path(id_('foo'), id_('bar'), depth=3)
         assert p.into_code() == "...foo.bar"
+        p = path(id_('foo'), id_('bar')).dep(4)
+        assert p.into_code() == "....foo.bar"
         ```
     """
 
@@ -41,7 +50,7 @@ class ModPath(IntoCode):
         self.names = list(names)
         self.depth = depth
 
-    def depth(self, depth: int) -> Self:
+    def dep(self, depth: int) -> Self:
         """Set the depth of the path.
 
         Args:

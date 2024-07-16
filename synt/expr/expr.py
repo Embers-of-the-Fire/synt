@@ -11,8 +11,13 @@ __all__ = [
 from abc import ABCMeta
 from abc import abstractmethod
 from enum import IntEnum
+from typing import TYPE_CHECKING
 
 import synt.code as code
+
+
+if TYPE_CHECKING:
+    from synt.tokens.ident import Identifier
 
 
 # add in-lib imports to the bottom of the file
@@ -857,6 +862,8 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
             assert call_expr.into_code() == "a(b=42)"
             ```
         """
+        from synt.tokens.ident import Identifier
+
         kwarg: list[call.Keyword] = []
         arg: list[IntoExpression] = []
         for a in args:
@@ -1026,5 +1033,3 @@ import synt.expr.type_check as type_check
 import synt.expr.unary_op as unary_op
 import synt.expr.wrapped as expr_wrapped
 import synt.stmt.assign as stmt_assign
-
-from synt.tokens.ident import Identifier

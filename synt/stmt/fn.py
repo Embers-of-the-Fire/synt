@@ -18,13 +18,13 @@ from typing import Self
 from synt.code import IntoCode
 from synt.stmt.block import Block
 from synt.stmt.stmt import Statement
-from synt.tokens.ident import Identifier
 from synt.ty.type_param import TypeVar
 
 
 if TYPE_CHECKING:
     from synt.expr.expr import Expression
     from synt.expr.expr import IntoExpression
+    from synt.tokens.ident import Identifier
     from synt.ty.type_param import TypeParam
 
 
@@ -329,6 +329,8 @@ class FunctionDefBuilder:
         Args:
             *args: Type parameters to add.
         """
+        from synt.tokens.ident import Identifier
+
         self.type_params = [
             TypeVar(x) if isinstance(x, Identifier) else x for x in args
         ]
@@ -354,6 +356,8 @@ class FunctionDefBuilder:
             *args: Arguments to add.
             **kwargs: Keyword arguments to add with their default values.
         """
+        from synt.tokens.ident import Identifier
+
         self.args = []
         for a in args:
             if isinstance(a, Identifier):

@@ -36,6 +36,7 @@ from . import empty
 from . import expr
 from . import fstring
 from . import list
+from . import modpath
 from . import named_expr
 from . import set
 from . import subscript
@@ -43,4 +44,3 @@ from . import tuple
 from . import type_check
 from . import unary_op
 from . import wrapped
-from . import modpath

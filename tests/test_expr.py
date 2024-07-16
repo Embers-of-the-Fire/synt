@@ -253,12 +253,14 @@ def test_expr_alias():
 
 
 def test_expr_modpath():
-    p = path(id_('foo'))
+    p = path(id_("foo"))
     assert p.into_code() == "foo"
-    p = path(id_('foo'), id_('bar'))
+    p = path(id_("foo"), id_("bar"))
     assert p.into_code() == "foo.bar"
-    p = path(id_('foo'), id_('bar'), depth=3)
+    p = path(id_("foo"), id_("bar"), depth=3)
     assert p.into_code() == "...foo.bar"
+    p = path(id_("foo"), id_("bar")).dep(4)
+    assert p.into_code() == "....foo.bar"
 
     r = relpath(id_("abc"))
     assert r.into_code() == ".abc"
