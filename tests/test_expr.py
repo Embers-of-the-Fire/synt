@@ -173,13 +173,9 @@ def test_expr_subscript():
         id_("a").expr().subscribe(id_("b").expr(), slice_(litint(2), litint(3)))
     )
     assert subscript_expr.into_code() == "a[b, 2:3]"
-    subscript_expr = (
-        id_("a").expr()[id_("b").expr(), slice_(litint(2), litint(3))]
-    )
+    subscript_expr = id_("a").expr()[id_("b").expr(), slice_(litint(2), litint(3))]
     assert subscript_expr.into_code() == "a[b, 2:3]"
-    subscript_expr = (
-        id_("a").expr()[id_("b").expr()]
-    )
+    subscript_expr = id_("a").expr()[id_("b").expr()]
     assert subscript_expr.into_code() == "a[b]"
 
 

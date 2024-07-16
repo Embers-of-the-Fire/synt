@@ -951,7 +951,10 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
     # subscript > magic method
 
     def __getitem__(
-        self, items: tuple[subscript.Slice | IntoExpression, ...] | subscript.Slice | IntoExpression
+        self,
+        items: tuple[subscript.Slice | IntoExpression, ...]
+        | subscript.Slice
+        | IntoExpression,
     ) -> subscript.Subscript:
         """Alias [`subscribe`][synt.expr.expr.Expression.subscribe]."""
         if isinstance(items, tuple):

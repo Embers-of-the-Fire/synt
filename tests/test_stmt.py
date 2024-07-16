@@ -18,14 +18,15 @@ def test_fn():
     func = (
         dec(id_("foo"))
         .async_def(id_("bar"))[id_("T")](
-            id_("a"),
-            arg(id_("b")).ty(id_("int")),
-            kw=NONE
-        ).returns(id_("float")).block(
-            return_(ELLIPSIS)
+            id_("a"), arg(id_("b")).ty(id_("int")), kw=NONE
         )
+        .returns(id_("float"))
+        .block(return_(ELLIPSIS))
     )
-    assert func.into_code() == "@foo\nasync def bar[T](a, b: int, kw = None) -> float:\n    return ..."
+    assert (
+        func.into_code()
+        == "@foo\nasync def bar[T](a, b: int, kw = None) -> float:\n    return ..."
+    )
     # @foo
     # async def bar[T](a, b: int, kw = None) -> float:
     #     return ...
@@ -35,17 +36,14 @@ def test_fn():
         .async_()
         .def_(id_("bar"))
         .type_param(id_("T"))
-        .arg(
-            id_("a"),
-            arg(id_("b")).ty(id_("int")),
-            kw=NONE
-        )
+        .arg(id_("a"), arg(id_("b")).ty(id_("int")), kw=NONE)
         .returns(id_("float"))
-        .block(
-            return_(ELLIPSIS)
-        )
+        .block(return_(ELLIPSIS))
     )
-    assert func.into_code() == "@foo\nasync def bar[T](a, b: int, kw = None) -> float:\n    return ..."
+    assert (
+        func.into_code()
+        == "@foo\nasync def bar[T](a, b: int, kw = None) -> float:\n    return ..."
+    )
     # @foo
     # async def bar[T](a, b: int, kw = None) -> float:
     #     return ...

@@ -119,23 +119,27 @@ from synt.expr.wrapped import par
 from synt.expr.wrapped import wrap
 from synt.expr.wrapped import wrapped
 from synt.stmt.block import Block
-from synt.stmt.fn import def_, dec, async_def
 from synt.stmt.fn import arg
+from synt.stmt.fn import async_def
+from synt.stmt.fn import dec
+from synt.stmt.fn import def_
 from synt.stmt.fn import kwarg
 from synt.stmt.fn import vararg
+from synt.stmt.returns import ret
+from synt.stmt.returns import return_
 from synt.stmt.stmt import IntoStatement
 from synt.stmt.stmt import Statement
 from synt.tokens.ident import id_
 from synt.tokens.kv_pair import kv
 from synt.tokens.kv_pair import pair
+from synt.tokens.lit import ELLIPSIS
 from synt.tokens.lit import FALSE
 from synt.tokens.lit import NONE
 from synt.tokens.lit import TRUE
 from synt.tokens.lit import litbool
 from synt.tokens.lit import litfloat
 from synt.tokens.lit import litint
-from synt.tokens.lit import litstr, ELLIPSIS
+from synt.tokens.lit import litstr
 from synt.ty.type_param import tspec
 from synt.ty.type_param import ttup
 from synt.ty.type_param import tvar
-from synt.stmt.returns import return_, ret

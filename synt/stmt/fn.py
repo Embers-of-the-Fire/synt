@@ -245,8 +245,14 @@ class FunctionDef(Statement):
         self.body = body
 
     def indented(self, indent_width: int, indent_atom: str) -> str:
-        decorators = "".join(f"{indent_width * indent_atom}@{t.into_code()}\n" for t in self.decorators)
-        type_param = "" if not self.type_params else f"[{', '.join(x.into_code() for x in self.type_params)}]"
+        decorators = "".join(
+            f"{indent_width * indent_atom}@{t.into_code()}\n" for t in self.decorators
+        )
+        type_param = (
+            ""
+            if not self.type_params
+            else f"[{', '.join(x.into_code() for x in self.type_params)}]"
+        )
         args = ", ".join(a.into_code() for a in self.args)
         returns = f" -> {self.returns.into_code()}" if self.returns else ""
         body = self.body.indented(indent_width + 1, indent_atom)
@@ -326,14 +332,18 @@ class FunctionDefBuilder:
         Args:
             *args: Type parameters to add.
         """
-        self.type_params = list(TypeVar(x) if isinstance(x, Identifier) else x for x in args)
+        self.type_params = [
+            TypeVar(x) if isinstance(x, Identifier) else x for x in args
+        ]
         return self
 
     def ty(self, *args: TypeParam | Identifier) -> Self:
         """Alias [`type_param`][synt.stmt.fn.FunctionDefBuilder.type_param]."""
         return self.type_param(*args)
 
-    def __getitem__(self, items: tuple[TypeParam | Identifier, ...] | TypeParam | Identifier) -> Self:
+    def __getitem__(
+        self, items: tuple[TypeParam | Identifier, ...] | TypeParam | Identifier
+    ) -> Self:
         """Alias [`type_param`][synt.stmt.fn.FunctionDefBuilder.type_param]."""
         if isinstance(items, tuple):
             return self.type_param(*items)
