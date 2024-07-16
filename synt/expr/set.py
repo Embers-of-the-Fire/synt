@@ -15,8 +15,6 @@ from abc import ABCMeta
 import synt.expr.comprehension as comp_expr
 import synt.expr.expr as expr
 
-from synt.errors.expr import ExpressionTypeException
-
 
 class SetDisplay(expr.Expression, metaclass=ABCMeta):
     """Literal set expression.
@@ -102,14 +100,12 @@ class SetComprehension(SetDisplay):
         elif isinstance(comprehension, comp_expr.ComprehensionNodeBuilder):
             comp = comprehension.build_comp()
         else:
-            raise ExpressionTypeException(
-                expr.ExprType.Comprehension, expr.ExprType.Unknown
+            raise ValueError(
+                "Expect expression of type `Comprehension`, found `Unknown`."
             )
 
         if comp.elt.expr_type == expr.ExprType.KeyValuePair:
-            raise ExpressionTypeException(
-                expr.ExprType.Atom, expr.ExprType.KeyValuePair
-            )
+            raise ValueError("Expect expression of type `Atom`, found `KeyValuePair`.")
         self.comprehension = comp
 
     def into_code(self) -> str:

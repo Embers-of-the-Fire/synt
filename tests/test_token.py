@@ -15,9 +15,9 @@ def test_ident():
     id_foo = synt.tokens.ident.Identifier("foo")
     id_foo_alias = id_("foo")  # with alias
 
-    with pytest.raises(InvalidIdentifierException) as err_info:
+    with pytest.raises(ValueError) as err_info:
         id_fail = id_("foo bar")  # invalid identifier lit will fail
-    print(repr(err_info.value))
+    assert "foo bar" in str(err_info.value)
 
     id_foo = id_("foo")
     id_foo_expr = id_foo.expr()

@@ -16,8 +16,6 @@ from typing import TYPE_CHECKING
 import synt.expr.comprehension as comp_expr
 import synt.expr.expr as expr
 
-from synt.errors.expr import ExpressionTypeException
-
 
 if TYPE_CHECKING:
     from synt.tokens.kv_pair import KVPair
@@ -110,13 +108,13 @@ class DictComprehension(DictDisplay):
         elif isinstance(comprehension, comp_expr.ComprehensionNodeBuilder):
             comp = comprehension.build_comp()
         else:
-            raise ExpressionTypeException(
-                expr.ExprType.Comprehension, expr.ExprType.Unknown
+            raise ValueError(
+                "Expect expression of type `Comprehension`, found `Unknown`."
             )
 
         if comp.elt.expr_type != expr.ExprType.KeyValuePair:
-            raise ExpressionTypeException(
-                expr.ExprType.KeyValuePair, expr.ExprType.Atom
+            raise ValueError(
+                "Expect expression of type `KeyValuePair`, found `Unknown`."
             )
         self.comprehension = comp
 

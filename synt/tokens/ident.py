@@ -11,8 +11,6 @@ __all__ = [
 import synt.code as code
 import synt.expr.expr as expr
 
-from synt.errors.ident import InvalidIdentifierException
-
 
 class Identifier(expr.IntoExpression, code.IntoCode):
     """Represents a valid Python identifier.
@@ -48,7 +46,7 @@ class Identifier(expr.IntoExpression, code.IntoCode):
             ```
         """
         if not raw.isidentifier():
-            raise InvalidIdentifierException(raw)
+            raise ValueError(f"Invalid identifier: `{raw!r}`")
         self.raw = raw
 
     def into_expression(self) -> IdentifierExpr:
