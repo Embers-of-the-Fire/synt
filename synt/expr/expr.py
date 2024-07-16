@@ -781,7 +781,7 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         """Alias [`invert`][synt.expr.expr.Expression.invert]."""
         return self.invert()
 
-    # alias for assignment
+    # alias for named value
 
     def named(self, expr: IntoExpression) -> named_expr.NamedExpr:
         """Assign the expression to `self`.

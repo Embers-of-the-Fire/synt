@@ -18,7 +18,7 @@ class NamedExpr(expr.Expression):
     """Inline assignment expression, aka `:=`.
 
     References:
-        [expr.ExprPrecedence.Assignment][synt.expr.expr.ExprPrecedence.Assignment].
+        [expr.ExprPrecedence.NamedExpr][synt.expr.expr.ExprPrecedence.NamedExpr].
     """
 
     receiver: Identifier

@@ -21,7 +21,7 @@ class BinaryOpType(IntEnum):
     """Binary operator type.
 
     **Exception:**
-    Although [`Assignment`][synt.expr.expr.ExprPrecedence.Assignment]
+    Although [`NamedExpr`][synt.expr.expr.ExprPrecedence.NamedExpr]
     takes the form of a binary operator, it is not a binary operator (at least not in `synt`).
 
     References:
