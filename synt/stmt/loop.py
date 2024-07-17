@@ -5,6 +5,7 @@ from typing import Self
 
 from synt.stmt.block import Block
 from synt.stmt.stmt import Statement
+from synt.type_check import is_tuple
 
 
 if TYPE_CHECKING:
@@ -89,8 +90,12 @@ class ForLoop(Statement):
             else_text = f"\n{indent}else:\n{self.orelse.indented(indent_width + 1, indent_atom)}"
         else:
             else_text = ""
+        if is_tuple(self.target):
+            target_text = self.target.into_code_implicit()
+        else:
+            target_text = self.target.into_code()
         return (
-            f"{indent}for {self.target.into_code()} in {self.iter.into_code()}:\n"
+            f"{indent}for {target_text} in {self.iter.into_code()}:\n"
             f"{self.body.indented(indent_width + 1, indent_atom)}"
             f"{else_text}"
         )
