@@ -41,11 +41,6 @@ markdown_extensions:
   - abbr
   - toc:
       permalink: "¤"
-nav:
-  - Introduction:
-    - index.md
-    - terms.md
-  - Api Documentation: api/
 theme:
   name: material
   language: 'en'
@@ -117,3 +112,9 @@ plugins:
           annotations_path: brief
           show_signature: true
           signature_crossrefs: true
+nav:
+  - Introduction:
+    - index.md
+    - terms.md
+    - CHANGELOG.md
+  - Api Documentation: api/
