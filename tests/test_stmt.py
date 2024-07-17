@@ -175,22 +175,22 @@ else:
 
 
 def test_loop():
-    for_loop = for_(id_("i")).in_(id_("range").expr().call(litint(5))).block(
-        if_(id_("i").expr().gt(litint(2))).block(
-            BREAK
-        ).else_(
-            CONTINUE
-        )
-    ).else_(
-        PASS
+    for_loop = (
+        for_(id_("i"))
+        .in_(id_("range").expr().call(litint(5)))
+        .block(if_(id_("i").expr().gt(litint(2))).block(BREAK).else_(CONTINUE))
+        .else_(PASS)
     )
-    assert for_loop.into_code() == '''for i in range(5):
+    assert (
+        for_loop.into_code()
+        == """for i in range(5):
     if i > 2:
         break
     else:
         continue
 else:
-    pass'''
+    pass"""
+    )
     # for i in range(5):
     #     if i > 2:
     #         break

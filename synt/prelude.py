@@ -87,6 +87,7 @@ __all__ = [
     "import_",
     "from_",
     "for_",
+    "while_",
 ]
 
 from synt.expr.closure import lambda_
@@ -148,6 +149,7 @@ from synt.stmt.keyword import BREAK
 from synt.stmt.keyword import CONTINUE
 from synt.stmt.keyword import PASS
 from synt.stmt.loop import for_
+from synt.stmt.loop import while_
 from synt.stmt.raising import raise_
 from synt.stmt.returns import ret
 from synt.stmt.returns import return_

@@ -15,35 +15,35 @@ if TYPE_CHECKING:
 class ForLoop(Statement):
     """The `for` loop.
 
-    Examples:
-        ```python
-        for_loop = for_(id_("i")).in_(id_("range").expr().call(litint(5))).block(
-                       if_(id_("i").expr().gt(litint(2))).block(
-                           BREAK
+        Examples:
+            ```python
+            for_loop = for_(id_("i")).in_(id_("range").expr().call(litint(5))).block(
+                           if_(id_("i").expr().gt(litint(2))).block(
+                               BREAK
+                           ).else_(
+                               CONTINUE
+                           )
                        ).else_(
-                           CONTINUE
+                           PASS
                        )
-                   ).else_(
-                       PASS
-                   )
-        assert for_loop.into_code() == '''for i in range(5):
-    if i > 2:
-        break
+            assert for_loop.into_code() == '''for i in range(5):
+        if i > 2:
+            break
+        else:
+            continue
     else:
-        continue
-else:
-    pass'''
-        # for i in range(5):
-        #     if i > 2:
-        #         break
-        #     else:
-        #         continue
-        # else:
-        #     pass
-        ```
+        pass'''
+            # for i in range(5):
+            #     if i > 2:
+            #         break
+            #     else:
+            #         continue
+            # else:
+            #     pass
+            ```
 
-    References:
-        [`For`](https://docs.python.org/3/library/ast.html#ast.For).
+        References:
+            [`For`](https://docs.python.org/3/library/ast.html#ast.For).
     """
 
     target: Expression
@@ -149,3 +149,98 @@ class ForLoopBuilder:
 
 for_ = ForLoopBuilder
 """Alias [`ForLoopBuilder`][synt.stmt.loop.ForLoopBuilder]."""
+
+
+class WhileLoop:
+    """The `while` loop.
+
+    References:
+        [`While`](https://docs.python.org/3/library/ast.html#ast.While).
+    """
+
+    test: Expression
+    """The condition."""
+    orelse: Block | None
+    """The body of the fallback block, aka `while ... else`."""
+
+    def __init__(self, test: IntoExpression, body: Block):
+        """Initialize a new `while` loop.
+
+        **DO NOT USE THIS IN YOUR CODE!**
+
+        Args:
+            test: The condition.
+            body: The body of the loop.
+        """
+        self.test = test.into_expression()
+        self.orelse = None
+        self.body = body
+
+    def else_(self, *statements: Statement) -> Self:
+        """Set the fallback `else` block.
+
+        Args:
+            statements: The body of the fallback block.
+        """
+        self.orelse = Block(*statements)
+        return self
+
+    def indented(self, indent_width: int, indent_atom: str) -> str:
+        indent = indent_atom * indent_width
+        if self.orelse is not None:
+            else_text = f"\n{indent}else:\n{self.orelse.indented(indent_width + 1, indent_atom)}"
+        else:
+            else_text = ""
+        return (
+            f"{indent}while {self.test.into_code()}:\n"
+            f"{self.body.indented(indent_width + 1, indent_atom)}"
+            f"{else_text}"
+        )
+
+
+class WhileLoopBuilder:
+    """Builder for `while` loop.
+
+        Examples:
+            ```python
+            while_loop = while_(id_("i").expr().lt(litint(5))).block(
+                             id_("i").assign(id_("i").expr() + litint(1))
+                         ).else_(
+                             PASS
+                         )
+            assert while_loop.into_code() == '''while i < 5:
+        i = i + 1
+    else:
+        pass'''
+            # while i < 5:
+            #     i = i + 1
+            # else:
+            #     pass
+            ```
+
+        References:
+            [`WhileLoop`][synt.stmt.loop.WhileLoop].
+    """
+
+    test: Expression
+    """The condition."""
+
+    def __init__(self, test: IntoExpression):
+        """Initialize a new `while` loop builder.
+
+        Args:
+            test: The condition.
+        """
+        self.test = test.into_expression()
+
+    def block(self, *statements: Statement) -> WhileLoop:
+        """Set the block of the loop.
+
+        Args:
+            *statements: Statements to include in the loop body.
+        """
+        return WhileLoop(self.test, Block(*statements))
+
+
+while_ = WhileLoopBuilder
+"""Alias [`WhileLoopBuilder`][synt.stmt.loop.WhileLoopBuilder]."""
