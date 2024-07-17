@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 __all__ = [
     "WithItem",
     "With",
@@ -7,12 +10,17 @@ __all__ = [
 ]
 
 
+from typing import TYPE_CHECKING
 from typing import Self
 
-from synt.expr.expr import Expression, IntoExpression
 from synt.code import IntoCode
-from synt.stmt.stmt import Statement
 from synt.stmt.block import Block
+from synt.stmt.stmt import Statement
+
+
+if TYPE_CHECKING:
+    from synt.expr.expr import Expression
+    from synt.expr.expr import IntoExpression
 
 
 class WithItem(IntoCode):
@@ -56,7 +64,9 @@ class WithItem(IntoCode):
         return self
 
     def into_code(self) -> str:
-        asname_text = f" as {self.asname.into_code()}" if self.asname is not None else ""
+        asname_text = (
+            f" as {self.asname.into_code()}" if self.asname is not None else ""
+        )
         return f"{self.context.into_code()}{asname_text}"
 
 
@@ -114,7 +124,9 @@ class WithBuilder:
     items: list[WithItem]
     """`with` items."""
 
-    def __init__(self, *items: WithItem | IntoExpression | tuple[IntoExpression, IntoExpression]):
+    def __init__(
+        self, *items: WithItem | IntoExpression | tuple[IntoExpression, IntoExpression]
+    ):
         """Initialize a `with` statement.
 
         The `items`'s item could be either `WithItem` object, an expression-like or a tuple:
@@ -133,7 +145,9 @@ class WithBuilder:
         self.items = []
         for item in items:
             if isinstance(item, tuple):
-                self.items.append(WithItem(item[0].into_expression()).as_(item[1].into_expression()))
+                self.items.append(
+                    WithItem(item[0].into_expression()).as_(item[1].into_expression())
+                )
             elif isinstance(item, WithItem):
                 self.items.append(item)
             else:

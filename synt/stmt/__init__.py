@@ -18,6 +18,7 @@ __all__ = [
     "loop",
     "try_catch",
     "context",
+    "namespace",
 ]
 
 from . import assertion
@@ -25,14 +26,15 @@ from . import assign
 from . import block
 from . import branch
 from . import cls
+from . import context
 from . import decorator
 from . import delete
 from . import fn
 from . import importing
 from . import keyword
 from . import loop
+from . import namespace
 from . import raising
 from . import returns
 from . import stmt
 from . import try_catch
-from . import context

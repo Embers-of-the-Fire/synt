@@ -201,20 +201,21 @@ else:
 
 
 def test_try():
-    try_block = try_(
-        PASS
-    ).except_(id_("ValueError")).block(
-        PASS
-    ).except_(id_("Exception")).as_(id_("e")).block(
-        return_()
-    ).except_().block(
-        raise_()
-    ).else_(
-        PASS
-    ).finally_(
-        PASS
+    try_block = (
+        try_(PASS)
+        .except_(id_("ValueError"))
+        .block(PASS)
+        .except_(id_("Exception"))
+        .as_(id_("e"))
+        .block(return_())
+        .except_()
+        .block(raise_())
+        .else_(PASS)
+        .finally_(PASS)
     )
-    assert try_block.into_code() == '''try:
+    assert (
+        try_block.into_code()
+        == """try:
     pass
 except ValueError:
     pass
@@ -225,7 +226,8 @@ except:
 else:
     pass
 finally:
-    pass'''
+    pass"""
+    )
     # try:
     #     pass
     # except ValueError:
@@ -237,11 +239,7 @@ finally:
     # finally:
     #     pass
 
-    try_block = try_(
-        PASS
-    ).except_star(id_("Exception")).block(
-        PASS
-    )
+    try_block = try_(PASS).except_star(id_("Exception")).block(PASS)
     assert try_block.into_code() == "try:\n    pass\nexcept* Exception:\n    pass"
     # try:
     #     pass
@@ -250,7 +248,15 @@ finally:
 
 
 def test_with():
-    with_stmt = with_(id_("a"), (id_("b"), id_("b2")), with_item(id_("c")).as_(id_("c2"))).block(
-        PASS
-    )
+    with_stmt = with_(
+        id_("a"), (id_("b"), id_("b2")), with_item(id_("c")).as_(id_("c2"))
+    ).block(PASS)
     assert with_stmt.into_code() == "with a, b as b2, c as c2:\n    pass"
+
+
+def test_ns():
+    global_stmt = global_(id_("foo"))
+    assert global_stmt.into_code() == "global foo"
+
+    nonlocal_stmt = nonlocal_(id_("foo"))
+    assert nonlocal_stmt.into_code() == "nonlocal foo"

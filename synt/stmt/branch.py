@@ -22,52 +22,52 @@ if TYPE_CHECKING:
 class Branch(Statement):
     r"""The branch statement, aka `if ... elif ... else`.
 
-        Examples:
-            ```python
-            if_stmt = if_(id_("foo").expr().eq(litstr("bar"))).block(
-                          return_(TRUE)
-                      )
-            assert if_stmt.into_code() == "if foo == 'bar':\n    return True"
-            # if foo == 'bar'
-            #     return True
+    Examples:
+        ```python
+        if_stmt = if_(id_("foo").expr().eq(litstr("bar"))).block(
+                      return_(TRUE)
+                  )
+        assert if_stmt.into_code() == "if foo == 'bar':\n    return True"
+        # if foo == 'bar'
+        #     return True
 
-            if_stmt = if_(id_("foo").expr().eq(litstr("bar"))).block(
-                          return_(TRUE)
-                      ).elif_(id_("foo").expr().is_not(NONE)).block(
-                          return_(FALSE)
-                      )
-            assert if_stmt.into_code() == '''if foo == 'bar':
-                return True
-            elif foo is not None:
-                return False'''
-            # if foo == 'bar':
-            #     return True
-            # elif foo is not None:
-            #     return False
+        if_stmt = if_(id_("foo").expr().eq(litstr("bar"))).block(
+                      return_(TRUE)
+                  ).elif_(id_("foo").expr().is_not(NONE)).block(
+                      return_(FALSE)
+                  )
+        assert if_stmt.into_code() == '''if foo == 'bar':
+            return True
+        elif foo is not None:
+            return False'''
+        # if foo == 'bar':
+        #     return True
+        # elif foo is not None:
+        #     return False
 
-            if_stmt = if_(id_("foo").expr().eq(litstr("bar"))).block(
-                          return_(TRUE)
-                      ).elif_(id_("foo").expr().is_not(NONE)).block(
-                          return_(FALSE)
-                      ).else_(
-                          raise_(id_("ValueError").expr().call(litstr("Unexpected value")))
-                      )
-            assert if_stmt.into_code() == '''if foo == 'bar':
-                return True
-            elif foo is not None:
-                return False
-            else:
-                raise ValueError('Unexpected value')'''
-            # if foo == 'bar':
-            #     return True
-            # elif foo is not None:
-            #     return False
-            # else:
-            #     raise ValueError('Unexpected value')
-            ```
+        if_stmt = if_(id_("foo").expr().eq(litstr("bar"))).block(
+                      return_(TRUE)
+                  ).elif_(id_("foo").expr().is_not(NONE)).block(
+                      return_(FALSE)
+                  ).else_(
+                      raise_(id_("ValueError").expr().call(litstr("Unexpected value")))
+                  )
+        assert if_stmt.into_code() == '''if foo == 'bar':
+            return True
+        elif foo is not None:
+            return False
+        else:
+            raise ValueError('Unexpected value')'''
+        # if foo == 'bar':
+        #     return True
+        # elif foo is not None:
+        #     return False
+        # else:
+        #     raise ValueError('Unexpected value')
+        ```
 
-        References:
-            [`If`](https://docs.python.org/3/library/ast.html#ast.ImportFrom).
+    References:
+        [`If`](https://docs.python.org/3/library/ast.html#ast.ImportFrom).
     """
 
     tests: list[tuple[Expression, Block]]

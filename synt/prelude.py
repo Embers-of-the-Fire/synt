@@ -91,6 +91,8 @@ __all__ = [
     "try_",
     "with_item",
     "with_",
+    "global_",
+    "nonlocal_",
 ]
 
 from synt.expr.closure import lambda_
@@ -139,6 +141,8 @@ from synt.stmt.assertion import assert_
 from synt.stmt.block import Block
 from synt.stmt.branch import if_
 from synt.stmt.cls import class_
+from synt.stmt.context import with_
+from synt.stmt.context import with_item
 from synt.stmt.decorator import dec
 from synt.stmt.delete import del_
 from synt.stmt.fn import arg
@@ -153,6 +157,8 @@ from synt.stmt.keyword import CONTINUE
 from synt.stmt.keyword import PASS
 from synt.stmt.loop import for_
 from synt.stmt.loop import while_
+from synt.stmt.namespace import global_
+from synt.stmt.namespace import nonlocal_
 from synt.stmt.raising import raise_
 from synt.stmt.returns import ret
 from synt.stmt.returns import return_
@@ -173,4 +179,3 @@ from synt.tokens.lit import litstr
 from synt.ty.type_param import tspec
 from synt.ty.type_param import ttup
 from synt.ty.type_param import tvar
-from synt.stmt.context import with_item, with_

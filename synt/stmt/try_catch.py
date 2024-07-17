@@ -131,66 +131,66 @@ class ExceptionHandlerBuilder:
 class Try(Statement):
     r"""The `try` statement.
 
-        Notes:
-            Python views `except` and `except*` as separate statement types,
-            but Synt does view them as the same kind and a pair of different variations.
+    Notes:
+        Python views `except` and `except*` as separate statement types,
+        but Synt does view them as the same kind and a pair of different variations.
 
-            That means if you write `except` and `except*` statements together in a single `Try`,
-            Synt won't complain about it, but the Python parser will reject it.
+        That means if you write `except` and `except*` statements together in a single `Try`,
+        Synt won't complain about it, but the Python parser will reject it.
 
-        Examples:
-            ```python
-            try_block = try_(
-                            PASS
-                        ).except_(id_("ValueError")).block(
-                            PASS
-                        ).except_(id_("Exception")).as_(id_("e")).block(
-                            return_()
-                        ).except_().block(
-                            raise_()
-                        ).else_(
-                            PASS
-                        ).finally_(
-                            PASS
-                        )
-            assert try_block.into_code() == '''try:
-                pass
-            except ValueError:
-                pass
-            except Exception as e:
-                return
-            except:
-                raise
-            else:
-                pass
-            finally:
-                pass'''
-            # try:
-            #     pass
-            # except ValueError:
-            #     pass
-            # except Exception as e:
-            #     return
-            # except:
-            #     raise
-            # finally:
-            #     pass
+    Examples:
+        ```python
+        try_block = try_(
+                        PASS
+                    ).except_(id_("ValueError")).block(
+                        PASS
+                    ).except_(id_("Exception")).as_(id_("e")).block(
+                        return_()
+                    ).except_().block(
+                        raise_()
+                    ).else_(
+                        PASS
+                    ).finally_(
+                        PASS
+                    )
+        assert try_block.into_code() == '''try:
+            pass
+        except ValueError:
+            pass
+        except Exception as e:
+            return
+        except:
+            raise
+        else:
+            pass
+        finally:
+            pass'''
+        # try:
+        #     pass
+        # except ValueError:
+        #     pass
+        # except Exception as e:
+        #     return
+        # except:
+        #     raise
+        # finally:
+        #     pass
 
-            try_block = try_(
-                            PASS
-                        ).except_star(id_("Exception")).block(
-                            PASS
-                        )
-            assert try_block.into_code() == "try:\n    pass\nexcept* Exception:\n    pass"
-            # try:
-            #     pass
-            # except* Exception:
-            #     pass
-            ```
+        try_block = try_(
+                        PASS
+                    ).except_star(id_("Exception")).block(
+                        PASS
+                    )
+        assert try_block.into_code() == "try:\n    pass\nexcept* Exception:\n    pass"
+        # try:
+        #     pass
+        # except* Exception:
+        #     pass
+        ```
 
-        References:
-            [`Try`](https://docs.python.org/3/library/ast.html#ast.Try)<br/>
-            [`TryStar`](https://docs.python.org/3/library/ast.html#ast.TryStar)
+    References:
+        [`Try`](https://docs.python.org/3/library/ast.html#ast.Try)<br/>
+        [`TryStar`](https://docs.python.org/3/library/ast.html#ast.TryStar)
     """
 
     try_block: Block

@@ -27,35 +27,35 @@ if TYPE_CHECKING:
 class ForLoop(Statement):
     r"""The `for` loop.
 
-        Examples:
-            ```python
-            for_loop = for_(id_("i")).in_(id_("range").expr().call(litint(5))).block(
-                           if_(id_("i").expr().gt(litint(2))).block(
-                               BREAK
-                           ).else_(
-                               CONTINUE
-                           )
+    Examples:
+        ```python
+        for_loop = for_(id_("i")).in_(id_("range").expr().call(litint(5))).block(
+                       if_(id_("i").expr().gt(litint(2))).block(
+                           BREAK
                        ).else_(
-                           PASS
+                           CONTINUE
                        )
-            assert for_loop.into_code() == '''for i in range(5):
-                if i > 2:
-                    break
-                else:
-                    continue
+                   ).else_(
+                       PASS
+                   )
+        assert for_loop.into_code() == '''for i in range(5):
+            if i > 2:
+                break
             else:
-                pass'''
-            # for i in range(5):
-            #     if i > 2:
-            #         break
-            #     else:
-            #         continue
-            # else:
-            #     pass
-            ```
+                continue
+        else:
+            pass'''
+        # for i in range(5):
+        #     if i > 2:
+        #         break
+        #     else:
+        #         continue
+        # else:
+        #     pass
+        ```
 
-        References:
-            [`For`](https://docs.python.org/3/library/ast.html#ast.For).
+    References:
+        [`For`](https://docs.python.org/3/library/ast.html#ast.For).
     """
 
     target: Expression
@@ -217,25 +217,25 @@ class WhileLoop:
 class WhileLoopBuilder:
     r"""Builder for `while` loop.
 
-        Examples:
-            ```python
-            while_loop = while_(id_("i").expr().lt(litint(5))).block(
-                             id_("i").assign(id_("i").expr() + litint(1))
-                         ).else_(
-                             PASS
-                         )
-            assert while_loop.into_code() == '''while i < 5:
-                i = i + 1
-            else:
-                pass'''
-            # while i < 5:
-            #     i = i + 1
-            # else:
-            #     pass
-            ```
+    Examples:
+        ```python
+        while_loop = while_(id_("i").expr().lt(litint(5))).block(
+                         id_("i").assign(id_("i").expr() + litint(1))
+                     ).else_(
+                         PASS
+                     )
+        assert while_loop.into_code() == '''while i < 5:
+            i = i + 1
+        else:
+            pass'''
+        # while i < 5:
+        #     i = i + 1
+        # else:
+        #     pass
+        ```
 
-        References:
-            [`WhileLoop`][synt.stmt.loop.WhileLoop].
+    References:
+        [`WhileLoop`][synt.stmt.loop.WhileLoop].
     """
 
     test: Expression
