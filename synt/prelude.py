@@ -83,6 +83,7 @@ __all__ = [
     "ttup",
     "tvar",
     "del_",
+    "import_",
 ]
 
 from synt.expr.closure import lambda_
@@ -159,3 +160,4 @@ from synt.tokens.lit import litstr
 from synt.ty.type_param import tspec
 from synt.ty.type_param import ttup
 from synt.ty.type_param import tvar
+from synt.stmt.importing import import_

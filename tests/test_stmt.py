@@ -108,3 +108,12 @@ def test_raise():
     assert r.into_code() == "raise 42"
     r = raise_(litint(42)).from_(litstr("Custom exception"))
     assert r.into_code() == "raise 42 from 'Custom exception'"
+
+
+def test_import():
+    im = import_(id_("path"))
+    assert im.into_code() == "import path"
+    im = import_(id_("asyncio").as_(id_("aio")))
+    assert im.into_code() == "import asyncio as aio"
+    im = import_(path(id_("io"), id_("path")))
+    assert im.into_code() == "import io.path"
