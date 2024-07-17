@@ -19,6 +19,7 @@ __all__ = [
     "try_catch",
     "context",
     "namespace",
+    "expression",
 ]
 
 from . import assertion
@@ -29,6 +30,7 @@ from . import cls
 from . import context
 from . import decorator
 from . import delete
+from . import expression
 from . import fn
 from . import importing
 from . import keyword

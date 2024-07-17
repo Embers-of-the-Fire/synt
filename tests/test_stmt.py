@@ -260,3 +260,8 @@ def test_ns():
 
     nonlocal_stmt = nonlocal_(id_("foo"))
     assert nonlocal_stmt.into_code() == "nonlocal foo"
+
+
+def test_expr():
+    stmt = id_("print").expr().call(litstr("Hello world!")).stmt()
+    assert stmt.into_code() == "print('Hello world!')"

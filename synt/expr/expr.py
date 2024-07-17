@@ -17,6 +17,7 @@ import synt.code as code
 
 
 if TYPE_CHECKING:
+    from synt.stmt.stmt import Statement
     from synt.tokens.ident import Identifier
 
 
@@ -1018,6 +1019,12 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
     def ty(self, ty: IntoExpression) -> stmt_assign.Assignment:
         """Alias [`type`][synt.expr.expr.Expression.type]."""
         return self.type(ty)
+
+    def stmt(self) -> Statement:
+        """Convert the expression into a statement."""
+        from synt.stmt.expression import stmt
+
+        return stmt(self)
 
 
 # add import here to avoid circular imports
