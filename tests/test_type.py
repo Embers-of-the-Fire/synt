@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-
-import synt
 from synt.prelude import *
 
 

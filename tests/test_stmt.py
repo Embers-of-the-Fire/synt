@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-
-import synt
 from synt.prelude import *
 
 
@@ -117,3 +115,12 @@ def test_import():
     assert im.into_code() == "import asyncio as aio"
     im = import_(path(id_("io"), id_("path")))
     assert im.into_code() == "import io.path"
+
+    fi = from_(id_("io")).import_(id_("path"))
+    assert fi.into_code() == "from io import path"
+    fi = from_(id_("io")).import_(id_("path").as_(id_("p")))
+    assert fi.into_code() == "from io import path as p"
+    fi = from_(id_("io")).import_(path(id_("path")), id_("os").as_(id_("p")))
+    assert fi.into_code() == "from io import path, os as p"
+    fi = from_(id_("io")).import_("*")
+    assert fi.into_code() == "from io import *"

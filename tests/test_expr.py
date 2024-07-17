@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import pytest
-
 import synt
+
 from synt.expr.binary_op import BinaryOpType
 from synt.expr.expr import ExprPrecedence
 from synt.expr.unary_op import UnaryOpType

@@ -84,6 +84,7 @@ __all__ = [
     "tvar",
     "del_",
     "import_",
+    "from_",
 ]
 
 from synt.expr.closure import lambda_
@@ -138,6 +139,7 @@ from synt.stmt.fn import async_def
 from synt.stmt.fn import def_
 from synt.stmt.fn import kwarg
 from synt.stmt.fn import vararg
+from synt.stmt.importing import from_
 from synt.stmt.importing import import_
 from synt.stmt.keyword import BREAK
 from synt.stmt.keyword import CONTINUE
