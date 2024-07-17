@@ -37,9 +37,9 @@ class Branch(Statement):
                           return_(FALSE)
                       )
             assert if_stmt.into_code() == '''if foo == 'bar':
-        return True
-    elif foo is not None:
-        return False'''
+                return True
+            elif foo is not None:
+                return False'''
             # if foo == 'bar':
             #     return True
             # elif foo is not None:
@@ -53,11 +53,11 @@ class Branch(Statement):
                           raise_(id_("ValueError").expr().call(litstr("Unexpected value")))
                       )
             assert if_stmt.into_code() == '''if foo == 'bar':
-        return True
-    elif foo is not None:
-        return False
-    else:
-        raise ValueError('Unexpected value')'''
+                return True
+            elif foo is not None:
+                return False
+            else:
+                raise ValueError('Unexpected value')'''
             # if foo == 'bar':
             #     return True
             # elif foo is not None:

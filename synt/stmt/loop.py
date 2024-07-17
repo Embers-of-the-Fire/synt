@@ -27,12 +27,12 @@ class ForLoop(Statement):
                            PASS
                        )
             assert for_loop.into_code() == '''for i in range(5):
-        if i > 2:
-            break
-        else:
-            continue
-    else:
-        pass'''
+                if i > 2:
+                    break
+                else:
+                    continue
+            else:
+                pass'''
             # for i in range(5):
             #     if i > 2:
             #         break
@@ -209,9 +209,9 @@ class WhileLoopBuilder:
                              PASS
                          )
             assert while_loop.into_code() == '''while i < 5:
-        i = i + 1
-    else:
-        pass'''
+                i = i + 1
+            else:
+                pass'''
             # while i < 5:
             #     i = i + 1
             # else:
