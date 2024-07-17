@@ -198,3 +198,43 @@ else:
     #         continue
     # else:
     #     pass
+
+
+def test_try():
+    try_block = (
+        try_(PASS)
+        .except_(id_("ValueError"))
+        .block(PASS)
+        .except_(id_("Exception"))
+        .as_(id_("e"))
+        .block(return_())
+        .except_()
+        .block(raise_())
+        .else_(PASS)
+        .finally_(PASS)
+    )
+    assert (
+        try_block.into_code()
+        == """try:
+    pass
+except ValueError:
+    pass
+except Exception as e:
+    return
+except:
+    raise
+else:
+    pass
+finally:
+    pass"""
+    )
+    # try:
+    #     pass
+    # except ValueError:
+    #     pass
+    # except Exception as e:
+    #     return
+    # except:
+    #     raise
+    # finally:
+    #     pass

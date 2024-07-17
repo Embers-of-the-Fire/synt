@@ -16,6 +16,7 @@ __all__ = [
     "importing",
     "branch",
     "loop",
+    "try_catch",
 ]
 
 from . import assertion
@@ -32,3 +33,4 @@ from . import loop
 from . import raising
 from . import returns
 from . import stmt
+from . import try_catch

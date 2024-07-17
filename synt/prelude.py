@@ -88,6 +88,7 @@ __all__ = [
     "from_",
     "for_",
     "while_",
+    "try_",
 ]
 
 from synt.expr.closure import lambda_
@@ -155,6 +156,7 @@ from synt.stmt.returns import ret
 from synt.stmt.returns import return_
 from synt.stmt.stmt import IntoStatement
 from synt.stmt.stmt import Statement
+from synt.stmt.try_catch import try_
 from synt.tokens.ident import id_
 from synt.tokens.kv_pair import kv
 from synt.tokens.kv_pair import pair
