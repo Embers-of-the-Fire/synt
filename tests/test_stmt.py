@@ -201,21 +201,20 @@ else:
 
 
 def test_try():
-    try_block = (
-        try_(PASS)
-        .except_(id_("ValueError"))
-        .block(PASS)
-        .except_(id_("Exception"))
-        .as_(id_("e"))
-        .block(return_())
-        .except_()
-        .block(raise_())
-        .else_(PASS)
-        .finally_(PASS)
+    try_block = try_(
+        PASS
+    ).except_(id_("ValueError")).block(
+        PASS
+    ).except_(id_("Exception")).as_(id_("e")).block(
+        return_()
+    ).except_().block(
+        raise_()
+    ).else_(
+        PASS
+    ).finally_(
+        PASS
     )
-    assert (
-        try_block.into_code()
-        == """try:
+    assert try_block.into_code() == '''try:
     pass
 except ValueError:
     pass
@@ -226,8 +225,7 @@ except:
 else:
     pass
 finally:
-    pass"""
-    )
+    pass'''
     # try:
     #     pass
     # except ValueError:
@@ -237,4 +235,15 @@ finally:
     # except:
     #     raise
     # finally:
+    #     pass
+
+    try_block = try_(
+        PASS
+    ).except_star(id_("Exception")).block(
+        PASS
+    )
+    assert try_block.into_code() == "try:\n    pass\nexcept* Exception:\n    pass"
+    # try:
+    #     pass
+    # except* Exception:
     #     pass

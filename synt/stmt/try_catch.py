@@ -150,10 +150,10 @@ class Try(Statement):
                 pass
             except Exception as e:
                 return
-            else:
-                pass
             except:
                 raise
+            else:
+                pass
             finally:
                 pass'''
             # try:
@@ -165,6 +165,17 @@ class Try(Statement):
             # except:
             #     raise
             # finally:
+            #     pass
+
+            try_block = try_(
+                            PASS
+                        ).except_star(id_("Exception")).block(
+                            PASS
+                        )
+            assert try_block.into_code() == "try:\n    pass\nexcept* Exception:\n    pass"
+            # try:
+            #     pass
+            # except* Exception:
             #     pass
             ```
 
