@@ -14,11 +14,13 @@ __all__ = [
     "assertion",
     "raising",
     "importing",
+    "branch",
 ]
 
 from . import assertion
 from . import assign
 from . import block
+from . import branch
 from . import cls
 from . import decorator
 from . import delete

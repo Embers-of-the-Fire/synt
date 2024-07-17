@@ -74,7 +74,7 @@ class DictComprehension(DictDisplay):
 
     Examples:
         ```python
-        d = dict_comp(kv(id_("a"), litint(1)).for_(id_("a")).in_(id("range").call(litint(5)))
+        d = dict_comp(kv(id_("a"), litint(1)).for_(id_("a")).in_(id_("range").call(litint(5)))
         assert d.into_code() == "{a: 1 for a in range(5)}"
         ```
 

@@ -124,3 +124,51 @@ def test_import():
     assert fi.into_code() == "from io import path, os as p"
     fi = from_(id_("io")).import_("*")
     assert fi.into_code() == "from io import *"
+
+
+def test_if():
+    if_stmt = if_(id_("foo").expr().eq(litstr("bar"))).block(return_(TRUE))
+    assert if_stmt.into_code() == "if foo == 'bar':\n    return True"
+    # if foo == 'bar'
+    #     return True
+
+    if_stmt = (
+        if_(id_("foo").expr().eq(litstr("bar")))
+        .block(return_(TRUE))
+        .elif_(id_("foo").expr().is_not(NONE))
+        .block(return_(FALSE))
+    )
+    assert (
+        if_stmt.into_code()
+        == """if foo == 'bar':
+    return True
+elif foo is not None:
+    return False"""
+    )
+    # if foo == 'bar':
+    #     return True
+    # elif foo is not None:
+    #     return False
+
+    if_stmt = (
+        if_(id_("foo").expr().eq(litstr("bar")))
+        .block(return_(TRUE))
+        .elif_(id_("foo").expr().is_not(NONE))
+        .block(return_(FALSE))
+        .else_(raise_(id_("ValueError").expr().call(litstr("Unexpected value"))))
+    )
+    assert (
+        if_stmt.into_code()
+        == """if foo == 'bar':
+    return True
+elif foo is not None:
+    return False
+else:
+    raise ValueError('Unexpected value')"""
+    )
+    # if foo == 'bar':
+    #     return True
+    # elif foo is not None:
+    #     return False
+    # else:
+    #     raise ValueError('Unexpected value')

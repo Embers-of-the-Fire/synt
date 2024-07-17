@@ -68,6 +68,7 @@ __all__ = [
     "return_",
     "IntoStatement",
     "Statement",
+    "if_",
     "id_",
     "kv",
     "pair",
@@ -131,6 +132,7 @@ from synt.expr.wrapped import wrap
 from synt.expr.wrapped import wrapped
 from synt.stmt.assertion import assert_
 from synt.stmt.block import Block
+from synt.stmt.branch import if_
 from synt.stmt.cls import class_
 from synt.stmt.decorator import dec
 from synt.stmt.delete import del_
