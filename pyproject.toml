@@ -59,8 +59,8 @@ extend-exclude = [
 ]
 fix = true
 line-length = 88
-src = ["src"]
-target-version = "py38"
+src = ["synt"]
+target-version = "py312"
 
 [tool.ruff.lint]
 extend-select = [

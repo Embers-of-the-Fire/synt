@@ -1,6 +1,8 @@
 def check [] {
     ruff check ./synt
     mypy -p synt
+
+    ruff check ./tests --ignore F405,F403,E741,ERA001,F841
 }
 
 def fmt [] {
