@@ -17,7 +17,7 @@ import synt.expr.expr as expr
 
 
 class ListDisplay(expr.Expression, metaclass=ABCMeta):
-    """Literal list expression.
+    r"""Literal list expression.
 
     References:
         [list display](https://docs.python.org/3/reference/expressions.html#list-displays).
@@ -28,7 +28,7 @@ class ListDisplay(expr.Expression, metaclass=ABCMeta):
 
 
 class ListVerbatim(ListDisplay):
-    """Verbatim list expression, aka `starred-list`.
+    r"""Verbatim list expression, aka `starred-list`.
 
     Examples:
         ```python
@@ -65,7 +65,7 @@ Notes:
 
 
 class ListComprehension(ListDisplay):
-    """list comprehension expression.
+    r"""list comprehension expression.
 
     Examples:
         ```python

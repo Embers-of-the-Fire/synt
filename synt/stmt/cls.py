@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 
 
 class ClassDef(Statement):
-    """Class definition.
+    r"""Class definition.
 
         Examples:
             ```python
@@ -112,7 +112,7 @@ class ClassDef(Statement):
 
 
 class ClassDefBuilder:
-    """Class definition builder.
+    r"""Class definition builder.
 
     References:
         [`ClassDef`][synt.stmt.cls.ClassDef].
@@ -252,7 +252,7 @@ class ClassDefBuilder:
 
 
 def class_(name: Identifier) -> ClassDefBuilder:
-    """Initialize a class without decorators.
+    r"""Initialize a class without decorators.
 
     Args:
         name: Class name.

@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 
 class DictDisplay(expr.Expression, metaclass=ABCMeta):
-    """Literal dict expression.
+    r"""Literal dict expression.
 
     References:
         [Dictionary display](https://docs.python.org/3/reference/expressions.html#dictionary-displays).
@@ -33,7 +33,7 @@ class DictDisplay(expr.Expression, metaclass=ABCMeta):
 
 
 class DictVerbatim(DictDisplay):
-    """Verbatim dict expression.
+    r"""Verbatim dict expression.
 
     Examples:
         ```python
@@ -67,7 +67,7 @@ Notes:
 
 
 class DictComprehension(DictDisplay):
-    """Dict comprehension expression.
+    r"""Dict comprehension expression.
 
     Note that you can also directly insert a comprehension expression into a normal dictionary,
     but that will become a generator comprehension and returns a pair of extra parenthesis.

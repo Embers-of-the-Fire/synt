@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 
 
 class Assignment(Statement):
-    """Assignment statement.
+    r"""Assignment statement.
 
     Examples:
         ```python

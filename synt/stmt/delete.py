@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 class Delete(Statement):
-    """The `del` statement.
+    r"""The `del` statement.
 
     Examples:
         ```python

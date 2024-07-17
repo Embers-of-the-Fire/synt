@@ -15,7 +15,7 @@ import synt.expr.expr as syn_expr
 
 
 class Empty(syn_expr.Expression):
-    """Empty expression.
+    r"""Empty expression.
 
     References:
         [expr.ExprType.Empty][synt.expr.expr.ExprType.Empty].

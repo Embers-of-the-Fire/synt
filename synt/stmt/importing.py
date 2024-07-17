@@ -26,7 +26,7 @@ type ImportType = Literal["*"] | Identifier | ModPath | Alias
 
 
 class Import(Statement):
-    """The `import` statement.
+    r"""The `import` statement.
 
     Examples:
         ```python
@@ -75,7 +75,7 @@ import_ = Import
 
 
 class ImportFrom(Statement):
-    """The `from ... import` statement.
+    r"""The `from ... import` statement.
 
     Examples:
         ```python
@@ -126,7 +126,7 @@ class ImportFrom(Statement):
 
 
 class ImportFromBuilder:
-    """The builder for [`ImportFrom`][synt.stmt.importing.ImportFrom]."""
+    r"""The builder for [`ImportFrom`][synt.stmt.importing.ImportFrom]."""
 
     module: ModPath
     """The module to import from."""

@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 
 
 class Closure(expr.Expression, code.IntoCode):
-    """Python's closure expression, aka `lambda`.
+    r"""Python's closure expression, aka `lambda`.
 
     Notes:
         In Python, a lambda expression can have a single expression as its body.
@@ -56,7 +56,7 @@ class Closure(expr.Expression, code.IntoCode):
 
 
 class ClosureBuilder:
-    """Builder for [`Closure`][synt.expr.closure.Closure].
+    r"""Builder for [`Closure`][synt.expr.closure.Closure].
 
     Examples:
         ```python

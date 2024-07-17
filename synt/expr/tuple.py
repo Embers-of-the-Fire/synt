@@ -12,7 +12,7 @@ import synt.expr.expr as expr
 
 
 class Tuple(expr.Expression):
-    """Tuple expression.
+    r"""Tuple expression.
 
     Examples:
         ```python

@@ -13,7 +13,7 @@ from synt.code import IntoCode
 
 
 class IntoStatement(metaclass=ABCMeta):
-    """Any type that can be converted into a statement."""
+    r"""Any type that can be converted into a statement."""
 
     @abstractmethod
     def into_statement(self) -> Statement:
@@ -21,7 +21,7 @@ class IntoStatement(metaclass=ABCMeta):
 
 
 class Statement(IntoCode, IntoStatement, metaclass=ABCMeta):
-    """A base class for any Python statement."""
+    r"""A base class for any Python statement."""
 
     def into_statement(self) -> Statement:
         """A statement can always be converted into a statement."""

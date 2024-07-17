@@ -9,7 +9,7 @@ from synt.stmt.stmt import Statement
 
 
 class Block(Statement):
-    """A Python code block."""
+    r"""A Python code block."""
 
     body: list[Statement]
     """Code lines in the block."""

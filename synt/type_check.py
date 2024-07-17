@@ -18,5 +18,5 @@ if TYPE_CHECKING:
 
 
 def is_tuple(exp: Expression) -> TypeGuard[synt.expr.tuple.Tuple]:
-    """Check if the given expression is a tuple."""
+    r"""Check if the given expression is a tuple."""
     return exp.expr_type == ExprType.Tuple

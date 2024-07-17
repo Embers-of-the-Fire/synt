@@ -13,7 +13,7 @@ import synt.expr.expr as expr
 
 
 class Wrapped(expr.Expression):
-    """A wrapped expression, aka `( expr )`, which is always an atomic expression.
+    r"""A wrapped expression, aka `( expr )`, which is always an atomic expression.
 
     Examples:
         ```python

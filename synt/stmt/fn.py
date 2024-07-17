@@ -29,7 +29,7 @@ if TYPE_CHECKING:
 
 
 class FnArg(IntoCode):
-    """Function argument.
+    r"""Function argument.
 
     Examples:
         ```python
@@ -129,7 +129,7 @@ arg = FnArg
 
 
 def vararg(i: Identifier) -> FnArg:
-    """Initialize a variable argument.
+    r"""Initialize a variable argument.
 
     This is equivalent to `FnArg(...).vararg()`.
 
@@ -143,7 +143,7 @@ def vararg(i: Identifier) -> FnArg:
 
 
 def kwarg(i: Identifier) -> FnArg:
-    """Initialize a keyword argument.
+    r"""Initialize a keyword argument.
 
     This is equivalent to `FnArg(...).kwarg()`.
 
@@ -157,7 +157,7 @@ def kwarg(i: Identifier) -> FnArg:
 
 
 class FunctionDef(Statement):
-    """Function definition.
+    r"""Function definition.
 
     Examples:
         With dsl-like aliases:
@@ -258,7 +258,7 @@ class FunctionDef(Statement):
 
 
 class FunctionDefBuilder:
-    """Function definition builder.
+    r"""Function definition builder.
 
     References:
         [`FunctionDef`][synt.stmt.fn.FunctionDef]
@@ -411,7 +411,7 @@ class FunctionDefBuilder:
 
 
 def def_(name: Identifier) -> FunctionDefBuilder:
-    """Initialize a function definition.
+    r"""Initialize a function definition.
 
     Args:
         name: Function name.
@@ -420,7 +420,7 @@ def def_(name: Identifier) -> FunctionDefBuilder:
 
 
 def async_def(name: Identifier) -> FunctionDefBuilder:
-    """Initialize an async function definition.
+    r"""Initialize an async function definition.
 
     Args:
         name: Function name.

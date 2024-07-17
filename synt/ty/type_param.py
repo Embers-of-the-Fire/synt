@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 
 
 class TypeVar(IntoCode):
-    """`TypeVar` in type parameters.
+    r"""`TypeVar` in type parameters.
 
     Examples:
         ```python
@@ -63,7 +63,7 @@ tvar = TypeVar
 
 
 class TypeVarTuple(IntoCode):
-    """Type variable tuple.
+    r"""Type variable tuple.
 
     Examples:
         ```python
@@ -95,7 +95,7 @@ ttup = TypeVarTuple
 
 
 class TypeParamSpec(IntoCode):
-    """Type parameter spec.
+    r"""Type parameter spec.
 
     Examples:
         ```python

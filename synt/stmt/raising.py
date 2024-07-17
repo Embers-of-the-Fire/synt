@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 
 class Raise(Statement):
-    """The `raise` statement.
+    r"""The `raise` statement.
 
     Examples:
         ```python

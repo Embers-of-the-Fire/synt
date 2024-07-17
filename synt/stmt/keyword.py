@@ -13,7 +13,7 @@ from synt.stmt.stmt import Statement
 
 
 class KeywordStatement(Statement):
-    """A statement that only contains a specific keyword.
+    r"""A statement that only contains a specific keyword.
 
     Examples:
         ```python

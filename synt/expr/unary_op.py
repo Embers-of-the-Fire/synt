@@ -35,7 +35,7 @@ if TYPE_CHECKING:
 
 
 class UnaryOpType(IntEnum):
-    """Unary operator type.
+    r"""Unary operator type.
 
     References:
         [`expr.ExprPrecedence`][synt.expr.expr.ExprPrecedence]
@@ -129,7 +129,7 @@ class UnaryOpType(IntEnum):
 
 
 class UnaryOp(expr.Expression):
-    """Unary operation."""
+    r"""Unary operation."""
 
     expression: expr.Expression
     """Internal expression."""
@@ -164,7 +164,7 @@ class UnaryOp(expr.Expression):
 
 
 def await_(e: expr.IntoExpression) -> UnaryOp:
-    """Create an `await` expression.
+    r"""Create an `await` expression.
 
     Examples:
         ```python
@@ -180,7 +180,7 @@ awaited = await_
 
 
 def unpack(e: expr.IntoExpression) -> UnaryOp:
-    """Sequence unpacking operation.
+    r"""Sequence unpacking operation.
 
     Examples:
         ```python
@@ -196,7 +196,7 @@ starred = unpack_seq = unpack
 
 
 def unpack_kv(e: expr.IntoExpression) -> UnaryOp:
-    """K-V pair unpacking operation.
+    r"""K-V pair unpacking operation.
 
     Examples:
         ```python
@@ -212,7 +212,7 @@ double_starred = unpack_dict = unpack_kv
 
 
 def positive(e: expr.IntoExpression) -> UnaryOp:
-    """Positive operation.
+    r"""Positive operation.
 
     Examples:
         ```python
@@ -224,7 +224,7 @@ def positive(e: expr.IntoExpression) -> UnaryOp:
 
 
 def negative(e: expr.IntoExpression) -> UnaryOp:
-    """Negative operation.
+    r"""Negative operation.
 
     Examples:
         ```python
@@ -240,7 +240,7 @@ neg = negative
 
 
 def not_(e: expr.IntoExpression) -> UnaryOp:
-    """Boolean NOT operation.
+    r"""Boolean NOT operation.
 
     Examples:
         ```python
@@ -256,7 +256,7 @@ bool_not = not_
 
 
 def invert(e: expr.IntoExpression) -> UnaryOp:
-    """Bitwise NOT operation.
+    r"""Bitwise NOT operation.
 
     Examples:
         ```python
@@ -272,7 +272,7 @@ bit_not = invert
 
 
 def yield_(e: expr.Expression) -> UnaryOp:
-    """Yield operation.
+    r"""Yield operation.
 
     Examples:
         ```python
@@ -284,7 +284,7 @@ def yield_(e: expr.Expression) -> UnaryOp:
 
 
 def yield_from(e: expr.Expression) -> UnaryOp:
-    """Yield from operation.
+    r"""Yield from operation.
 
     Examples:
         ```python

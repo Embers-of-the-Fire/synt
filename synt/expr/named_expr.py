@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 class NamedExpr(expr.Expression):
-    """Inline assignment expression, aka `:=`.
+    r"""Inline assignment expression, aka `:=`.
 
     References:
         [expr.ExprPrecedence.NamedExpr][synt.expr.expr.ExprPrecedence.NamedExpr].

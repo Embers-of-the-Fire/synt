@@ -12,7 +12,7 @@ import synt.expr.expr as expr
 
 
 class Subscript(expr.Expression):
-    """Subscript operation.
+    r"""Subscript operation.
 
     References:
         [Subscription](https://docs.python.org/3/reference/expressions.html#grammar-token-python-grammar-subscription).
@@ -50,7 +50,7 @@ class Subscript(expr.Expression):
 
 
 class Slice(code.IntoCode):
-    """Slice constructor.
+    r"""Slice constructor.
 
     ```python
     foo[

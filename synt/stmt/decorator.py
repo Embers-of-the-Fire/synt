@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 
 
 class DecoratorGroup:
-    """A group of decorators."""
+    r"""A group of decorators."""
 
     decorators: list[Expression]
     """Decorators."""

@@ -15,7 +15,7 @@ from synt.expr.expr import IntoExpression
 
 
 class KVPair(Expression):
-    """A key-value pair, aka `a: b`.
+    r"""A key-value pair, aka `a: b`.
 
     This is mainly used in dict initializing (`{a: b}`)."""
 

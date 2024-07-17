@@ -19,10 +19,10 @@ if TYPE_CHECKING:
 
 
 def is_into_expr(e: Any) -> TypeGuard[expr.IntoExpression]:
-    """Whether the expression is an instance of `IntoExpression`."""
+    r"""Whether the expression is an instance of `IntoExpression`."""
     return isinstance(e, expr.IntoExpression)
 
 
 def is_ident(e: expr.Expression) -> TypeGuard[IdentifierExpr]:
-    """Whether the expression is an identifier."""
+    r"""Whether the expression is an identifier."""
     return e.expr_type == expr.ExprType.Identifier

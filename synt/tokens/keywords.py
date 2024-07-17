@@ -19,7 +19,7 @@ Alias for std library's [`keyword.kwlist`](https://docs.python.org/3/library/key
 
 
 def is_hard_keyword(i: str) -> bool:
-    """Check if a string is a hard keyword.
+    r"""Check if a string is a hard keyword.
 
     See [`hard_keywords`][synt.tokens.keywords.hard_keywords] for more information.
 
@@ -36,7 +36,7 @@ Alias for std library's [`keyword.softkwlist`](https://docs.python.org/3/library
 
 
 def is_soft_keyword(i: str) -> bool:
-    """Check if a string is a soft keyword.
+    r"""Check if a string is a soft keyword.
 
     See [`soft_keywords`][synt.tokens.keywords.soft_keywords] for more information.
 

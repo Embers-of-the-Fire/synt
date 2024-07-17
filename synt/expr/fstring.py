@@ -17,7 +17,7 @@ import synt.expr.expr as expr
 
 
 class FormatString(expr.Expression):
-    """Format string, aka f-string.
+    r"""Format string, aka f-string.
 
     Examples:
         ```python
@@ -58,7 +58,7 @@ fstring = FormatString
 
 
 class FormatConversionType(IntEnum):
-    """Format conversion type.
+    r"""Format conversion type.
 
     References:
         [`FormattedValue`](https://docs.python.org/3/library/ast.html#ast.FormattedValue).
@@ -123,7 +123,7 @@ class FormatConversionType(IntEnum):
 
 
 class FormatNode(code.IntoCode):
-    """Format node used in [`FormatString`][synt.expr.fstring.FormatString].
+    r"""Format node used in [`FormatString`][synt.expr.fstring.FormatString].
 
     Examples:
         ```python

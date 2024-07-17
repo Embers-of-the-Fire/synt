@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 class Call(expr.Expression):
-    """Calling a value.
+    r"""Calling a value.
 
     References:
         [Call](https://docs.python.org/3/library/ast.html#ast.Call).
@@ -69,7 +69,7 @@ class Call(expr.Expression):
 
 
 class Keyword(code.IntoCode):
-    """Keyword arguments of a object call.
+    r"""Keyword arguments of a object call.
 
     References:
         [`Call`][synt.expr.call.Call]

@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 
 
 class ExprPrecedence(IntEnum):
-    """Python's expression precedence.
+    r"""Python's expression precedence.
 
     Sort sequence: smaller = prior
 
@@ -230,7 +230,7 @@ class ExprPrecedence(IntEnum):
 
 
 class ExprType(IntEnum):
-    """Expression type in Synt."""
+    r"""Expression type in Synt."""
 
     Atom = -1
     """Any expression type.
@@ -282,7 +282,7 @@ class ExprType(IntEnum):
 
 
 class IntoExpression(code.IntoCode, metaclass=ABCMeta):
-    """Abstract class for those that can be converted into an
+    r"""Abstract class for those that can be converted into an
     [`Expression`][synt.expr.expr.Expression]."""
 
     @abstractmethod
@@ -305,7 +305,7 @@ class IntoExpression(code.IntoCode, metaclass=ABCMeta):
 
 
 class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
-    """Base class for any expression in Python."""
+    r"""Base class for any expression in Python."""
 
     @property
     @abstractmethod

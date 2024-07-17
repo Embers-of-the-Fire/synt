@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 class BinaryOpType(IntEnum):
-    """Binary operator type.
+    r"""Binary operator type.
 
     **Exception:**
     Although [`NamedExpr`][synt.expr.expr.ExprPrecedence.NamedExpr]
@@ -185,7 +185,7 @@ class BinaryOpType(IntEnum):
 
 
 class BinaryOp(expr.Expression):
-    """Binary operation."""
+    r"""Binary operation."""
 
     left: expr.Expression
     """Left operand expression."""

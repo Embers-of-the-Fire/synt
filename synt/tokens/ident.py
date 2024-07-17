@@ -13,7 +13,7 @@ import synt.expr.expr as expr
 
 
 class Identifier(expr.IntoExpression, code.IntoCode):
-    """Represents a valid Python identifier.
+    r"""Represents a valid Python identifier.
 
     For more information, see the [Identifier and Keywords][ident-and-keywords-python-docs]
     section of the Python's standard documentation.
@@ -90,7 +90,7 @@ Notes:
 
 
 class IdentifierExpr(expr.Expression):
-    """An identifier as a Python expression.
+    r"""An identifier as a Python expression.
 
     See [`Identifier`][synt.tokens.ident.Identifier] for more information.
     """

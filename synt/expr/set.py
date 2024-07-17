@@ -17,7 +17,7 @@ import synt.expr.expr as expr
 
 
 class SetDisplay(expr.Expression, metaclass=ABCMeta):
-    """Literal set expression.
+    r"""Literal set expression.
 
     References:
         [Set display](https://docs.python.org/3/reference/expressions.html#set-displays).
@@ -28,7 +28,7 @@ class SetDisplay(expr.Expression, metaclass=ABCMeta):
 
 
 class SetVerbatim(SetDisplay):
-    """Verbatim set expression.
+    r"""Verbatim set expression.
 
     Examples:
         ```python
@@ -62,7 +62,7 @@ Notes:
 
 
 class SetComprehension(SetDisplay):
-    """Set comprehension expression.
+    r"""Set comprehension expression.
 
     Examples:
         ```python

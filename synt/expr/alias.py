@@ -10,7 +10,7 @@ from synt.expr.modpath import ModPath
 
 
 class Alias(IntoCode):
-    """Import alias.
+    r"""Import alias.
 
     Examples:
         ```python

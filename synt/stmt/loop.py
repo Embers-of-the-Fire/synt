@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 class ForLoop(Statement):
-    """The `for` loop.
+    r"""The `for` loop.
 
         Examples:
             ```python
@@ -97,7 +97,7 @@ class ForLoop(Statement):
 
 
 class ForLoopBuilder:
-    """Builder for `for` loop.
+    r"""Builder for `for` loop.
 
     References:
         [`ForLoop`][synt.stmt.loop.ForLoop].
@@ -152,7 +152,7 @@ for_ = ForLoopBuilder
 
 
 class WhileLoop:
-    """The `while` loop.
+    r"""The `while` loop.
 
     References:
         [`While`](https://docs.python.org/3/library/ast.html#ast.While).
@@ -199,7 +199,7 @@ class WhileLoop:
 
 
 class WhileLoopBuilder:
-    """Builder for `while` loop.
+    r"""Builder for `while` loop.
 
         Examples:
             ```python

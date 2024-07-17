@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 
 
 class Branch(Statement):
-    """The branch statement, aka `if ... elif ... else`.
+    r"""The branch statement, aka `if ... elif ... else`.
 
         Examples:
             ```python
@@ -122,7 +122,7 @@ class Branch(Statement):
 
 
 class BranchBuilder:
-    """A single branch builder for the branch statement."""
+    r"""A single branch builder for the branch statement."""
 
     parent: Branch
     """Parent node."""
@@ -151,7 +151,7 @@ class BranchBuilder:
 
 
 def if_(test: IntoExpression) -> BranchBuilder:
-    """Initialize a new branch statement.
+    r"""Initialize a new branch statement.
 
     Args:
         test: The expression to test.

@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 class Assert(Statement):
-    """The `assert` statement.
+    r"""The `assert` statement.
 
     Examples:
         ```python

@@ -10,7 +10,7 @@ import synt.expr.expr as expr
 
 
 class Attribute(expr.Expression):
-    """The operation to get a value's attribute.
+    r"""The operation to get a value's attribute.
 
     References:
         [Attribute](https://docs.python.org/3/library/ast.html#ast.Attribute).

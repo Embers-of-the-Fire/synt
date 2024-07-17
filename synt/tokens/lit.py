@@ -22,7 +22,7 @@ from synt.expr.expr import ExprType
 
 
 class Literal(Expression):
-    """Literal Python expression."""
+    r"""Literal Python expression."""
 
     lit: str
     """Source code of the literal."""

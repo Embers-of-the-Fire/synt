@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 class ExceptionHandler(Statement):
-    """Exception handler.
+    r"""Exception handler.
 
     References:
         [`ExceptionHandler`](https://docs.python.org/3/library/ast.html#ast.ExceptHandler).
@@ -66,7 +66,7 @@ class ExceptionHandler(Statement):
 
 
 class ExceptionHandlerBuilder:
-    """The builder for exception handlers.
+    r"""The builder for exception handlers.
 
     References:
         [`ExceptionHandler`][synt.stmt.try_catch.ExceptionHandler].
@@ -120,7 +120,7 @@ class ExceptionHandlerBuilder:
 
 
 class Try(Statement):
-    """The `try` statement.
+    r"""The `try` statement.
 
         Notes:
             Python views `except` and `except*` as separate statement types,
@@ -272,7 +272,7 @@ class Try(Statement):
 
 
 def try_(*statement: Statement) -> Try:
-    """Initialize a `try` statement.
+    r"""Initialize a `try` statement.
 
     Args:
         statement: The statements in the `try` block.

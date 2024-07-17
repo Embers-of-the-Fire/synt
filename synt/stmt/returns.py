@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 
 class Return(Statement):
-    """The `return` statement.
+    r"""The `return` statement.
 
     Examples:
         ```python

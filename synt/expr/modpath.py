@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 
 
 class ModPath(IntoCode):
-    """Module path.
+    r"""Module path.
 
     Examples:
         ```python
@@ -79,7 +79,7 @@ path = ModPath
 
 
 def relpath(*names: Identifier) -> ModPath:
-    """Initialize a path relatively (`depth = 1`).
+    r"""Initialize a path relatively (`depth = 1`).
 
     Args:
         names: Names of the path.
@@ -94,7 +94,7 @@ def relpath(*names: Identifier) -> ModPath:
 
 
 def parentpath(*names: Identifier) -> ModPath:
-    """Initialize a path from its parent (`depth = 2`).
+    r"""Initialize a path from its parent (`depth = 2`).
 
     Args:
         names: Names of the path.

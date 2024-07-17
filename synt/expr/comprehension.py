@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 
 
 class Comprehension(expr.IntoExpression, code.IntoCode):
-    """A Comprehension expression.
+    r"""A Comprehension expression.
 
     **Attribute explanation:**
     ```python
@@ -123,7 +123,7 @@ class ComprehensionNode(code.IntoCode):
 
 
 class GeneratorComprehension(expr.Expression):
-    """A generator comprehension expression.
+    r"""A generator comprehension expression.
 
     **Note:**
     `GeneratorComprehension` is a subclass of [`expr.Expression`][synt.expr.expr.Expression],
@@ -149,7 +149,7 @@ class GeneratorComprehension(expr.Expression):
 
 
 class ComprehensionBuilder(expr.IntoExpression):
-    """Builder for [`Comprehension`][synt.expr.comprehension.Comprehension]."""
+    r"""Builder for [`Comprehension`][synt.expr.comprehension.Comprehension]."""
 
     __elt: expr.Expression
     __comprehensions: list[ComprehensionNode]
@@ -227,7 +227,7 @@ class ComprehensionBuilder(expr.IntoExpression):
 
 
 class ComprehensionNodeBuilder(expr.IntoExpression):
-    """Builder for [`ComprehensionNode`][synt.expr.comprehension.ComprehensionNode]."""
+    r"""Builder for [`ComprehensionNode`][synt.expr.comprehension.ComprehensionNode]."""
 
     __target: list[Identifier] | None
     __iterator: expr.Expression | None
