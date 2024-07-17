@@ -138,6 +138,7 @@ from synt.stmt.fn import async_def
 from synt.stmt.fn import def_
 from synt.stmt.fn import kwarg
 from synt.stmt.fn import vararg
+from synt.stmt.importing import import_
 from synt.stmt.keyword import BREAK
 from synt.stmt.keyword import CONTINUE
 from synt.stmt.keyword import PASS
@@ -160,4 +161,3 @@ from synt.tokens.lit import litstr
 from synt.ty.type_param import tspec
 from synt.ty.type_param import ttup
 from synt.ty.type_param import tvar
-from synt.stmt.importing import import_

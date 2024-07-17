@@ -251,6 +251,9 @@ def test_expr_alias():
     al = id_("a").as_(id_("b"))
     assert al.into_code() == "a as b"
 
+    p = path(id_("foo"), id_("bar")).as_(id_("baz"))
+    assert p.into_code() == "foo.bar as baz"
+
 
 def test_expr_modpath():
     p = path(id_("foo"))

@@ -16,6 +16,7 @@ from synt.code import IntoCode
 
 
 if TYPE_CHECKING:
+    from synt.expr.alias import Alias
     from synt.tokens.ident import Identifier
 
 
@@ -61,6 +62,16 @@ class ModPath(IntoCode):
 
     def into_code(self) -> str:
         return "." * self.depth + ".".join(name.into_code() for name in self.names)
+
+    def as_(self, asname: Identifier) -> Alias:
+        """Alias the import path.
+
+        Args:
+            asname: Name of the alias.
+        """
+        from synt.expr.alias import Alias
+
+        return Alias(self, asname)
 
 
 path = ModPath

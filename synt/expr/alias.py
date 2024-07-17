@@ -16,6 +16,8 @@ class Alias(IntoCode):
         ```python
         al = id_("a").as_("b")
         assert al.into_code() == "a as b"
+        p = path(id_('foo'), id_('bar')).as_(id_("baz"))
+        assert p.into_code() == "foo.bar as baz"
         ```
 
     References:

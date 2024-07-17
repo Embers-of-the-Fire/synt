@@ -16,8 +16,8 @@ from synt.stmt.stmt import Statement
 
 
 if TYPE_CHECKING:
-    from synt.tokens.ident import Identifier
     from synt.expr.modpath import ModPath
+    from synt.tokens.ident import Identifier
 
 
 type ImportType = Literal["*"] | Identifier | ModPath | Alias
