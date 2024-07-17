@@ -89,6 +89,8 @@ __all__ = [
     "for_",
     "while_",
     "try_",
+    "with_item",
+    "with_",
 ]
 
 from synt.expr.closure import lambda_
@@ -171,3 +173,4 @@ from synt.tokens.lit import litstr
 from synt.ty.type_param import tspec
 from synt.ty.type_param import ttup
 from synt.ty.type_param import tvar
+from synt.stmt.context import with_item, with_

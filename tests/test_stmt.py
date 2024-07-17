@@ -247,3 +247,10 @@ finally:
     #     pass
     # except* Exception:
     #     pass
+
+
+def test_with():
+    with_stmt = with_(id_("a"), (id_("b"), id_("b2")), with_item(id_("c")).as_(id_("c2"))).block(
+        PASS
+    )
+    assert with_stmt.into_code() == "with a, b as b2, c as c2:\n    pass"
