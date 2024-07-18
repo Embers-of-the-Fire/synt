@@ -76,6 +76,7 @@ __all__ = [
     "FALSE",
     "NONE",
     "TRUE",
+    "UNDERSCORE",
     "litbool",
     "litfloat",
     "litint",
@@ -93,6 +94,7 @@ __all__ = [
     "with_",
     "global_",
     "nonlocal_",
+    "match_",
 ]
 
 from synt.expr.closure import lambda_
@@ -157,6 +159,7 @@ from synt.stmt.keyword import CONTINUE
 from synt.stmt.keyword import PASS
 from synt.stmt.loop import for_
 from synt.stmt.loop import while_
+from synt.stmt.match_case import match_
 from synt.stmt.namespace import global_
 from synt.stmt.namespace import nonlocal_
 from synt.stmt.raising import raise_
@@ -172,6 +175,7 @@ from synt.tokens.lit import ELLIPSIS
 from synt.tokens.lit import FALSE
 from synt.tokens.lit import NONE
 from synt.tokens.lit import TRUE
+from synt.tokens.lit import UNDERSCORE
 from synt.tokens.lit import litbool
 from synt.tokens.lit import litfloat
 from synt.tokens.lit import litint

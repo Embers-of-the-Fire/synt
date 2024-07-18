@@ -20,6 +20,7 @@ __all__ = [
     "context",
     "namespace",
     "expression",
+    "match_case",
 ]
 
 from . import assertion
@@ -35,6 +36,7 @@ from . import fn
 from . import importing
 from . import keyword
 from . import loop
+from . import match_case
 from . import namespace
 from . import raising
 from . import returns

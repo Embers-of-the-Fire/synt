@@ -265,3 +265,38 @@ def test_ns():
 def test_expr():
     stmt = id_("print").expr().call(litstr("Hello world!")).stmt()
     assert stmt.into_code() == "print('Hello world!')"
+
+
+def test_match():
+    match_stmt = (
+        match_(id_("a"))
+        .case_(id_("b"))
+        .block(PASS)
+        .case_(id_("Point").expr().call(id_("x"), id_("y")))
+        .block(PASS)
+        .case_(list_(id_("x")).as_(id_("y")))
+        .block(PASS)
+        .case_(UNDERSCORE)
+        .block(PASS)
+    )
+    assert (
+        match_stmt.into_code()
+        == """match a:
+    case b:
+        pass
+    case Point(x, y):
+        pass
+    case [x] as y:
+        pass
+    case _:
+        pass"""
+    )
+    # match a:
+    #     case b:
+    #         pass
+    #     case Point(x, y):
+    #         pass
+    #     case [x] as y:
+    #         pass
+    #     case _:
+    #         pass
