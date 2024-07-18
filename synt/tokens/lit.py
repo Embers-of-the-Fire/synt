@@ -159,3 +159,5 @@ NONE = Literal("None")
 """Alias for a literal `None`."""
 ELLIPSIS = Literal("...")
 """Alias for a literal ellipsis `...`."""
+UNDERSCORE = ELIDE = Literal("_")
+"""Alias for a literal underscore `_`."""
