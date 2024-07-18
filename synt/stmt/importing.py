@@ -12,11 +12,11 @@ __all__ = [
 from typing import TYPE_CHECKING
 from typing import Literal
 
-from synt.expr.alias import Alias
 from synt.stmt.stmt import Statement
 
 
 if TYPE_CHECKING:
+    from synt.expr.alias import Alias
     from synt.expr.modpath import ModPath
     from synt.tokens.ident import Identifier
 

@@ -17,6 +17,7 @@ import synt.code as code
 
 
 if TYPE_CHECKING:
+    from synt.expr.alias import Alias
     from synt.stmt.stmt import Statement
     from synt.tokens.ident import Identifier
 
@@ -1025,6 +1026,16 @@ class Expression(IntoExpression, code.IntoCode, metaclass=ABCMeta):
         from synt.stmt.expression import stmt
 
         return stmt(self)
+
+    def as_(self, target: Identifier) -> Alias:
+        """Convert the expression into an alias.
+
+        Args:
+            target: The target identifier.
+        """
+        from synt.expr.alias import Alias
+
+        return Alias(self, target)
 
 
 # add import here to avoid circular imports

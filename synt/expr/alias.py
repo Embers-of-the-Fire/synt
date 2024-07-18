@@ -5,11 +5,13 @@ __all__ = [
     "Alias",
 ]
 
-from synt.code import IntoCode
+from synt.expr.expr import Expression
+from synt.expr.expr import ExprPrecedence
+from synt.expr.expr import ExprType
 from synt.expr.modpath import ModPath
 
 
-class Alias(IntoCode):
+class Alias(Expression):
     r"""Import alias.
 
     Examples:
@@ -24,12 +26,15 @@ class Alias(IntoCode):
         [`alias`](https://docs.python.org/3/library/ast.html#ast.alias).
     """
 
-    names: ModPath
+    names: ModPath | Expression
     """The names of the alias item."""
     asname: Identifier
     """The alias name."""
 
-    def __init__(self, names: Identifier | ModPath, asname: Identifier):
+    expr_type = ExprType.Atom
+    precedence = ExprPrecedence.Atom
+
+    def __init__(self, names: Identifier | ModPath | Expression, asname: Identifier):
         """Initialize a new alias.
 
         Args:
