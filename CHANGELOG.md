@@ -1,5 +1,11 @@
 # ChangeLog
 
+## V0.3.0
+
+**New**
+
+- `match ... case` is now available.
+
 ## V0.2.0
 
 **New**
