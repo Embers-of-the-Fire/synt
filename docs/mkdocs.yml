@@ -115,6 +115,9 @@ plugins:
 nav:
   - Introduction:
     - index.md
-    - terms.md
-    - CHANGELOG.md
+    - Getting Started:
+      - demo_single_file.md
+      - terms.md
+    - Change Log:
+      - CHANGELOG.md
   - Api Documentation: api/
