@@ -35,7 +35,7 @@ class Assert(Statement):
     msg: Expression | None
     """The assert message."""
 
-    def __init__(self, test: IntoExpression, msg: IntoExpression | None):
+    def __init__(self, test: IntoExpression, msg: IntoExpression | None = None):
         """Initialize the assertion.
 
         Args:
