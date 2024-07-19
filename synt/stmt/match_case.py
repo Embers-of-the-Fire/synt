@@ -5,6 +5,7 @@ __all__ = [
     "MatchCase",
     "MatchCaseBuilder",
     "Match",
+    "match_",
 ]
 
 
