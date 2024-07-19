@@ -9,10 +9,12 @@ __all__ = [
     "stmt",
     "ty",
     "type_check",
+    "file",
 ]
 
 from . import code
 from . import expr
+from . import file
 from . import prelude
 from . import stmt
 from . import tokens

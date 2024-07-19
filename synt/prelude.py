@@ -95,6 +95,7 @@ __all__ = [
     "global_",
     "nonlocal_",
     "match_",
+    "File",
 ]
 
 from synt.expr.closure import lambda_
@@ -139,6 +140,7 @@ from synt.expr.unary_op import yield_from
 from synt.expr.wrapped import par
 from synt.expr.wrapped import wrap
 from synt.expr.wrapped import wrapped
+from synt.file import File
 from synt.stmt.assertion import assert_
 from synt.stmt.block import Block
 from synt.stmt.branch import if_
