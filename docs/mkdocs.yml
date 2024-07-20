@@ -117,6 +117,7 @@ nav:
     - index.md
     - Getting Started:
       - demo_single_file.md
+      - demo_orm.md
       - terms.md
     - Change Log:
       - CHANGELOG.md
